@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- Prism -->
+    <link rel="stylesheet" href="assets/css/prism/prism.css">
+
+    <!-- TocBot -->
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.8.0/tocbot.css">-->
+    <link rel="stylesheet" href="assets/css/tocbot/tocbot.css">
+
+    <!-- Semantic -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
+    <link rel="stylesheet" href="assets/PrameVorgs/semantic-ui-css-master/semantic.min.css">
+</head>
+
+<body id="body" class="js-toc-content">
+
+<header><h1 id="title-h1-??"></h1></header>
+
+<main id="main" class="ui container">
+
+    <article id="article">
+
+
+        <!-- BEGIN PRINCIPAL CONTENT -->
+
+        <section id="section-principal">
+
+            <section>
+
+                <fieldset>
+
+                    <h2>2019‑11‑05 ‒ Mardi :</h2>
+
+                    <pre><code class="language-javascript line-numbers">for in
+for of</code></pre>
+
+                    <pre><code class="language-javascript line-numbers">// Exemple :
+let $tab ["ab", "xy", "AB", "ZX"];
+
+in 1&nbsp;&nbsp;2&nbsp;&nbsp;3&nbsp;&nbsp;4&nbsp;&nbsp;// index
+of ab&nbsp;xy&nbsp;ab&nbsp;zx // valeur</code></pre>
+                    <p>même type que l'element qui est dans le tableau. (typade dynamique).
+
+                    <p>Difference dans la facon d'acceder.</p>
+
+                    <pre><code class="language-javascript line-numbers">for(let $i in tab) {
+      … tab[$i] …
+}
+
+for(let $el of tab) {
+    … $el …
+la on imprime directement la variable;
+on ne fait plush referecne au tbleau.
+
+// Objet
+let $pers = { "nom" : "Dubois",
+              "age" : 25,
+              "taille" : 175};
+// On utilise in car on besoin de key & value.
+
+for (let $a in pers) {
+    … pers[$a] …
+}</code></pre>
+
+                    <pre><code class="language-javascript line-numbers">pers.nom</code></pre>
+
+                    <p>norm‑ale‑ment en objet on fait cela,<br> mais pash en javascript.</p>
+
+                    <p>On peut donc faire cela :</p>
+
+                    <pre><code class="language-javascript line-numbers">pers[nom]</code></pre>
+
+                    <p>En JSON cela fonctionne, mais un objet kavascript, les objets peuvent aussi contenir des méthodes et risque de les afficher. JSON ne peut pash reprendre des méthodes.</p>
+
+                    <pre><code class="language-javascript line-numbers">Objet « of » : { … , … }
+Array « in » : ( … , … )</code></pre>
+
+                    <p>Promise permet de jouer avec cette asyncrhonisem.</p>
+
+                    <h4>jQuery :</h4>
+                    <pre><code class="language-javascript line-numbers">$x.hide(3000); // 3 secondes pour cacher. Grace à un set timeout (en arrière plain.)
+$x.show();</code></pre>
+
+                    <h5>PROMISES</h5>
+
+                    <p>Sa remplace les callbacks.</p>
+
+                    <pre><code class="language-javascript line-numbers">// CallBack
+$x.hide(3000, $x.show(2000, …));
+// Execute show après les 3 secondes,
+// afin de ne pash que il le ce lance immediatement,
+// comme la méthode précedente.</code></pre>
+
+                    <pre><code class="language-javascript line-numbers">// Promajzë / Promise
+$x.hide(2000)
+.then( … ) // execute que qnad tout c'est bien passé.
+.then( … );</code></pre>
+
+                    <p>Il on rajouté</p>
+                    <pre><code class="language-javascript line-numbers">await
+async</code></pre>
+
+                    <p>Sa simplifie l'écriture des promises.</p>
+                    <pre><code class="language-javascript line-numbers">x = fetch … ;
+// Mais y a un risque de décalage.
+// Donc on écrirait :
+await x = fetch … ;</code></pre>
+
+                    Segolene
+                    <div class="ui segment"><h3>Code Postaux :</h3>
+
+                        Exerice 16 :
+                        <p>Exercice on input un chiffre postal et la localité qui correspond apparaît.</p>
+
+                        <p>Je n'avais pash bien compris les consignes. Et j'avais affihcer les CP dans une div alors que il fallait un select (liste déroulante.)</p>
+
+                        Ma version :
+                        <input type="text" id="Ex2019_16CodePostal" placeholder="Inséré le code postal"><br>
+
+                        <div id="Ex2019_16Localité" placeholder="Localité" readonly>
+
+                        </div>
+
+                        <script>
+                            "use strict";
+
+                            // ============================================================
+                            const CODE_POSTAL = document.getElementById("Ex2019_16CodePostal");
+                            const LOCALITÉ = document.getElementById("Ex2019_16Localité")
+
+                            CODE_POSTAL.addEventListener("input", afficheListeLocalitee);
+
+                            // ============================================================
+
+                            function afficheListeLocalitee() {
+                                // window.alert("Liste des pays");
+                                // Fonctionne
+
+                                let $filtreCodesPostaux = CODE_POSTAL.value.trim();
+                                // window.alert("Codes postaux :" + $filtreCodesPostaux);
+                                // Fonctionne
+
+                                // Il faut absolument inseré le parametre.
+                                fetch("./php/2019-11-05_-_code_postal.php?filtreCodesPostaux=" + $filtreCodesPostaux)
+
+                                // Transformation en format JSON
+                                    .then($reponse => $reponse.json())
+                                    .then($listeLocalité => {
+
+                                        // console.log("liste localité :", $listeLocalité);
+                                        LOCALITÉ.innerHTML = "";
+                                        for (const LISTE_LOCALITÉ of $listeLocalité) {
+                                            // console.log("pays :", pays);
+                                            // console.log("pays.nomFrP :", pays.nomFrP);
+                                            let $paragraphLocalité = document.createElement("span");
+                                            $paragraphLocalité.innerHTML = LISTE_LOCALITÉ.commune + "<br />";
+
+                                            LOCALITÉ.appendChild($paragraphLocalité);
+                                            // Chk = checkbox
+                                        }
+                                    });
+                            };
+                        </script>
+
+                        <p>Version prof :</p>
+
+                        // ComboBox
+                        <label for="comboBoxCP">CP:</label>
+                        <select name="comboBoxCP" id=""></select>
+
+                        <script>
+                            // Initialement l'html pointera à 1000, mais le second select n'affiche rien,
+                            // on devra remedier à cela. Et puis pq brussels alors que l'o est à Namur / Namen.
+
+                            // Au début les poiteur,
+                            // puis les méthodes et fonctions.
+
+                            // Mise en place du mécanisme evenementiel.
+                            // ling4
+
+                            // majCboCP = mise à jour ComboBox Code Postal
+
+                        // A chaque étapge bien lancé un console.log pour être sur que êllë fonctionne.
+
+                            fetch // Pash de parametre.
+                            console.log(); // emmet : clo
+
+                            // $optCP.innerHTML à cause des égaux on ne peut pash mettre diretment à la suite de createElement("option");
+
+                            // ligne 13 du P.H.P. commune au peu mettre aussi un bindparam
+
+                            // Ligne 19 ajoute nettoyage : $cboCP.innerHTML = "";
+                            // Linge 20 affichage par défaut.
+
+                            // ligne 25 majCboLoc = mise à jour ComboBox Localité
+
+                            // On déplace la ligne nettoyage en dehors de la boucle pour ne pas avoir de erreur en cas de remise de la premier selection sur Choisissez
+
+                            // $cboLoc.removeAttribut()… Remplacé par :
+                            // $cboLoc.attribut = true; // Puis.
+                            // $cboLoc.hidden = true;
+                            // $DivLoc.hidden = true; // creez une div car CPdans label appariassant
+
+                            // Le prof estieme que le code pourrait etre amelioré pour éviter les recurrances & redondance de nettoyage par exemple…
+                        </script>
+
+                        <p>Le prof voudrait une variantes, quand on tape une localité un zone de texte ou on tape un chiffre ou un terme il nous montre une div avec le terme ou chiffre adequate, un peu comme liste de pays. Puis qund on click il copie le nom quelque part autre &lt;div&gt; vous avez choisie la ville $ville de avec pour code poste $cp.</p>
+                        Loc [Nom]
+                            5000 Namur
+                            5004 Bouge.
+
+                        <h4>2019‑11‑12 ‒ 09H00 :</h4>
+
+                        Exercice 16B
+                        <ul>
+                            <li>1ère étape : filtrage.</li>
+                            <li>2ème étape : remplissage de la liste déroulante.</li>
+                            <li>3ème étage selection de l'element.</li>
+                        </ul>
+
+                        <p>liste déroulante, <code>.addEventListener()</code> : change</p>
+
+                        <p>Quand on efface la premier lettre est vide il faut tenter de éviter que il cherche.</p>
+
+                        <p>Le mécanisme de filtrage on l'avait déjà fait.</p>
+
+                        <p>Dans le cas ou le CP n'a que un choix. Il faudrait passé la selection manuel.</p>
+
+                        <pre><code class="language-javascript line-numbers">let nbr = document.getElementById("txtNbr");
+nbr.value = nbr.value + 1;</code></pre>
+                        <pre><code class="language-javascript line-numbers">document.getElementById → 1
+document.getElementByName → *
+document.getElementByTag → *
+document.getElementByClass → *</code></pre>
+
+                        <p>Nouweau</p>
+
+                        <pre><code class="language-javascript line-numbers">document.querySelector("") → 1
+
+document.querySelector("#truc.Rouge") → *
+// Attentation renvoi tableau donc crochet pour chercher.
+↳
+// jQuery
+$("#trucRouge")</code></pre>
+
+                        <pre><code class="language-javascript line-numbers">element propriety attribute.
+// Tous les elements n'ont pash les meme propriétés.
+
+.setAttribute
+.getAttribute
+.removeAttribute
+.toggleAttribute // Si n'existe pash.</code></pre>
+
+                        <pre><code class="language-javascript line-numbers">createElement
+createTextNode // Noeud sa reprend tout, un element est un noeud.
+                        TextNode est un noeud spécialisé.
+
+&lt;h1&gt;Coucoulme&lt;/h1&gt;
+Element  TextNode</code></pre>
+
+                        <pre><code class="language-javascript line-numbers">document.createElement("p");
+// Il faut le placer.
+document.getElementById("div1").appendChild(); // Voir photo.
+// Il est important de créer une variable du createElement pour pouvoir interagir.
+let $newP = document.createElement("p");
+    $newP.innerHTML = "coucou";
+
+document.ElementById("div2").appendChild($newP);
+// Il le déplace, c'est importante. Il ne fait pash un doublon.</code></pre>
+
+                       // Copie c'est clone. Mais il y deux version, une en profondeur ou en surface. Il ne copie pash les évènements.
+
+// Avec une fonction anonyme on ne peut suprrimier un eventListener car il n'y a pash de pointeur dans les fonction anonyme.
+
+<h4>Le Timer [2019‑11‑12 10H22]</h4>
+
+                        <pre><code class="language-javascript line-numbers">.setInterval(saluer, 3000) // Toute les × milli‑secondes. Mecanisme de ????.
+// Pash de parenthese à l'appel de la fonction. Car si il ont les met, il affichera le result et ne fera pash l'appel de la fonction.
+.clearInterval(saluer, 3000)
+// Stop j'arrete.
+// Oui mais lequel ?
+// Pour le cibler on crée une variable.
+let $t1 = setInterval(saluer, 3000);
+clearInterval($t1);
+
+.setTimeout() // Après × secondes.
+.clearTimeout()</code></pre>
+
+                        <p>L'objectif est de gerer le temps.</p>
+
+                        <h5>Quommênthë récupérer le temps ?</h5>
+
+                        <pre><code class="language-javascript line-numbers">let $now new Date();
+// Vous créez une nouvelle variable.
+
+now.getDay()      // ⇒ 12. Jour.
+now.getMonth()    // ⇒ Novembre.<sup>ème</sup> Mois. {0 à 11} ⚠
+now.getFullYear() // ⇒ 2019. Année.
+now.getHours()    // ⇒ 10. Heure.
+now.getUtcHours() // ⇒ 10. Heure (en temps universel).
+
+now.setMonth(11)  // ⇒ Décembre. Mois.</code></pre>
+
+                        <h5>Date de anniversaire.</h5>
+
+                        <pre><code class="language-javascript line-numbers">// On récupère de une DB
+// $DateDeNaissance (25/04/1979)
+
+let $today = new Date();
+let $DateDeNaissance = new Date($today.getFullYear(), // ⇒ 2019
+                                $today.getMonth(),    // ⇒    3
+                                $today.getDay());     // ⇒   25
+
+let $dateAnniversaire = $DateNaissance;
+$dateAnniversaire.setFullYear($today.getFullYear());
+
+let $age = $today.getFullYear() - $DateNaissance.getFullYear();
+if($today < $dateAnniversaire) {
+    age …
+};</code></pre>
+
+
+                        <h4>Exercice 17</h4>
+
+                        <p>Temp : [display] btn‑start, btn‑lap, btn‑stop btr reset</p>
+
+                        <pre><code class="language-javascript line-numbers">Start = $dateDébut - Date();
+
+Stop = now ⇐ $dateDébut
+       now - $dateDébut</p></code></pre>
+
+
+                        <label id=lblChrono for="ex17textChrono">Temps :</label>
+                        <input id="ex17textChrono" name="ex-17-text-chrono" type="text">
+                        <input type="button" id="ex17BtnStart" value="Start">
+                        <input type="button" id="ex17BtnLap" value="Lap" disabled>
+                        <input type="button" id="ex17BtnStop" value="Stop" disabled>
+                        <input type="button" id="ex17BtnReset" value="Reset" disabled>
+
+                        <div id="ex17DivLap"></div>
+                        <script>
+                            "use strict"
+
+                            // Phase 1 : création des constantes.
+                            const BTN_START  = document.getElementById("ex17BtnStart");
+                            const BTN_LAP   = document.getElementById("ex17BtnLap");
+                            const BTN_STOP   = document.getElementById("ex17BtnStop");
+                            const BTN_RESET   = document.getElementById("ex17BtnReset");
+                            const TEXT_CHRONO   = document.getElementById("ex17textChrono");
+                            const DIV_LAP   = document.getElementById("ex17DivLap");
+
+                            // ────────────────────────────────────────────────────────────────────────
+
+                            // Phase 2 : evenement.
+                            BTN_START.addEventListener("click", startChrono);
+                            BTN_LAP.addEventListener("click", lapChrono);
+                            BTN_STOP.addEventListener("click", stopChrono);
+                            BTN_RESET.addEventListener("click", resetChrono);
+
+
+                            // Phase 05
+                            // Ce temps on aura besoin dans tous les elements, donc global.
+                            let $now = new Date();
+
+                            // Phase 08
+                            let $startTime; // Global.
+                            // Phase 13
+                            let $timer;     // Global.
+
+                            // ────────────────────────────────────────────────────────────────────────
+                            // Phase 06 : Gestion du Chrono, création des 4 fonctions vide.
+                            // ────────────────────────────────────────────────────────────────────────
+                            function startChrono() {
+                                // window.alert("Start lancé");
+
+                                $startTime = new Date();
+                                // console.log("startTime :", $startTime)
+                                // window.alert("startTime : " + $startTime)
+
+                                // Phase 12 : Affichage chrono.
+                                $timer = setInterval(affichageChrono, 1);
+
+                                // Phase 07 : Activation des boutons.
+                                BTN_START.disabled = true;
+                                BTN_LAP.disabled = false;
+                                BTN_STOP.disabled = false;
+                                BTN_RESET.disabled = true;
+                                // RESET.toggleAttribute("disabled", true);
+                            }
+
+                            function lapChrono() {
+                                // window.alert("Lap.");
+
+                                let $now = new Date();
+                                let $time = $now - $startTime; // Durée en ms.
+                                // console.log("Lap time : ", $time);
+                                // window.alert("Lap time : " + $time);
+
+                                // Phase 10 :
+                                DIV_LAP.innerHTML += tps2String($time) + "<br>";
+                            }
+
+                            function stopChrono() {
+                                // window.alert("Chrono stoppé.");
+
+                                // Phase 12
+                                clearInterval($timer);
+
+                                // Phase 08
+                                let $now = new Date();
+                                let $time = $now - $startTime; // Durée en ms.
+                                // console.log("Final Time : ", $time);
+                                // window.alert("Final Time : " + $time);
+
+                                // Phase 10 :
+                                DIV_LAP.innerHTML += tps2String($time) + "<br>";
+
+                                // Phase 12 : Affichage chrono.
+                                TEXT_CHRONO.value = tps2String(0);
+
+                                // Phase 07 : Activation des boutons.
+                                BTN_START.disabled = true;  // Désactivé.
+                                BTN_LAP.disabled   = true;  // Désactivé.
+                                BTN_STOP.disabled  = true;  // Désactivé.
+                                BTN_RESET.disabled = false; // Activé.
+                                // RESET.toggleAttribute("disabled", false);
+
+                            }
+
+                            function resetChrono() {
+
+                                // window.alert("Start lancé");
+                                  DIV_LAP.innerHTML = "";
+                                  TEXT_CHRONO.value = tps2String(0);
+
+                                // Phase 07 : Activation des boutons.
+                                BTN_START.disabled = false; // Actif
+                                BTN_LAP.disabled = true;    // Inaccessible.
+                                BTN_STOP.disabled = true;   // Inaccessible
+                                BTN_RESET.disabled = true;  // Inaccessible
+                                // RESET.toggleAttribute("disabled", true);
+
+                                // Phase 11:
+                                DIV_LAP.innerHTML = "";
+                            }
+
+                            // Phase 12 : Affichage chrono.
+
+                            function affichageChrono () {
+                                // clearTimeout($timer);
+
+                                let $now = new Date();
+                                let $time = $now - $startTime; // Durée en m.s.
+                                TEXT_CHRONO.value = tps2String($time);
+
+                                $timer = setTimeout(affichageChrono, 1);
+                            }
+
+                            // ────────────────────────────────────────────────────────────────────────
+                            // Phase 09 : Outils
+                            // ────────────────────────────────────────────────────────────────────────
+
+                            // Converter m.s. ⇒ hh:mm:ss,ms
+                            function tps2String($tps_ms) { // $tps_ms : Paramètre.
+                                let $temps = new Date($tps_ms);
+
+                                // return "tps en ms" + $temps;
+
+                                // Transformer le temps standard en temps heure & seconde.
+                                // Tue Nov 12 2019 14:00:27 GMT+0100 (Central European Standard Time)
+                                let $heures = $temps.getUTCHours();
+                                if($heures < 10) $heures = "0" + $heures;
+                                // Premiere méthode, Ecriture simplifié sans accolade.
+
+                                let $minutes = $temps
+                                    .getUTCMinutes()
+                                    .toString()
+                                    .padStart(2, "0");
+                                // Celle que le prof conseil.
+
+                                let $secondes = $temps.getUTCSeconds();
+                                $secondes = ("0" + $secondes).slice(-2);
+                                // Autre méthode.
+
+                                let $milliSecondes = $temps
+                                    .getUTCMilliseconds()
+                                    .toString()
+                                    .padStart(3, "0");
+
+                                return $heures + ":" + $minutes + ":" + $secondes + "," + $milliSecondes;
+
+                            }
+                        </script>
+
+                        <h4>ex17b : Faite une variante avec la valeur primaire du lap + l'addition des lap precedents.</h4>
+
+                        <p>Nbr du tour, temps du tour, addition des tours successif.</p>
+
+                        <p>ex17c : Afficher (avec une classe) à chaque fois le meilleur tour.<br>
+                        et quand on appuit stop, il affiche le meilleur temps final.</p>
+
+                        <h3>Exercice18A</h3>
+
+                        <h4>Les timers…</h4>
+
+                        <p>Compte à rebourd en progress‑bar 100% à 0%.</p>
+                        <p>Timer 1 : [ input ] Start Stop</p>
+
+                        <label for="ex18Timer">Timer 1 : <input type="text" id="ex18Timer" name="ex-18-timer"></label>
+                        <label for="ex18BtnStart"><input type="button" id="ex18BtnStart" name="ex-18-btn-start" value="start" disabled></label>
+                        <label for="ex18Stop"><input type="button" id="ex18Stop" name="ex-18-btn-stop" value="stop" disabled></label><br>
+                        <br>
+                        <progress id="ex18Progress" max="100" value="100"></progress>
+
+                        <script>
+                            "use strict";
+
+                            // Phase 1 : création des constantes.
+                            const TEXT_TIMER = document.getElementById("ex18Timer");
+                            const BTN_START  = document.getElementById("ex18BtnStart");
+                            const BTN_STOP   = document.getElementById("ex18BtnStop");
+                            const PROGRESS_CHRONO = document.getElementById("ex18Progress");
+
+                            // ────────────────────────────────────────────────────────────────────────
+
+                            // Phase 2 : evenement.
+                            TEXT_TIMER.addEventListener("keyup", activeStart);
+                            BTN_START.addEventListener("click", startTimer);
+                            BTN_STOP.addEventListener("click", stopTimer);
+
+                            // ────────────────────────────────────────────────────────────────────────
+
+                            function activeStart() {
+
+                                window.alert("activeStart lancé.");
+                                BTN_START.disabled = false;
+                            }
+
+                            function startTimer() {
+
+
+                            }
+
+                            function stopTimer() {
+
+
+                            }
+                        </script>
+
+
+                        
+
+                    </div>
+                </fieldset>
+            </section>
+
+            <section>
+                <fieldset>
+
+                </fieldset>
+            </section>
+
+        </section>
+        <!-- END PRINCIPAL CONTENT -->
+
+    </article>
+
+</main>
+
+<footer id="footer">
+
+    <!-- TocBot-->
+    <script src="assets/js/tocbot/tocbot.js"></script>
+    <script src="assets/js/tocbot/tocbot.init.js"></script>
+
+    <!-- Prism -->
+    <script src="assets/js/prism/prism.js"></script>
+
+    <!-- Semantic UI -->
+    <script src="assets/PrameVorgs/semantic-ui-css-master/semantic.min.js"></script>
+
+</footer>
+
+</body>
+
+</html>
