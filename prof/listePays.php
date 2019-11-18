@@ -1,6 +1,6 @@
 <?php
   $filtre= $_GET['filtrePays'];
-  $pdo=new PDO('mysql:host=localhost; dbname=paysmonde; charset=utf8',
+  $pdo=new PDO('mysql:host=localhost; dbname=2019_pays_monde; charset=utf8',
                'root', '');
 
   $statement=$pdo->prepare(
@@ -12,6 +12,5 @@
                        ':filtre2'=>'%'.$filtre.'%']);
   $results=$statement->fetchAll(PDO::FETCH_ASSOC);
   $json=json_encode($results);
-
   echo $json;
 ?>
