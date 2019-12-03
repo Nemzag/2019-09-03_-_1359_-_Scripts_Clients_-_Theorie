@@ -4314,10 +4314,15 @@ nb2 = tmp;
 //----------------------------------------------------------------------------------------
 // init variables…
 //----------------------------------------------------------------------------------------
+
 // alias
 let $ex10DivCalculs = document.getElementById("ex10DivCalculs");
+
 let $ex10BoutonVerification = document.getElementById("ex10BoutonVerification");
-//---------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
+// init évènements…
+//----------------------------------------------------------------------------------------
 
 // associer la fonction nouvelleLigneCalcul au bouton verif
 $ex10BoutonVerification.addEventListener("click", nouvelleLigneCalcul);
@@ -4329,7 +4334,6 @@ let $ex10LigneCalcul = document.getElementsByClassName("ex10LigneCalcul")[0];
 // enlever le bouton de la ligne à dupliquer
 $ex10LigneCalcul.removeChild($ex10BoutonVerification);
 
-
 // stocker la ligne à dupliquer
 let $modifierLigneCalcul = $ex10LigneCalcul.cloneNode(true);
 
@@ -4339,7 +4343,9 @@ let $modifierLigneCalcul = $ex10LigneCalcul.cloneNode(true);
 $ex10DivCalculs.innerHTML = "";
 $ex10LigneCalcul = null;
 
-//---------------------------------------------------------
+//----------------------------------------------------------------------------------------
+// Outils
+//----------------------------------------------------------------------------------------
 nouvelleLigneCalcul();
 
 //---------------------------------------------------------
@@ -4614,12 +4620,13 @@ node = .</code></pre>
 
         <section>
             <fieldset>
-                <legend><h4 id = "2019-10-08-13H21-Introduction">2019‑10‑08 ‒ 13H21 : Introduction à A.J.A.X.</h4>
+                <legend><h2 id = "titleH22019y10m08d13H21sIntroduction"><a href="?#title-h2-table-of-contents">2019‑10‑08 ‒ 13H21 : Intro‑duction à A.J.A.X.</a></h2>
                 </legend>
 
+                <div class="ui segment">
                 <ul>
-                    <li>requête syn‑chrone on ne peut rien faire le temps de la requête.</li>
-                    <li>requête a‑syn‑chrone on peut faire de autre chose pendant la requête.</li>
+                    <li>Requête <b>syn‑chrone</b>, on ne peut rien faire le temps de la requête.</li>
+                    <li>Requête <b>a‑syn‑chrone</b>, on peut faire de autre chose pendant la requête.</li>
                 </ul>
 
                 <pre><code class = "language-javascript line-numbers">let $req = new XMLHttpRequest();
@@ -4642,7 +4649,9 @@ req.status → (200) tout va bien, 404 erreur,…
 │ req.responseXML
 └ JSON.parse(req.responseTEXT)</code></pre>
 
-                <pre><code class = "language-javascript line-numbers">Property 	Description
+                <pre><code class = "language-javascript line-numbers">Property
+// Description
+
 .onreadystatechange
 // Defines a function to be called when the readyState property changes
 
@@ -4675,27 +4684,147 @@ req.status → (200) tout va bien, 404 erreur,…
                     </li>
                 </ul>
 
-                <script></script>
+                </div>
 
-                <h5>Exercice 11 : A.J.A.X.</h5>
+                <div class="ui segment">
+                <h3 id="titleH3Ex2019_11TestAJAX"><a href="?#title-h2-table-of-contents">Ex2019_11 : Test A.J.A.X.</a></h3>
 
-                // ex2019_js11.js ligne 12 let reponse = req.responseText; modifié en JSON.parse(req.responseText);
+                <pre><code class="language-html line-numbers">&lt;!-- ex2019_11.html --&gt;
+&lt;input type = "number"
+         id = "ex11TexteNombre"
+        min = "0"
+        max = "6"
+placeholder = " Maximum six chiffres."
+      style = "width: 100%;"
+      title = "Texte nombre." /&gt;
+&lt;br/&gt;
+&lt;button id = "ex11BoutonRequete"
+     style = "width: 100%;"&gt;Requête A.J.A.X.&lt;/button&gt;
+&lt;br/&gt;
+&lt;div id = "ex11DivResultat"&gt;&lt;/div&gt;
 
-                car ex2019_js11.php à modifié 1, 2, 3, 4 par {nom & prenom} // le ex2019_js11.php pourrait utilisé un switch‑case.
+&lt;script src = "ex2019_11.js"&gt;&lt;/script&gt;</code></pre>
 
-                Il faut aussi tratier l'objet en ajouté en ligne 14 :
-                <pre><code class = "language-javascript line-numbers">let texte = "";
-				for (const item in reponse) {
-					texte += item  + " : " reponse[item] + "<br/>";
-					innerHTML = texte; en place de reponse.
-				}</code></pre>
+                <pre><code class="language-php line-numbers">/* ex2019_11.php */
+// Le professeur Servais à modifié 1, 2, 3, 4 par {nom & prenom}
+// le ex2019_js11.php pourrait utilisé un switch‑case.
 
-            </fieldset>
+$num = $_GET["num"];
+if ($num == 1) {
+	echo '{"nom":"Dubois", "prenom":"Louis", "age":"25"}';
+} else if ($num == 2) {
+	echo '{"nom":"Leroy", "prenom":"Albert", "couleur":"or"}';
+} else if ($num == 3) {
+	echo '{"nom":"Legrand", "prenom":"Alexandre"}';
+} else if ($num &gt; 3) {
+	echo '{"nom":"Doe", "prenom":"John"}';
+} else if ($num == null) {
+	echo '';
+} else {
+	echo '{}';
+}</code></pre>
 
-            <fieldset>
-                <legend><h4 id = "titleH32019-10-15-09H00">
-                        <a href = "?#title-h2-table-of-contents">2019‑10‑15 ‒ 09H00</a></h4>
-                </legend>
+                <pre><code class="language-javascript line-numbers">/* ex2019_11.js */
+//----------------------------------------------------------------------------------------
+// init évènements…
+//----------------------------------------------------------------------------------------
+document.getElementById("ex11BoutonRequete").addEventListener("click", requeteAjax);
+
+//----------------------------------------------------------------------------------------
+// Outils
+//----------------------------------------------------------------------------------------
+function requeteAjax() {
+
+let $nombre = document.getElementById("ex11TexteNombre").value;
+
+let $requete = new XMLHttpRequest();
+
+$requete.open("GET", "./php/2019-10-08_-_ex2019_11.php?num=" + $nombre, true);
+// $requete.open("GET", "?num=" + $nombre, true);
+// Demander au prof si PHP dans la page ???
+// Quommênthë faire ?
+
+$requete.addEventListener("readystatechange", function () {
+
+if ($requete.readyState === 4 && $requete.status === 200) {
+
+// console.log(JSON.parse($requete.responseText));
+let $response = JSON.parse($requete.responseText);
+// let response = $requete.responseText; modifié en JSON.parse($requete.responseText);
+
+// Il faut aussi tratier l'objet
+let $texte = "";
+for (const ITEM in $response) {
+$texte += ITEM + " : " + $response[ITEM] + "&lt;br /&gt;";
+}
+document.getElementById("ex11DivResultat").innerHTML = $texte; // en place de reponse.
+}
+});
+$requete.send(null);
+}
+
+//----------------------------------------------------------------------------------------</code></pre>
+
+                    <div class="ui segment">
+                <!-- ex2019_11.html -->
+                <input type = "number"
+                         id = "ex11TexteNombre"
+                        min = "0"
+                        max = "6"
+                placeholder = "&nbsp;Maximum six chiffres."
+                      style = "width: 100%;"
+                      title = "Texte nombre." />
+                <br/>
+                <button id = "ex11BoutonRequete"
+                     style = "width: 100%;">Requête A.J.A.X.</button>
+                <br/>
+                <div id = "ex11DivResultat"></div>
+
+                    </div>
+                <script>/* ex2019_11.js */
+                //----------------------------------------------------------------------------------------
+                // init évènements…
+                //----------------------------------------------------------------------------------------
+                document.getElementById("ex11BoutonRequete").addEventListener("click", requeteAjax);
+
+                //----------------------------------------------------------------------------------------
+                // Outils
+                //----------------------------------------------------------------------------------------
+                function requeteAjax() {
+
+                let $nombre = document.getElementById("ex11TexteNombre").value;
+
+                let $requete = new XMLHttpRequest();
+
+                $requete.open("GET", "./php/2019-10-08_-_ex2019_11.php?num=" + $nombre, true);
+                // $requete.open("GET", "?num=" + $nombre, true);
+                // Demander au prof si PHP dans la page ???
+                // Quommênthë faire ?
+
+                $requete.addEventListener("readystatechange", function () {
+
+                if ($requete.readyState === 4 && $requete.status === 200) {
+
+                // console.log(JSON.parse($requete.responseText));
+                let $response = JSON.parse($requete.responseText);
+                // let response = $requete.responseText; modifié en JSON.parse($requete.responseText);
+
+                // Il faut aussi tratier l'objet
+                let $texte = "";
+                for (const ITEM in $response) {
+                $texte += ITEM + " : " + $response[ITEM] + "<br />";
+                }
+                document.getElementById("ex11DivResultat").innerHTML = $texte; // en place de reponse.
+                }
+                });
+                $requete.send(null);
+                }
+
+                //----------------------------------------------------------------------------------------</script>
+
+                </div>
+
+                <div class="ui segment info message">2019‑10‑15 ‒ 09H00</div>
 
                 <pre><code class = "language-javascript line-numbers">For ($i in $variable) {};
 // le $i represnete l'inidice du talbeau ou bien le nom du parametre.
