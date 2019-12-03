@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang = "en">
+<head>
+    <meta charset = "UTF-8">
+    <meta name = "viewport"
+          content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv = "X-UA-Compatible"
+          content = "ie=edge">
+    <title>Document</title>
+
+    <style>
+        .repOK {
+            background-color: green;
+            color: white;
+        }
+
+        .repPasOK {
+            background-color: red;
+            color: white;
+        }
+
+        .ex10Operateur {
+            width: 1em;
+            text-align: center;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+
+<!-- ex2019_08_calculs.html -->
+<div id = "ex08DivLigneCalcul">
+    <input type = "text"
+           id = "ex08TexteNombre01"
+           size = "5"
+           title = "Nombre un."
+           disabled/>
+    +
+    <input type = "text"
+           id = "ex08TexteNombre02"
+           title = "Nombre deux."
+           disabled/>
+    =
+    <input type = "text"
+           id = "ex08texteReponse"
+           title = "Réponse."
+           size = "5"/>
+
+    <input type = "button"
+           id = "ex08BoutonNouveauCalcul"
+           value = "Nouveau calcul"/>
+
+    <input type = "button"
+           id = "ex08BoutonVerification"
+           value = "Vérifier"
+           disabled/>
+</div>
+
+<div id = "ex08DivResultats">
+    <b>Bonnes réponses :</b> <span id = "ex08SpanNombreReponseOK">0</span><br/>
+    <b>Mauvaises réponses :</b> <span id = "ex08SpanNombreReponsePasOK">0</span><br/>
+</div>
+
+<script>// ex2019_08_calculs.js
+//----------------------------------------------------------------------------------------
+// init variables, évènements...
+//----------------------------------------------------------------------------------------
+let $ex08BoutonNouveauCalcul = document.getElementById("ex08BoutonNouveauCalcul");
+let $ex08BoutonVerification = document.getElementById("ex08BoutonVerification");
+
+let $ex08TexteNombre01 = document.getElementById("ex08TexteNombre01");
+let $ex02TexteNombre02 = document.getElementById("ex08TexteNombre02");
+let $ex08TexteReponse = document.getElementById("ex08texteReponse");
+
+let $ex08SpanNombreReponseOK = document.getElementById("ex08SpanNombreReponseOK");
+let $ex08SpanNombreReponsPasOK = document.getElementById("ex08SpanNombreReponsePasOK");
+
+let $ex08NombreReponseOK = 0;
+let $ex08NombreReponsePasOK = 0;
+
+//----------------------------------------------------------------------------------------
+$ex08BoutonVerification.addEventListener("click", ex08VerificationCalcul);
+$ex08BoutonNouveauCalcul.addEventListener("click", nouveauCalcul);
+
+$ex08BoutonVerification.setAttribute("disabled", "");
+
+ex08AfficheResultats();
+
+//----------------------------------------------------------------------------------------
+// outils
+//----------------------------------------------------------------------------------------
+function nouveauCalcul() {
+    $ex08BoutonNouveauCalcul.setAttribute("disabled", "");
+
+    let $NombreAleatoire = ex08CalculAleatoire();
+
+    $ex08TexteNombre01.value = $NombreAleatoire.nb1;
+    $ex02TexteNombre02.value = $NombreAleatoire.nb2;
+    $ex08TexteReponse.value = "";
+
+    $ex08TexteReponse.removeAttribute("disabled");
+    $ex08TexteReponse.classList = "";
+    $ex08TexteReponse.focus();
+
+    $ex08BoutonVerification.removeAttribute("disabled");
+}
+
+//----------------------------------------------------------------------------------------
+function ex08VerificationCalcul() {
+    $ex08BoutonVerification.setAttribute("disabled", "");
+    $ex08TexteReponse.setAttribute("disabled", "");
+
+    let $reponse = Number($ex08TexteNombre01.value) + Number($ex02TexteNombre02.value);
+
+    if (Number($ex08TexteReponse.value) === $reponse) {
+        $ex08TexteReponse.className = "repOK";
+        $ex08NombreReponseOK++;
+    } else {
+        $ex08TexteReponse.className = "repPasOK";
+        $ex08NombreReponsePasOK++;
+    }
+
+    ex08AfficheResultats();
+    $ex08BoutonNouveauCalcul.removeAttribute("disabled");
+}
+
+//----------------------------------------------------------------------------------------
+function ex08AfficheResultats() {
+    $ex08SpanNombreReponseOK.innerHTML = $ex08NombreReponseOK;
+    $ex08SpanNombreReponsPasOK.innerHTML = $ex08NombreReponsePasOK;
+}
+
+//=========================================================================
+function ex08NombreAleatoire(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+//----------------------------------------------------------------------------------------
+function ex08CalculAleatoire() {
+    //let calcul = new Object();
+    let $calcul = {};
+
+    $calcul.nb1 = ex08NombreAleatoire(1, 20);
+    $calcul.nb2 = ex08NombreAleatoire(1, 20);
+
+    return $calcul;
+
+} //function calculAlea(){
+//=========================================================================</script>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<!--
+ * Created by PhpStorm.
+ * User: Nemzag aka Gaz‑mên Arifi (Shkypi, 1979-09-30)  {https://github.com/Nemzag/}.
+ * Date: 25/11/2019
+ * Time: 18h23
+ * Updated:
+-->
+<html lang="zxx">
+
+<head>
+
+	<!-- Meta Information's -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1">
+	<meta http-equiv="Content-Type" content="text/html;">
+	<meta name="description" content="Personnal website">
+	<meta name="subject" content="Web Dewelopmenth">
+	<meta name="keywords" content="">
+	<meta name="author" content="Gazmen Arifi / Газмен Арифи">
+	<meta name="birthday" content="1979-09-30" scheme="YYYY-MM-DD">
+	<meta name="reply-to" content="???????@???????.com">
+	<meta name="copyright" content="Gazmen Arifi / Газмен Арифи">
+	<meta name="date" content="2019-09-15" scheme="YYYY-MM-DD">
+	<meta name="hour" content="21:41:39" scheme="HH:mm">
+	<meta name="generator" content="PhpStorm 2018.??.??">
+
+	<!-- Title -->
+	<title>Devoir exercice 19.</title>
+
+	<!-- Semantic -->
+	<link rel="stylesheet" href="assets/PrameVorgs/semantic-ui-css-master/semantic.min.css">
+
+	<!-- Jquery -->
+	<script src="assets/js/jquery/jquery.js"></script>
+
+	<style>
+		figure.cônsi-jne img {
+			width: 600px;
+		}
+
+		table {
+			border-collapse: collapse;
+		}
+		table, tr, td, th {
+			border: 1px solid black;
+		}
+		td, th {
+			padding: 0.5em 1em 0.5em 1em;
+			width: 20%;
+		}
+
+		th {
+			background-color: hsla(0, 0%, 0%, 0.04);
+		}
+	</style>
+</head>
+
+<body id="body" class="js-toc-content">
+
+<header><h1 id="title-h1-??"></h1></header>
+
+<main id="main" class="ui container">
+
+	<!--
+	<article id="article">
+
+		<section id="#section-table-of-contents">
+			<fieldset>
+				<legend><h2 id="title-h2-table-of-contents">
+					<a href="?#title-h2-table-of-contents">Table de's matière's :</a>
+				</h2></legend>
+
+				<div id="js-toc" class="js-toc"></div>
+			</fieldset>
+		</section>
+		-->
+
+		<!-- BEGIN PRINCIPAL CONTENT -->
+
+		<section id="section-principal">
+
+			<section>
+				<fieldset>
+					<legend><h2><a href="?#title-h2-table-of-contents">2019‑11‑19 ‒ 09H00 :</a></h2></legend>
+
+					<div class="ui segment">
+					
+					
+					<h3><a href="?#title-h2-table-of-contents">Exercice 19 :</a></h3>
+
+						<input type="button" id="ex19InputReset" value="RéInitialisé" style="width: 10em;"><br><br>
+
+						<div id="ex19DivCboGroupePays">
+						</div>
+
+						<div id="ex19DivButtonCommencer">
+
+							<hr id="ex19DivButtonCommencerHr">
+
+						</div>
+
+						<div id="ex19DivListeParticipant" style="display: none;">
+							<h3>Liste’s de’s participant’s :</h3>
+
+							<p class="ui message info">Utiliser « CTRL + CLIQUE » pour sélectionner plusieurs participants.</p>
+
+							<select name="ex19_liste_de_selection_des_participants" id="ex19ListeDeSelectionDesParticipants" title="Sélecteur de pays." style="height: 50em; width: 10em;" multiple class="ui fluid dropdown">
+
+							</select>
+							<script>$('#ex19ListeDeSelectionDesParticipants')
+                  .dropdown()
+              ;</script>
+							<br>
+							<input type="button" id="ex19InputBoutonAjouter" style="width: 10em;" value="Ajouter">
+
+							<hr>
+						</div>
+
+
+
+						<input type="button" id="ex19InputBoutonCommencer" value="Cômmêncer" style="width: 10em;">
+
+						<div id="ex19DivAffichageDesParticipantsActif" style="display:  none;">
+
+							<table style="width: auto;">
+								<thead>
+								<tr>
+									<th>Nom</th>
+									<th>Pré‑nom</th>
+									<th>Taille</th>
+									<th>Poids</th>
+									<th>Supprimer</th>
+								</tr>
+								</thead>
+								<tbody id="ex19TBodyAffichageDesParticipants">
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<script src="2019-11-25_-_Devoir_JS19.js"></script>
+
+					<div class="ui segment">
+
+					<h4 id="titleH4Consigne"><a href="?#title-h2-table-of-contents">Consigne</a></h4>
+
+					<figure class="cônsi-jne">
+						<img src="assets/img/qours/2019-11-19_-_11h33m47s_VID.png" alt="Qônsi‑ʒne’s du Professeur Servais.">
+						<img src="assets/img/qours/2019-11-19_-_11h55m22s_VID.png" alt="Qônsi‑ʒne’s du Professeur Servais.">
+						<figcaption>Qônsi‑ʒne’s du Professeur Servais.</figcaption>
+					</figure>
+
+					<h5><a href="?#title-h2-table-of-contents">Équipe :</a></h5>
+
+					<ol>
+						<li><b>Choix du pays :</b> radio.</li>
+						<li>Choix des participants
+							<ul>
+								<li>Macaroni</li>
+								<li>Spagheti</li>
+								<li>…</li>
+							</ul>
+						</li>
+						<li>Ajouter
+							<ul>
+								<li>Fitonacci. Prenom. Taille. Poids. [Supprimer]</li>
+								<li>DeVinci. Leonard. Taille. Poids. [Supprimer]</li>
+							</ul>
+						</li>
+						<li>Une fois choisi on ne peut plus rechoisir cette personne.</li>
+						<li>On peut aussi faire une seconde colonne pour choisir un second pays.</li>
+					</ol>
+					</div>
+
+				</fieldset>
+			</section>
+
+		</section>
+		<!-- END PRINCIPAL CONTENT -->
+
+	</article>
+
+</main>
+
+<footer id="footer">
+	<!-- Semantic UI -->
+	<script src="assets/PrameVorgs/semantic-ui-css-master/semantic.min.js"></script>
+</footer>
+
+</body>
+
+</html>
