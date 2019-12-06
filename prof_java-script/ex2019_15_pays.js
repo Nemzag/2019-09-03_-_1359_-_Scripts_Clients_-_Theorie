@@ -12,7 +12,7 @@ function affListePays() {
 	let filtrePays = $txtPays.value.trim();
 	//console.log("filtrePays :", filtrePays);
 
-	fetch("listePays.php?filtrePays=" + filtrePays) //
+	fetch("./sql/listePays.php?filtrePays=" + filtrePays) //
 		.then(rep => rep.json())
 		.then(listePays => {
 			//console.log("listePays :", listePays);

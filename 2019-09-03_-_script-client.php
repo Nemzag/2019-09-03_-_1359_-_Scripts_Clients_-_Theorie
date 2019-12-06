@@ -133,20 +133,44 @@
         }
 
         .repOK {
-	        background-color: green;
-	        color: white;
+            background-color: green;
+            color: white;
         }
 
         .repPasOK {
-	        background-color: red;
-	        color: white;
+            background-color: red;
+            color: white;
         }
 
         .ex10Operateur,
         .ex09-span-options {
-	        width: 1em;
-	        text-align: center;
-	        display: inline-block;
+            width: 1em;
+            text-align: center;
+            display: inline-block;
+        }
+
+        #ex15DivListePays {
+
+            /*
+            float: left; // Désactivation car provoque une cassure dans la page, avec la suite des documents.
+             */
+            width: 60%;
+        }
+
+        #ex15DivPaysSelect {
+
+            /*
+            float: left;
+             */
+            width: 40%;
+        }
+
+        #ex15DivInfosPays {
+
+            /*
+            float: left;
+             */
+            width: 100%;
         }
 
     </style>
@@ -278,20 +302,20 @@ console.log(filles.toString());
 
 console.log("------------ boucle for classique");
 for (let i = 0; i < filles.length; i++) {
-  // declaration, condition, incrementation.
+  // déclaration, condition, incrémentation.
   // Dans une méthode, var : publique, pash le let : private.
   // for equivalent du foreach.
   console.log(i, filles[i]);
 }
 
 console.log("------------ boucle for in");
-for (const key in filles) {
-  console.log(key, filles[key]);
+for (const KEY in filles) {
+  console.log(KEY, filles[KEY]);
 }
 
 console.log("------------ boucle for on");
-for (const elem of filles) {
-  console.log(elem);
+for (const ELEMENT of filles) {
+  console.log(ELEMENT);
 }
 
 //----------------------------------------------------------------------------------------
@@ -304,14 +328,14 @@ console.log(filles);
 
 //----------------------------------------------------------------------------------------
 console.log("------------ déstructuration");
-console.log(...filles); // Tous les elements dans l'objet.
+console.log(...filles); // Tous les éléments dans l'objet.
 
 //----------------------------------------------------------------------------------------
 console.log("------------ assemblage");
-let mixtes1 = [filles, garcons]; // ! tableau reprenant 2 tableaux
+let mixtes1 = [filles, garçons]; // ! tableau reprenant 2 tableaux
 console.log(mixtes1);
 
-let mixtes2 = [...filles, ...garcons]; // un seul tableau - équivalent de filles.concat(garcons)
+let mixtes2 = [...filles, ...garçons]; // un seul tableau - équivalent de filles.concat(garçons)
 console.log(mixtes2);</code></pre>
 
                     </div>
@@ -330,15 +354,15 @@ console.log(mixtes2);</code></pre>
 console.log("------------ les objets javascript");
 // * dans un objet, les valeurs peuvent être de n'importe quel type (même une fonction)
 let objetPers = {
-	prenom: "John",
+	prénom: "John",
 	nom: "Doe",
 	saluer: function() {
-		console.log(`bonjour, je suis ${this.nom}, ${this.prenom}.`);
+		console.log(`bonjour, je suis ${this.nom}, ${this.prénom}.`);
 	}
 };
 console.log("objetPers:", objetPers);
-console.log('objetPers["prenom"]:', objetPers["prenom"]); // le nom de la clé (key) doit être entre guillemets
-console.log("objetPers.prenom:", objetPers.prenom);
+console.log('objetPers["prénom"]:', objetPers["prénom"]); // le nom de la clé (key) doit être entre guillemets
+console.log("objetPers.prénom:", objetPers.prénom);
 objetPers.saluer();
 
 console.log("Object.keys(objetPers):", Object.keys(objetPers)); //Object.keys() permet d'obtenir toutes les clés de l'objet
@@ -360,7 +384,7 @@ console.log("------------ les objets JSON");
 // ! mais pas des fonctions
 
 let jsonPers = {
-	prenom: "John",
+	prénom: "John",
 	nom: "Doe"
 };
 
@@ -380,7 +404,7 @@ console.log("Object.values(jsonPers):", Object.values(jsonPers));</code></pre>
  * manipulation des objets : copie en surface et en profondeur
  */
 
-const OBJECT_1 = { prenom: "John", nom: "Doe", hobbies: ["chasse", "lecture"] };
+const OBJECT_1 = { prénom: "John", nom: "Doe", hobbies: ["chasse", "lecture"] };
 console.log("Object One :", OBJECT_1);
 //console.log("Object One sous forme de chaîne :", JSON.stringify(OBJECT_1));
 
@@ -397,48 +421,50 @@ console.log("Object One :", OBJECT_1);
 // clonage d'un objet en superficie
 //------------------------------------------------------------------------------------------------------------
 console.log("-------clonage superficiel");
-const obj3 = Object.assign({}, obj1); // copie de toutes les valeurs de obj1 vers un nouvel objet
-obj3.prenom = "Patrick"; // modifé uniquement dans obj3
-obj3.hobbies[0] = "pêche"; // ! modifié aussi dans l'array hobbies de obj1
-console.log("obj3:", obj3);
-console.log("obj1:", obj1);
+const OBJET_3 = Object.assign({}, obj1); // copie de toutes les valeurs de obj1 vers un nouvel objet
+OBJET_3.prenom = "Patrick"; // modifié unique‑mênt dans obj3
+OBJET_3.hobbies[0] = "pêche"; // ! modifié aussi dans l'array hobbies de obj1
+console.log("obj3:", OBJET_3);
+console.log("obj1:", OBJECT_1);
 
 //------------------------------------------------------------------------------------------------------------
 // clonage d'un objet en profondeur
 //------------------------------------------------------------------------------------------------------------
 console.log("-------clonage en profondeur");
-const obj4 = JSON.parse(JSON.stringify(obj1)); // transformation en string puis retransformation en objet
-obj4.prenom = "Steph"; // modifé uniquement dans obj4
-obj4.hobbies[0] = "PHP"; // modifié uniquement dans l'array hobbies de obj4
-console.log("obj4:", obj4);
-console.log("obj1:", obj1);
+const OBJET_4 = JSON.parse(JSON.stringify(OBJECT_1)); // transformation en string puis retransformation en objet
+OBJET_4.prenom = "Steph"; // modifié uniquemênt dans OBJET_4.
+OBJET_4.hobbies[0] = "PHP"; // modifié uniquemênt dans l'array hobbies de OBJET_4.
+console.log("obj4:", OBJET_4);
+console.log("obj1:", OBJET_1);
 
 //------------------------------------------------------------------------------------------------------------
 // protection de l'objet
 //------------------------------------------------------------------------------------------------------------
 console.log("-------protection de l'objet");
-const obj11 = { nom: "Médor", espece: "Chien" };
-const obj12 = JSON.parse(JSON.stringify(obj11)); // transformation en string puis retransformation en objet
-const obj13 = JSON.parse(JSON.stringify(obj11)); // transformation en string puis retransformation en objet
+const OBJET_11 = { nom: "Médor", espèce: "Chien" };
+const OBJET_12 = JSON.parse(JSON.stringify(OBJET_11));
+// transformation en string puis retransformation en objet.
+const OBJET_13 = JSON.parse(JSON.stringify(OBJET_11));
+// transformation en string puis retransformation en objet.
 
-console.log("obj11:", obj11);
-console.log("obj12:", obj12);
-console.log("obj13:", obj13);
+console.log("obj11:", OBJET_11);
+console.log("obj12:", OBJET_12);
+console.log("obj13:", OBJET_13);
 
-obj11.nom = "Milou";
-obj11.couleur = "blanc"; // ajout d'une nouvelle propriété possible
+OBJET_11.nom = "Milou";
+OBJET_11.couleur = "blanc"; // ajout d'une nouvelle propriété possible
 
-Object.seal(obj12);
-obj12.nom = "Milou";
-obj12.couleur = "blanc"; // ! impossible de modifier la structure de l'objet
+Object.seal(OBJET_12);
+OBJET_12.nom = "Milou";
+OBJET_12.couleur = "blanc"; // ! impossible de modifier la structure de l'objet
 
 Object.freeze(obj13);
 obj13.nom = "Milou"; // ! impossible de modifier les valeurs
 obj13.couleur = "blanc"; // ! impossible de modifier la structure de l'objet
 
-console.log("obj11:", obj11);
-console.log("obj12(seal):", obj12);
-console.log("obj13(freeze):", obj13);</code></pre>
+console.log("obj11:", OBJET_11);
+console.log("obj12(seal):", OBJET_12);
+console.log("obj13(freeze):", OBJET_13);</code></pre>
 
                     </div>
 
@@ -481,7 +507,7 @@ let $crier = function() {
 };
 $crier();
 
-// fonctions flechées
+// fonctions fléchées
 let $hurler = () => {
   console.log("Je hurle !");
 };
@@ -499,14 +525,14 @@ console.log("Fonction fléché $tripleDe(6) :", $tripleDe(6));
 
 // paramètres
 
-function presentation(prenom, nom = "Martin") {
+function présentation(prénom, nom = "Martin") {
   // ! le ou les paramètres, facultatifs doivent toujours être les derniers
 	// ⚠ ce ne est pash une variable.
-  console.log(`Bonjour je m'appelle ${prenom} ${nom} !`);
+  console.log(`Bonjour je m'appelle ${prénom} ${nom} !`);
 }
-presentation("John", "Doe");
-presentation("Jean"); // par défaut, le nom est "Martin"
-presentation(); // ! le prénom est indéfini
+présentation("John", "Doe");
+présentation("Jean"); // par défaut, le nom est "Martin"
+présentation(); // ! le prénom est indéfini
 
 function totalAchats(tauxTVA, ...montants) {
   // ! il ne peut y avoir qu'une seule variable de type ...rest
@@ -557,12 +583,12 @@ console.log(
   RESULTATS.filter(x => x >= 10)
 );
 
-// renvoie un nouveau tableau dont chque élément correspond à la transformation indiquée dans la fonction
+// renvoie un nouveau tableau dont chaque élément correspond à la transformation indiquée dans la fonction
 console.log("RESULTATS.map((a) => a / 2 ) :", resultats.map(a => a / 2));
 
-// renvoie UN résultat qui est l'accumulation de toute les valeurs suivant la fonction passée
+// renvoie UN résultat qui est l'accumulation de toutes les valeurs suivant la fonction passée
 // total est l'accumulateur et vaut 0 au départ
-// element désigne successivement chacun des éléments du tableau
+// élément désigne successivement chacun des éléments du tableau
 console.log(
   "RESULTATS.reduce((total, element) => total += element ) :",
   RESULTATS.reduce((total, element) => (total += element))
@@ -686,7 +712,7 @@ let $r = document.getElementsByClassName("rouge");
 // collection de tous les éléments de classe = "rouge"
 
 let $c = document.getElementsByName("choix");
-// collection  de tous les éléments avec name = "choix"
+// collection de tous les éléments avec name = "choix"
 
 let $garage = document.getElementById("divGarage");
 let $voitures = $garage.getElementsByTagName("p");
@@ -700,7 +726,7 @@ let $premiereVoiture = document.querySelector("#divGarage &gt; p");
 // querySelector et querySelectorAll utilisent la syntaxe des sélecteurs CSS</code></pre>
 
                         <pre><code class = "language-javascript line-numbers">//----------------------------------------------------------------------------------------
-// * accès aux contenu des objets du DOM
+// * accès aux contenus des objets du DOM
 //----------------------------------------------------------------------------------------
 
 // pour les balises de type container (div, h1, td, p...)
@@ -717,7 +743,7 @@ document.querySelector("#divGarage &gt; p").innerHTML = "Volvo &lt;strong&gt;rou
 document.querySelector("#divGarage &gt; p").textContent = "Volvo &lt;strong&gt;rouge&lt;/strong&gt;";
 // &lt;strong&gt; sera un simple texte
 
-// pour les balises de type autofermantes (input, img...)
+// pour les balises de type auto‑fermantes (input, img...)
 
 let $nom = document.getElementById("txtNom").value;
 
@@ -760,7 +786,7 @@ let $largeur = window.innerWidth;
                     <div class = "ui segment">
 
                         <h3 id = "titleH42019y09m24sJs07DomAccess">
-                            <a href = "?#title-h2-table-of-contents">2019‑09‑24&nbsp;‒&nbsp;js08 - les évènements&nbsp;:</a>
+                            <a href = "?#title-h2-table-of-contents">2019‑09‑24&nbsp;‒&nbsp;js08 - les évènemênts&nbsp;:</a>
                         </h3>
 
                         <pre><code class = "language-javascript line-numbers">// js08 - les évènements.js
@@ -846,14 +872,14 @@ document.getElementById("div3").addEventListener("click", function() {
 // =&gt; "click sur le &lt;button&gt;"
 // ! la propagation du click est stoppée
 
-// * empecher le comportement normal d'un élément
+// * empêcher le comportement normal d'un élément
 // ----------------------------------------------
 // soit un checkbox 'chkValid'
 document.getElementById("chkValid").addEventListener("click", function(evt) {
 	evt.preventDefault();
 	console.log("impossible de cocher ou décocher la case");
 });
-// click sur le checkbox :
+// click sur le check‑box :
 // =&gt; affichage du message
 // ! le bouton ne se (dé)coche pas
 
@@ -904,7 +930,7 @@ $maison.insertBefore($hall, $maison.firstChild); // ajout au début du 'divMaiso
 
 // suppression d'un objet du DOM
 $cuisine.remove; // supprime le div 'Cuisine'
-$maison.removeChild($maison.childNodes[0]); //supprime le premier noeud (hall)
+$maison.removeChild($maison.childNodes[0]); //supprime le premier nœud (hall)
 // maison: salon + salleAManger
 
 //----------------------------------------------------------------------------------------
@@ -919,40 +945,56 @@ $maison.classList.add("div-maison-rouge"); // ajoute la classe
 $maison.classList.remove("div-maison-rouge"); // supprime la classe
 $maison.classList.toggle("div-maison-select"); // si la classe existe elle est supprimée sinon elle est ajoutée
 
-$maison.setAttribute("superficie", "600"); // ajoute un attribut
-let superficie = $maison.getAttribute("superficie"); // recupère la valeur de l'attribut
-$maison.removeAttribute("superficie"); // supprime l'attribut
+$maison.setAttribute("superficie", "600");
+// ajoute un attribut
+
+let superficie = $maison.getAttribute("superficie");
+// récupère la valeur de l'attribut
+
+$maison.removeAttribute("superficie");
+// supprime l'attribut
 
 //----------------------------------------------------------------------------------------
 // * navigation dans le DOM
 //----------------------------------------------------------------------------------------
 
 // parents et enfants
-console.log($maison.childNodes); // tableau de tous les noeuds enfants
-console.log($maison.firstChild); // le premier noeud enfant
-console.log($maison.childNodes[0]); // le premier noeud enfant
-console.log($maison.lastChild); // le dernier noeud enfant
+console.log($maison.childNodes);
+// tableau de tous les nœuds enfants
 
-console.log($salon.parentNode); // le noeud parent
+console.log($maison.firstChild);
+// le premier noeud enfant
 
-console.log($salleAManger.previousElementSibling); // le noeud précédent
-console.log($salon.nextElementSibling); // le noeud suivant
+console.log($maison.childNodes[0]);
+// le premier nœud enfant
+
+console.log($maison.lastChild);
+// le dernier nœud enfant
+
+console.log($salon.parentNode);
+// le nœud parent
+
+console.log($salleAManger.previousElementSibling);
+// le nœud précédent
+
+console.log($salon.nextElementSibling);
+// le nœud suivant
 
 //----------------------------------------------------------------------------------------
 
 /*
  ! Attention:
- * Node représente n'importe quel type de noeud
- *  Element est un noeud spécialisé : &lt;p&gt; &lt;div&gt;
- *  Text est un noeud spécialisé : le texte dans un div
- *  Document est un noeud spécialisé
- *  ...
+ * Node représente n'importe quel type de nœud
+ *  Elément est un nœud spécialisé : &lt;p&gt; &lt;div&gt;
+ *  Text est un nœud spécialisé : le texte dans un div
+ *  Document est un nœud spécialisé
+ *  …
 
   exemples:
-  $el.children =&gt; liste des noeuds Element
-  $el.childNodes =&gt; liste des noeuds de tout type
-  $el.parentElement =&gt; le parent doit être un Element
-  $el.parentNode =&gt; le parent peut être un Element ou un Document
+  $elemênt.children =&gt; liste des nœuds Element
+  $elemênt.childNodes =&gt; liste des nœuds de tout type
+  $elemênt.parentElement =&gt; le parent doit être un Element
+  $elemênt.parentNode =&gt; le parent peut être un Element ou un Document
 */
 
 //----------------------------------------------------------------------------------------</code></pre>
@@ -1024,7 +1066,7 @@ console.log($salon.nextElementSibling); // le noeud suivant
                             <div class = "ui segment">
 
                                 <h5 id = "titleH4DataBases">
-                                    <a href = "?#title-h2-table-of-contents">Genre Base de donnée :</a>
+                                    <a href = "?#title-h2-table-of-contents">Genre Base de données :</a>
                                 </h5>
                                 <ul>
                                     <li>MySQL</li>
@@ -1103,10 +1145,10 @@ console.log($salon.nextElementSibling); // le noeud suivant
                             <h4 id = "titleH3JavaScriptConsole"><a href = "?#title-h2-table-of-contents">Console</a>
                             </h4>
 
-                            <p>JavaScript n'affiche pash de lui même les erreurs lors de l'execution.<br>Il faut dès lors ce servir de la console, qui est utile pour tester et débuguer.<br> Il faut que ce soit un reflexe.
+                            <p>JavaScript n'affiche pash de lui‑même les erreurs lors de l'exécution.<br>Il faut dès lors se servir de la console, qui est utile pour tester et débuguer.<br> Il faut que ce soit un réflexe.
                             </p>
 
-                            <p>Il y a beaucoup de chose que l'on va pouvori tester.</p>
+                            <p>Il y a beaucoup de chose que l'on va pouvôri tester.</p>
 
                             <pre><code class = "language-javascript line-numbers">console.log();</code></pre>
 
@@ -1125,7 +1167,7 @@ $a + 1
 /* String */
 $b + 1
 "251"
-// Si on utilise un texte, le + n'est plus un opérateur addition, mais concatenation.
+// Si on utilise un texte, le + n'est plus un opérateur addition, mais concaténation.
 // TransTypage de langage.</code></pre>
                         </div>
 
@@ -1133,7 +1175,7 @@ $b + 1
 
                             <p>Il faut déclarer les variables.</p>
 
-                            <p>Quoi que en disent le professeur Servais Dominique,<br> les caractères UniCode pro les variables & constante est accepté,<br> les variables peuvent aussi commencé par un $,<br> lui tend l'anglisime, en supprimant les accents,<br> ce à quoi je m'oppose,<br> car ma langue albanais à des accents,<br> pash eux.
+                            <p>Quoi que en disent le professeur Servais Dominique,<br> les caractères UniCode pro les variables & constante est accepté,<br> les variables peuvent aussi commencer par un $,<br> lui tend l'anglicisme, en supprimant les accents,<br> ce à quoi je m'oppose,<br> car ma langue albanaise à des accents,<br> pash eux.
                             </p>
                             <ul>
                                 <li>
@@ -1147,7 +1189,7 @@ $b + 1
                         <div class = "ui segment">
                             <pre><code class = "language-javascript line-numbers">"ABC" + "DEF" ⇒ "ABCDEF"</code></pre>
 
-                            <p>(dans la plupart des languages on obtient c'est cela,<br> car + est un opérateur de concatenation.)
+                            <p>(dans la plupart des language on obtient c'est cela,<br> car + est un opérateur de concaténation.)
                             </p>
 
                             <h5>En PHP :</h5>
@@ -1156,7 +1198,7 @@ $b + 1
                             <pre><code class = "language-php line-numbers">"ABC" . "DEF"</code></pre>
 
                             <p>Pour le professeur Servais, c'est une erreur,<br> car dans la plupart des languages,
-                                <code>.</code> est un symbole d'appertenance, retranscrit
+                                <code>.</code> est un symbole d'appartenance, retranscrit
                                 <code>-></code> en P.H.P., qui signifie invocation de… </p>
                         </div>
 
@@ -1175,7 +1217,7 @@ $b + 1
                                 </li>
                             </ul>
                             <pre><code class = "language-javascript line-numbers">$a.__proto__
-// Affiche tou e les fonctions et le type $a.__proto__</code></pre>
+// Affiche toute les fonctions et le type $a.__proto__</code></pre>
 
                         </div>
 
@@ -1184,17 +1226,17 @@ $b + 1
 
                             <pre><code class = "language-javascript line-numbers">for(let $i = 1; $i <= 10; i++) {
 	/* $i++ = $i + 1 */
-	/* trois instruction, accolade permettre plusieurs instruction. */
+	/* trois instruction, accolade permettre plusieurs instructions. */
 	/* initialisation, test, incrementation. */
 	console.log(i);
 	// 1 à 10.
 }</code></pre>
 
-                            <p>Pour faire plusieurs instruction,<br> on utilise des accolades.</p>
+                            <p>Pour faire plusieurs instructions,<br> on utilise des accolades.</p>
 
-                            <p>Les accolades ne sont pourtant pash obligatorie.</p>
+                            <p>Les accolades ne sont pourtant pash obligatorie</p>
 
-                            <p>Ce sont des bloques,<br> mais êllë a une incidence sur la portée des variables.</p>
+                            <p>Ce sont des blocs,<br> mais êllë a une incidence sur la portée des variables.</p>
                         </div>
 
                         <div class = "ui segment">
@@ -1237,13 +1279,13 @@ $b + 1
                         <div class = "ui segment">
 
                             <p>
-                                <code class = "language-javascript line-numbers">foreach();</code>, oublié,<br> c'est assez nouveau dans certains languages.<br> Mais en JS c'est :
+                                <code class = "language-javascript line-numbers">foreach();</code>, oublié,<br> c'est assez nouveau dans certains langages.<br> Mais en JS c'est :
                             </p>
 
                             <pre><code class = "language-javascript line-numbers">for(let $i in tab) {
 }
 // Variable in Ensemble,<br>
-// Il n'y pash d'incrementation.</code></pre>
+// Il n'y pash d'incrémentation.</code></pre>
 
                             <p>ou</p>
 
@@ -1283,7 +1325,7 @@ while (<em>condition</em>);
 
                             <dl>
                                 <dt><code>instruction</code></dt>
-                                <dd>Une instruction exécutée au moins une fois et ré-exécutée chaque fois que la condition de test est évaluée à
+                                <dd>Une instruction exécutée au moins une fois et ré‑exécutée chaque fois que la condition de test est évaluée à
                                     <code>true</code>. On peut exécuter plusieurs instructions au sein d'une boucle grâce à l'instruction
                                     <a class = "new"
                                        href = "https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Instructions/bloc"
@@ -1392,7 +1434,7 @@ b = a < 25 ? 1 : 2;</code></pre>
 
                                 /* Réactiver quand fichier terminé. */
                                 // window.alert("coucou");
-                                // Affiche une fenêtre. Objet windows, objet document.
+                                // Affiche une fenêtre. Objet window, objet document.
 
                                 var $nom = "Louis";
 
@@ -1400,13 +1442,13 @@ b = a < 25 ? 1 : 2;</code></pre>
                                 console.log(`Bonjour ${$nom} !`);
                                 // {quote inversé, alternate concatenation.}
 
-                                // La porté de variable.
+                                // La portée de variable.
 
                                 function js01Saluer() {
                                     // Pré‑nom = "Albert";
-                                    var $prenom = "Albert";
+                                    var $prénom = "Albert";
                                     // si on met var il rend la variable active que dans la fonction est n'est plush utilisable en externe.
-                                    console.log(`Salut ${$prenom}`);
+                                    console.log(`Salut ${$prénom}`);
                                 }
 
                                 // Il faut appeler l'outil.
@@ -1414,20 +1456,20 @@ b = a < 25 ? 1 : 2;</code></pre>
                                 // Afficher la fonction.
                                 console.log("--------------------");
 
-                                /* console.log("prenom :", $prenom); */
+                                /* console.log("prénom :", $prénom); */
                                 // Afficher prénom, mais erreur, pro‑quoi, car la variable ne fut pash défini…
                                 // Suite au domaine de visibilité, quand on déclare une variable.
 
                                 console.log("Afficher l'âge.");
                                 if (1) {
-                                    var $age = 42;
-                                    console.log("age:", $age);
+                                    var $âge = 42;
+                                    console.log("âge:", $âge);
                                     // Vous déclarez une variable dans un block, êllë n'est visible que dans ce bloque.'
                                 }
                                 console.log("--------------------");
 
                                 // var ‒ ϜΑΡ :
-                                // let ‒ ΛΕΤ : est une amelioration du var. Car êllë affiche des erreurs plus precise.
+                                // let ‒ ΛΕΤ : est une amélioration du var. Car êllë affiche des erreurs plus précise.
 
                                 // Afficher les nombres de 1 à 10
                                 console.log("Afficher les nombres de 1 à 10");
@@ -1496,9 +1538,9 @@ b = a < 25 ? 1 : 2;</code></pre>
                                 // Porté des variables.
 
                                 /*
-									Fonction nommé
+									Fonction nommée
 									soite
-									vous mettez uen variable une fonction.
+									vous mettez une variable une fonction.
 									*/
                                 let $saluer2 = function () {
                                     console.log(`coucou`);
@@ -1508,59 +1550,59 @@ b = a < 25 ? 1 : 2;</code></pre>
                             <pre><code class = "language-javascript line-numbers">// js01.js
 
 "use strict";
-// prof conseil de le mettre systématiquement. En début du model afin que il soti globale.
+// prof conseil de le mettre systématiquement. En début du model afin que il soit globale.
 
 console.log("hello");
 
-windowsalert("coucou");
-// Affiche une fenêtre. Objet windows, objet document.
+window.alert("coucou");
+// Affiche une fenêtre. Objet window, objet document.
 
 var $nom = "Louis";
 
 console.log("Bonjour " + $nom + " !");
 console.log(`Bonjour ${$nom} !`);
-// {quote inversé, alternate concatenation.}
+// {quote inversé, alternate concaténation.}
 
-// La porté de variable.
+// La portée de variable.
 
 function saluer() {
-	// prenom = "Albert";
-	var $prenom = "Albert";
+	// prénom = "Albert";
+	var $prénom = "Albert";
 	// si on met var il rend la variable active que dans la fonction est n'est plush utilisable en externe.
-	console.log(`Salut ${$prenom}`);
+	console.log(`Salut ${$prénom}`);
 }
 
 // Il faut appeler l'outil.
 saluer();
 // Afficher la fonction
 
-console.log("prenom :", $prenom);
-// Afficher prenom, mais erreur, pro‑quoi, car la variable ne fut pash défini…
+console.log("prénom :", $prénom);
+// Afficher prénom, mais erreur, pro‑quoi, car la variable ne fut pash défini…
 
 // Suite au domaine de visibilité, quand on déclare une variable.
 
 if (1) {
-	var $age = 42;
+	var $âge = 42;
 
-	console.log("age:", $age);
+	console.log("âge:", $âge);
 	// Vous déclarez une variable dans un block, êllë n'est visible que dans ce bloque.'
 }
 
 // var / ϜΑΡ :
-// let / ΛΗΤ : est une amelioration du var. Car êllë affiche des erruers plus preceise.</code></pre>
+// let / ΛΗΤ : est une amélioration du var. Car êllë affiche des erruers plus preceise.</code></pre>
 
                             <pre><code class = "language-javascript line-numbers">// js02.js
 
-let affsomme = function (a, b) {
+let affSomme = function (a, b) {
   console.log(a + b);
 };
 
-let affsomme2 = (a, b) => {
+let affSomme2 = (a, b) => {
   console.log(a + b);
 };
 
-affsomme(12, 33);
-affsomme2(12, 33);
+affSomme(12, 33);
+affSomme2(12, 33);
 
 /*
   let $ptvac = function($prixHorsTVA, $tauxtva) {
@@ -1591,7 +1633,7 @@ for (let $v of $js03tab) { // v = valeur.
 }
 
 $js03tab[2] = 33;
-console.log($js03tab); // assinge valeur 33 à la troisième valeur du tableau.
+console.log($js03tab); // assigne valeur 33 à la troisième valeur du tableau.
 
 $js03tab.push(666);
 console.log($js03tab);
@@ -1604,7 +1646,7 @@ let $js03A2, $js03B2, $js03C2;
 [$js03A2, $js03B2, $js03C2] = $js03tab;
 console.log($js03A2, $js03B2, $js03C2);
 
-// Je voudrais inversé A & B ?
+// Je voudrais inverser A & B ?
 
 let $temp = $js03A2;
 $js03A2 = $js03B2;
@@ -1628,12 +1670,12 @@ console.log("$eq1 :", $eq1);
 console.log("...$eq1 :", ...$eq1);
 
 // Objet
-let $pers1 = {nom: "Dubois", prenom: "Luc"};
+let $pers1 = {nom: "Dubois", prénom: "Luc"};
 console.log($pers1);
 console.log($pers1["nom"]);
 console.log($pers1.nom);
 
-// Voir tout les elements d'un objet.
+// Voir tous les élémênts d'un objet.
 
 for (let $i in $pers1) {
 	console.log($pers1[$i])
@@ -1647,7 +1689,7 @@ for (let $i in $pers1) {
 
                             <script>// js02.js
 
-                                let $affsomme = function (a, b) {
+                                let $affSomme = function (a, b) {
                                     console.log(a + b);
                                 };
 
@@ -1655,8 +1697,8 @@ for (let $i in $pers1) {
                                     console.log(a + b);
                                 };
 
-                                $affsomme(12, 33);
-                                $affsomme2(12, 33);
+                                $affSomme(12, 33);
+                                $affSomme2(12, 33);
 
                                 /*
 									let $ptvac = function($prixHorsTVA, $tauxtva) {
@@ -1687,7 +1729,7 @@ for (let $i in $pers1) {
                                 }
 
                                 $js03tab[2] = 33;
-                                console.log($js03tab); // assinge valeur 33 à la troisième valeur du tableau.
+                                console.log($js03tab); // assigne valeur 33 à la troisième valeur du tableau.
 
                                 $js03tab.push(666);
                                 console.log($js03tab);
@@ -1700,7 +1742,7 @@ for (let $i in $pers1) {
                                 [$js03A2, $js03B2, $js03C2] = $js03tab;
                                 console.log($js03A2, $js03B2, $js03C2);
 
-                                // Je voudrais inversé A & B ?
+                                // Je voudrais inverser A & B ?
 
                                 let $temp = $js03A2;
                                 $js03A2 = $js03B2;
@@ -1724,12 +1766,12 @@ for (let $i in $pers1) {
                                 console.log("...$eq1 :", ...$eq1);
 
                                 // Objet
-                                let $pers1 = {nom: "Dubois", prenom: "Luc"};
+                                let $pers1 = {nom: "Dubois", prénom: "Luc"};
                                 console.log($pers1);
                                 console.log($pers1["nom"]);
                                 console.log($pers1.nom);
 
-                                // Voir tout les elements d'un objet.
+                                // Voir tous les élémênts d'un objet.
 
                                 for (let $i in $pers1) {
                                     console.log($pers1[$i])
@@ -1762,20 +1804,20 @@ console.log("2 vaut " + ($a + 1)); // 26
 </code></pre>
 
                         <pre><code class = "language-javascript line-numbers">
-let obj1 = {nom: "—", prenom: "—", holders:["—", "—"]};
+let obj1 = {nom: "—", prénom: "—", holders:["—", "—"]};
 
 obj1 {
     nom:
-    prenom:
+    prénom:
     hobbies:
 }
-// Un talbeau est un pointeur.
+// Un tableau est un pointeur.
 
 let obj2 = obj1;
 // Copy de un pointeur.
-// Attention vous avez deux ojets qui designe la meme chose…
+// Attention vous avez deux objets qui désigne la même chose…
 obj2.nom = "Toto"; // . est -> invocation…
-// C'est dangereux car quand il y a une modifcation dans l'un change les dexu.
+// C'est dangereux car quand il y a une modification dans l'un change les deux.
 
 // Clone
 </code></pre>
@@ -1795,11 +1837,11 @@ window.alert("Coucou");
 
 document.getElementById();
 // un seul ID est autorisé.
-// Renvoi un element.
+// Renvoi un élémênt.
 document.GetElementsByName();
 
 // Les noms peuvent apparaitre plusieurs fois.
-// Il renvoie un tableau de elements.</code></pre>
+// Il renvoie un tableau de élémênts.</code></pre>
 
                         <pre><code class = "language-javascript line-numbers">document.getElementById("h").innerHTML = "hello";
 document.getElementById("t").value = "hello";
@@ -1826,7 +1868,7 @@ for (let $i = 10; $i &gt;= 1; $i--) {
 }
 console.log("--------------------");
 
-//creer un tableau tab contenant les nombres 1, 5 et 9
+// Créer un tableau tab contenant les nombres 1, 5 et 9
 let $tab = [1, 5, 9];
 
 //afficher le contenu de tab sur des lignes séparées
@@ -1850,7 +1892,7 @@ for (let $i = 1; $i &lt;= 1000; $i++) {
 }
 console.log("$tab2 :", $tab2);
 
-//ecrire une fonction moyenne qui renvoit la moyenne du tableau passé en argument
+// Écrire une fonction moyenne qui renvoi la moyenne du tableau passé en argument
 const MOYENNE = function($tab) {
 	let $total = 0;
 	for (let $i = 0; $i &lt; tab.length; $i++) {
@@ -1966,7 +2008,7 @@ function ex02bSaluer() {
                             <li><b>lg :</b> ligne</li>
                             <li><b>lbl :</b> label.</li>
                             <li><b>div :</b> div.</li>
-                            <li><b>cbo :</b> combobox.</li>
+                            <li><b>cbo :</b> combo‑box.</li>
                             <li><b>lst :</b> list.</li>
                             <li><b>opt :</b> option. (rond de choix.)</li>
                         </ul>
@@ -2074,7 +2116,7 @@ document.getElementById("ex02cBtnPartir").addEventListener("click", () =&gt; {
                         <h3 id = "title03JavaScriptExercice03">
                             <a href = "?#title-h2-table-of-contents">Ex2019_03.html</a></h3>
 
-                        <pre><code class = "language-html  line-numbers">&lt;!-- js2019_03.html --&gt;
+                        <pre><code class = "language-html line-numbers">&lt;!-- js2019_03.html --&gt;
 &lt;label for = "ex03txtNom"&gt;Nom :&lt;/label&gt;
 
 &lt;input type = "text"
@@ -2156,7 +2198,7 @@ function saluer() {
                             function ex03Saluer() {
 
                                 const TEXT_NOM = document.getElementById("ex03txtNom");
-                                // Créé une variable ou une constante, permettant des recherches multiple dans le D.O.M. permettant aisni d'économiser du temps.
+                                // Créé une variable ou une constante, permettant des recherches multiples dans le D.O.M. permettant ainsi d'économiser du temps.
 
                                 // let $nom = document.getElementById("ex03txtNom").value;
                                 let $nom = TEXT_NOM.value;
@@ -2192,7 +2234,7 @@ function saluer() {
 
                         <ul>
                             <li><code class = "language-javascript">parseInt()</code></li>
-                            <li><code class = "language-javascript">parseFlout()</code></li>
+                            <li><code class = "language-javascript">parseFloat()</code></li>
                             <li><code class = "language-javascript">onchange</code> : quand on sort.</li>
                             <li><code class = "language-javascript">onkeydown</code> : pression.</li>
                             <li><code class = "language-javascript">onkeypress</code> : pendant.</li>
@@ -2918,10 +2960,10 @@ function valeurBoutonsRadio($grpBoutonsRadio) {
 
                         <blockquote>
                             <ul>
-                                <li>nom : min 2 caracteres.</li>
+                                <li>nom : min 2 caractères.</li>
                                 <li>age : entre 0…130.</li>
                                 <li>sexe : F / P ; ôb‑liga‑tôrie.</li>
-                                <li>Marié : checkbox.</li>
+                                <li>Marié : check‑box.</li>
                                 <li>Envoyer.</li>
                         </blockquote>
 
@@ -2929,7 +2971,7 @@ function valeurBoutonsRadio($grpBoutonsRadio) {
 
                         <code class = "language-javascript">.this = document.getElementById("chkMarie")</code>
 
-                        <p>Si vous sélectionnez marié et mettez un nom de conjoin et décoché la case,<br> le nom reste en‑regi‑ϟtré,<br> pro empêcher cela, il faut faire :<br>
+                        <p>Si vous sélectionnez marier et mettez un nom de conjoint et décoché la case,<br> le nom reste en‑regi‑ϟtré,<br> pro empêcher cela, il faut faire :<br>
                             <code class = "language-javascript">$txtNomConj.value = null;</code></p>
 
                         <code class = "language-javascript">$pNomConj.style.visibility = "hidden";</code>
@@ -2961,7 +3003,8 @@ $pNomConj.style.display = "none";
 
                         <div class = "ui segment">
 
-                            <h4 id="titleH4MozillaDocumentationDefinition"><a href="?#title-h2-table-of-contents">Mozilla documentation definition :</a></h4>
+                            <h4 id = "titleH4MozillaDocumentationDefinition">
+                                <a href = "?#title-h2-table-of-contents">Mozilla documentation définition :</a></h4>
                             <ul>
                                 <li>
                                     <strong><a href = "https://developer.mozilla.org/fr/docs/Web/API/Node/innerText"
@@ -3010,14 +3053,16 @@ $pNomConj.style.display = "none";
                             </p>
 
                             <h5 id = "titleH5FireFoxSupport">
-                                <a href = "?#title-h2-table-of-contents"><a href="?#title-h2-table-of-contents">FireFox support :</a></a></h5>
+                                <a href = "?#title-h2-table-of-contents"><a href = "?#title-h2-table-of-contents">FireFox support :</a></a>
+                            </h5>
                             <ul>
                                 <li>
                                     <a href = "https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent"
                                        target = "_blank">https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent</a>
                                 </li>
                             </ul>
-                            <h5 id="titleH5DifferenceFromInnerText"><a href = "?#title-h2-table-of-contents">Differences vrom innerText</a></h5>
+                            <h5 id = "titleH5DifferenceFromInnerText">
+                                <a href = "?#title-h2-table-of-contents">Differences vrom innerText</a></h5>
 
                             <p>Don't get confused by the differences between
                                 <code class = "language-javascript">Node.textContent</code> and
@@ -3034,7 +3079,9 @@ $pNomConj.style.display = "none";
                                 <code class = "language-javascript">.innerText</code> in Internet Explorer (version 11 and below) removes child nodes from the element and permanently destroys all descendant text nodes. It is impossible to insert the nodes again into any other element or into the same element anymore.
                             </p>
 
-                            <h5 id="titleH5DifferenceFromInnerHTML"><a href="?#title-h2-table-of-contents">Differences vrom <code class = "language-javascript">.innerHTML</a></code></h5>
+                            <h5 id = "titleH5DifferenceFromInnerHTML">
+                                <a href = "?#title-h2-table-of-contents">Differences vrom
+                                    <code class = "language-javascript">.innerHTML</a></code></h5>
 
                             <p>
                                 <code class = "language-javascript">Element.innerHTML</code> returns HTML, as its name indicates. Sometimes people use
@@ -3063,9 +3110,9 @@ return $aujourdHui.getFullYear() - $dateDeNaissance.getFullYear() - ($atniVersAr
                         <h5 id = "titleH5FonctionFléché"><a href = "?#title-h2-table-of-contents">Fonction fléché :</a>
                         </h5>
 
-                        <pre><code class = "language-javascript line-numbers">// Fonction fleché {ajouté} toujours anonyme (js04 manipulation, ajouté)
+                        <pre><code class = "language-javascript line-numbers">// Fonction fléché {ajouté} toujours anonyme (js04 manipulation, ajouté)
 
-// Parentese fléché puis travaillé effectwé. :
+// Parenthèse fléché puis travaille effectwé. :
 () => {} si on ne renvoi que un return : on peut mettre juste le nom de variable => x
 
 let var1 = function () {return 2 * x;}&lt;br&gt; var1();
@@ -3083,7 +3130,7 @@ let var1 = function () {return 2 * x;}&lt;br&gt; var1();
                         <div class = "ui segment info message">2019‑09‑24 14h20.</div>
 
                         <pre><code class = "language-html line-numbers">&lt;!-- js2019_05_timers.html --&gt;
-&lt;p&gt;Affiche salut après un délait de 3 seconde’s.&lt;/p&gt;
+&lt;p&gt;Affiche salut après un délai de 3 seconde’s.&lt;/p&gt;
 
 &lt;input type="button" id="ex05BtnSaluer" value="1° Saluer." /&gt;
 &lt;input type="button" id="ex05ex05BtnStop" value="1° Stop le compte à rebours." /&gt;&lt;br&gt;&lt;br&gt;
@@ -3174,7 +3221,7 @@ function ex05SalutVersionDeux() {
                         <div class = "ui segment">
 
                             <!-- js2019_05_timers.html -->
-                            <p>Affiche salut après un délait de 3 seconde’s.</p>
+                            <p>Affiche salut après un délai de 3 seconde’s.</p>
 
                             <input type = "button"
                                    id = "ex05BtnSaluer"
@@ -3467,9 +3514,9 @@ function resetCompteur() {
                             <a href = "?#title-h2-table-of-contents">Ex2019_07 :</a>
                         </h3>
 
-	                    <p>Devoir afficher l'heure de l'ordinateur et les milliseconde.</p>
+                        <p>Devoir afficher l'heure de l'ordinateur et les milliseconde.</p>
 
-	                    <pre><code class="language-html line-numbers">&lt;p&gt;Il est &lt;span id = "spanAfficherHeure"&gt;&lt;/span&gt;…&lt;br&gt;&lt;/p&gt;</code></pre>
+                        <pre><code class = "language-html line-numbers">&lt;p&gt;Il est &lt;span id = "spanAfficherHeure"&gt;&lt;/span&gt;…&lt;br&gt;&lt;/p&gt;</code></pre>
 
                         <pre><code class = "language-javascript line-numbers">/* js2019_07.html */
 setInterval(miseAJourHeure, 100);
@@ -3583,20 +3630,20 @@ function miseAJourHeure() {
                         <h3 id = titleH3Ex2019_08_calculus>
                             <a href = "?#title-h2-table-of-contents">Ex2019_08_calculus</a></h3>
 
-	                    <div class="ui segment info message">
-		                    <p>Répondre à un calcul aléatoire avec opérateur d'addition.</p>
-	                    </div>
+                        <div class = "ui segment info message">
+                            <p>Répondre à un calcul aléatoire avec opérateur d'addition.</p>
+                        </div>
 
-	                    <p>Système qui génère un nombre aléatoire,<br> dans deux input qui s'additionne et donne un résultat.<br> À chaque fois que l'on fait un calcul et clique le bouton, il rajoute des lignes.<br> Liste de commande.
-	                    </p>
+                        <p>Système qui génère un nombre aléatoire,<br> dans deux input’s qui s'additionne et donne un résultat.<br> À chaque fois que l'on fait un calcul et clique le bouton, il rajoute des lignes.<br> Liste de commande.
+                        </p>
 
-	                    <h5 id = "titleH5"><a href = "?#title-h2-table-of-contents">Math.random();<a></h5>
+                        <h5 id = "titleH5"><a href = "?#title-h2-table-of-contents">Math.random();<a></h5>
 
-	                    <ul>
-		                    <li>
-			                    <a href = "https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Math/random">developer.mozilla.org/Objets_globaux/Math/random</a>
-		                    </li>
-	                    </ul>
+                        <ul>
+                            <li>
+                                <a href = "https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Math/random">developer.mozilla.org/Objets_globaux/Math/random</a>
+                            </li>
+                        </ul>
 
                         <p>Voir photo pro prendre note.</p>
 
@@ -3777,45 +3824,41 @@ function ex08CalculAleatoire() {
 } //function calculAlea(){
 //=========================================================================</code></pre>
 
-	                    <div class = "ui segment">
+                        <div class = "ui segment">
 
-		                    <!-- ex2019_08_calculs.html -->
-		                    <div id = "ex08DivLigneCalcul">
+                            <!-- ex2019_08_calculs.html -->
+                            <div id = "ex08DivLigneCalcul">
 
-			                    <input type = "text"
-			                           id = "ex08TexteNombre01"
-			                           size = "5"
-			                           title = "Nombre un."
-			                           disabled/>
-			                    +
-			                    <input type = "text"
-			                           id = "ex08TexteNombre02"
-			                           size = "5"
-			                           title = "Nombre deux."
-			                           disabled/>
-			                    =
-			                    <input type = "text"
-			                           id = "ex08texteReponse"
-			                           title = "Réponse."
-			                           size = "5"/>
+                                <input type = "text"
+                                       id = "ex08TexteNombre01"
+                                       size = "5"
+                                       title = "Nombre un."
+                                       disabled/> + <input type = "text"
+                                                           id = "ex08TexteNombre02"
+                                                           size = "5"
+                                                           title = "Nombre deux."
+                                                           disabled/> = <input type = "text"
+                                                                               id = "ex08texteReponse"
+                                                                               title = "Réponse."
+                                                                               size = "5"/>
 
-			                    <input type = "button"
-			                           id = "ex08BoutonNouveauCalcul"
-			                           value = "Nouveau calcul"/>
+                                <input type = "button"
+                                       id = "ex08BoutonNouveauCalcul"
+                                       value = "Nouveau calcul"/>
 
-			                    <input type = "button"
-			                           id = "ex08BoutonVerification"
-			                           value = "Vérifier"
-			                           disabled/>
-		                    </div>
+                                <input type = "button"
+                                       id = "ex08BoutonVerification"
+                                       value = "Vérifier"
+                                       disabled/>
+                            </div>
 
-		                    <div id = "ex08DivResultats">
-			                    <b>Bonnes réponses :</b> <span id = "ex08SpanNombreReponseOK">0</span><br/>
-			                    <b>Mauvaises réponses :</b> <span id = "ex08SpanNombreReponsePasOK">0</span><br/>
-		                    </div>
-	                    </div>
+                            <div id = "ex08DivResultats">
+                                <b>Bonnes réponses :</b> <span id = "ex08SpanNombreReponseOK">0</span><br/>
+                                <b>Mauvaises réponses :</b> <span id = "ex08SpanNombreReponsePasOK">0</span><br/>
+                            </div>
+                        </div>
 
-	                    <script>// ex2019_08_calculs.js
+                        <script>// ex2019_08_calculs.js
 
                             //----------------------------------------------------------------------------------------
                             // init variables…
@@ -3905,14 +3948,15 @@ function ex08CalculAleatoire() {
                             } //function calculAlea(){
                             //=========================================================================</script>
 
-	                    </div>
+                    </div>
 
                     <div class = "ui segment">
-                        <h3 id="titleH3Ex2019_09_calculs"><a href="?#title-h2-table-of-contents">Ex2019_09_calculs</a> :</h3>
+                        <h3 id = "titleH3Ex2019_09_calculs">
+                            <a href = "?#title-h2-table-of-contents">Ex2019_09_calculs</a> :</h3>
 
-	                    <div class="ui segment info message">
-		                    <p>Répondre à un calcul aléatoire avec opérateur mutagène</p>
-	                    </div>
+                        <div class = "ui segment info message">
+                            <p>Répondre à un calcul aléatoire avec opérateur mutagène</p>
+                        </div>
 
                         <pre><code class = "language-css line-numbers">/* ex2019_09_calculs.css */
 .repOK {
@@ -3933,7 +3977,7 @@ function ex08CalculAleatoire() {
 }
 </code></pre>
 
-	                    <pre><code class="language-html line-numbers">&lt;!-- ex2019_09_calculs.html --&gt;
+                        <pre><code class = "language-html line-numbers">&lt;!-- ex2019_09_calculs.html --&gt;
 &lt;div id="divLg$calcul"&gt;
 
     &lt;input type="text" id="ex09TextNombre01" size="5" disabled /&gt; &lt;!-- readonly --&gt;
@@ -3951,7 +3995,7 @@ function ex08CalculAleatoire() {
     &lt;input type="button" id="ex09BoutonVerification" value="Vérifier" disabled /&gt;
 
 &lt;/div&gt;</code></pre>
-	                    
+
                         <pre><code class = "language-javascript line-numbers">/* ex2019_09_calculs.js */
 //=========================================================================
 
@@ -3967,7 +4011,7 @@ let $ex09TextNombre02 = document.getElementById("ex09TextNombre02");
 let $ex09texteReponse = document.getElementById("ex09texteReponse");
 
 let $ex09SpanNombreReponseOK = document.getElementById("ex09SpanNombreReponseOK");
-// il faut côm‑puθa‑bi‑liser les bonne réponse.
+// il faut côm‑puθa‑bi‑liser les bonnes réponses.
 let $ex09SpanNombreReponsePasOK = document.getElementById("ex09SpanNombreReponsePasOK");
 
 let ex09NombreReponseOK = 0;
@@ -3980,7 +4024,7 @@ $ex09BoutonVerification.addEventListener("click", verificationCalcul);
 $ex09BoutonNouveau$calcul.addEventListener("click", nouveauCalcul);
 
 $ex09BoutonVerification.setAttribute("disabled", "");
-// Déactive une fois après avori appuyé sur le bouton vérification.
+// Désactive une fois après avôri appuyé sur le bouton vérification.
 
 afficheResultats();
 
@@ -4075,35 +4119,47 @@ function $calculAleatoire() {
 } //function $calculAleatoire(){
 //=========================================================================</code></pre>
 
-	                    <div class="ui segment">
+                        <div class = "ui segment">
 
-		                    <!-- ex2019_09_calculs.html -->
-		                    <div id="divLg$calcul">
+                            <!-- ex2019_09_calculs.html -->
+                            <div id = "divLg$calcul">
 
-			                    <input type="text" id="ex09TextNombre01" size="5" disabled /> <!-- readonly -->
+                                <input type = "text"
+                                       id = "ex09TextNombre01"
+                                       size = "5"
+                                       disabled/> <!-- readonly -->
 
-			                    <span id="ex09SpanOptions" class="ex09-span-options">?</span>
+                                <span id = "ex09SpanOptions"
+                                      class = "ex09-span-options">?</span>
 
-			                    <input type="text" id="ex09TextNombre02" size="5" disabled /> <!-- readonly -->
-			                    =
-			                    <input type="text" id="ex09texteReponse" size="5" />
+                                <input type = "text"
+                                       id = "ex09TextNombre02"
+                                       size = "5"
+                                       disabled/> <!-- readonly -->            = <input type = "text"
+                                                                                        id = "ex09texteReponse"
+                                                                                        size = "5"/>
 
-			                    <input type="button" id="ex09BoutonNouveau$calcul" value="Nouveau calcul" />
+                                <input type = "button"
+                                       id = "ex09BoutonNouveau$calcul"
+                                       value = "Nouveau calcul"/>
 
-			                    <input type="button" id="ex09BoutonVerification" value="Vérifier" disabled />
+                                <input type = "button"
+                                       id = "ex09BoutonVerification"
+                                       value = "Vérifier"
+                                       disabled/>
 
-		                    </div>
+                            </div>
 
-		                    <div id="divResultats">
+                            <div id = "divResultats">
 
-			                    <b>Bonnes réponses :</b> <span id="ex09SpanNombreReponseOK">0</span><br />
-			                    <b>Mauvaises réponses :</b> <span id="ex09SpanNombreReponsePasOK">0</span><br />
+                                <b>Bonnes réponses :</b> <span id = "ex09SpanNombreReponseOK">0</span><br/>
+                                <b>Mauvaises réponses :</b> <span id = "ex09SpanNombreReponsePasOK">0</span><br/>
 
-		                    </div>
+                            </div>
 
-	                    </div>
+                        </div>
 
-	                    <!--
+                        <!--
 						<script type="text/javascript" src="ex2019_09_$calculs.js"></script>
 						-->
 
@@ -4122,7 +4178,7 @@ function $calculAleatoire() {
                             let $ex09texteReponse = document.getElementById("ex09texteReponse");
 
                             let $ex09SpanNombreReponseOK = document.getElementById("ex09SpanNombreReponseOK");
-                            // il faut côm‑puθa‑bi‑liser les bonne réponse.
+                            // il faut côm‑puθa‑bi‑liser les bonnes réponses.
                             let $ex09SpanNombreReponsePasOK = document.getElementById("ex09SpanNombreReponsePasOK");
 
                             let ex09NombreReponseOK = 0;
@@ -4135,7 +4191,7 @@ function $calculAleatoire() {
                             $ex09BoutonNouveau$calcul.addEventListener("click", nouveauCalcul);
 
                             $ex09BoutonVerification.setAttribute("disabled", "");
-                            // Déactive une fois après avori appuyé sur le bouton vérification.
+                            // Désactive une fois après avôri appuyé sur le bouton vérification.
 
                             afficheResultats();
 
@@ -4231,7 +4287,7 @@ function $calculAleatoire() {
                             //=========================================================================</script>
                     </div>
 
-	                <div class="ui segment ui">
+                    <div class = "ui segment ui">
                         <pre><code class = "language-javascript line-numbers">let harry = {nom: "potter", age: 16};
 
 console.log(harry.nom);
@@ -4250,19 +4306,20 @@ nb2 = tmp;
 // mais y a ça dés‑or‑mais
 
 [nb1, nb2] = [nb2, nb1];</code></pre>
-	                </div>
+                    </div>
 
-<div class="ui segment">
+                    <div class = "ui segment">
 
-	<h3 id="titleH3Ex2019_10_calculs"><a href = "?#title-h2-table-of-contents">ex2019_10_calculs :</a></h3>
+                        <h3 id = "titleH3Ex2019_10_calculs">
+                            <a href = "?#title-h2-table-of-contents">ex2019_10_calculs :</a></h3>
 
-                    <div class="ui segment info message">2019‑10‑08 ‒ 09H31 :</div>
+                        <div class = "ui segment info message">2019‑10‑08 ‒ 09H31 :</div>
 
-	<div class="ui info message">
-		<p>Devoir "Exercice 10" tenté de créé une ligne cloné avec l'exercice 9, avec le node.</p>
-	</div>
+                        <div class = "ui info message">
+                            <p>Devoir "Exercice 10" tenté de créé une ligne cloné avec l'exercice 9, avec le node.</p>
+                        </div>
 
-	<pre><code class="language-css line-numbers">/* ex2019_10_calculs.css */
+                        <pre><code class = "language-css line-numbers">/* ex2019_10_calculs.css */
 .repOK {
     background-color: green;
     color: white;
@@ -4280,7 +4337,7 @@ nb2 = tmp;
     display: inline-block;
 }</code></pre>
 
-	<pre><code class="language-html line-numbers">&lt;div class = "ex10LigneCalcul"&gt;
+                        <pre><code class = "language-html line-numbers">&lt;div class = "ex10LigneCalcul"&gt;
 
 &lt;input type = "text"
        class = "ex10ClasseNombre01"
@@ -4308,7 +4365,7 @@ nb2 = tmp;
        value = "vérifier"/&gt;
 &lt;/div&gt;</code></pre>
 
-	<pre><code class="language-javascript line-numbers">"use strict";
+                        <pre><code class = "language-javascript line-numbers">"use strict";
 //=========================================================================
 
 //----------------------------------------------------------------------------------------
@@ -4431,186 +4488,186 @@ function calculAleatoire() {
 } //function calculAleatoire(){
 //=========================================================================</code></pre>
 
-    <div class="ui segment">
+                        <div class = "ui segment">
 
-        <div id = "ex10DivCalculs">
+                            <div id = "ex10DivCalculs">
 
-            <div class = "ex10LigneCalcul">
+                                <div class = "ex10LigneCalcul">
 
-                <input type = "text"
-                       class = "ex10ClasseNombre01"
-                       size = "5"
-                       title = "Nombre un."
-                       disabled /> <!-- readonly -->
+                                    <input type = "text"
+                                           class = "ex10ClasseNombre01"
+                                           size = "5"
+                                           title = "Nombre un."
+                                           disabled/> <!-- readonly -->
 
-                <span class = "ex10Operateur">?</span>
+                                    <span class = "ex10Operateur">?</span>
 
-                <input type = "text"
-                       class = "ex10ClasseNombre02"
-                       size = "5"
-                       title = "Nombre deux."
-                       disabled /> <!-- readonly -->
+                                    <input type = "text"
+                                           class = "ex10ClasseNombre02"
+                                           size = "5"
+                                           title = "Nombre deux."
+                                           disabled/> <!-- readonly -->
 
-                =
+                                    =
 
-                <input type = "text"
-                       class = "ex10ClasseReponse"
-                       size = "5"
-                       title = "Réponse."/>
+                                    <input type = "text"
+                                           class = "ex10ClasseReponse"
+                                           size = "5"
+                                           title = "Réponse."/>
 
-                <input type = "button"
-                       id = "ex10BoutonVerification"
-                       value = "vérifier"/>
-            </div>
+                                    <input type = "button"
+                                           id = "ex10BoutonVerification"
+                                           value = "vérifier"/>
+                                </div>
 
-        </div>
+                            </div>
 
-    </div>
-	<!--
-	<script type="text/javascript" src="ex2019_10_calculs.js"></script>
-	-->
+                        </div>
+                        <!--
+						<script type="text/javascript" src="ex2019_10_calculs.js"></script>
+						-->
 
-	<script>"use strict";
-        //=========================================================================
+                        <script>"use strict";
+                            //=========================================================================
 
-        //----------------------------------------------------------------------------------------
-        // init variables…
-        //----------------------------------------------------------------------------------------
+                            //----------------------------------------------------------------------------------------
+                            // init variables…
+                            //----------------------------------------------------------------------------------------
 
-		// alias
-        let $ex10DivCalculs = document.getElementById("ex10DivCalculs");
+                            // alias
+                            let $ex10DivCalculs = document.getElementById("ex10DivCalculs");
 
-        let $ex10BoutonVerification = document.getElementById("ex10BoutonVerification");
+                            let $ex10BoutonVerification = document.getElementById("ex10BoutonVerification");
 
-        //----------------------------------------------------------------------------------------
-        // init évènements…
-        //----------------------------------------------------------------------------------------
+                            //----------------------------------------------------------------------------------------
+                            // init évènements…
+                            //----------------------------------------------------------------------------------------
 
-        // associer la fonction nouvelleLigneCalcul au bouton verif
-        $ex10BoutonVerification.addEventListener("click", nouvelleLigneCalcul);
+                            // associer la fonction nouvelleLigneCalcul au bouton verif
+                            $ex10BoutonVerification.addEventListener("click", nouvelleLigneCalcul);
 
-        //---------------------------------------------------------
+                            //---------------------------------------------------------
 
-        let $ex10LigneCalcul = document.getElementsByClassName("ex10LigneCalcul")[0];
+                            let $ex10LigneCalcul = document.getElementsByClassName("ex10LigneCalcul")[0];
 
-        // enlever le bouton de la ligne à dupliquer
-        $ex10LigneCalcul.removeChild($ex10BoutonVerification);
+                            // enlever le bouton de la ligne à dupliquer
+                            $ex10LigneCalcul.removeChild($ex10BoutonVerification);
 
-        // stocker la ligne à dupliquer
-        let $modifierLigneCalcul = $ex10LigneCalcul.cloneNode(true);
+                            // stocker la ligne à dupliquer
+                            let $modifierLigneCalcul = $ex10LigneCalcul.cloneNode(true);
 
-        // supprimer la ligne qui a servi de modèle
-        //$ex10LigneCalcul.remove();
+                            // supprimer la ligne qui a servi de modèle
+                            //$ex10LigneCalcul.remove();
 
-        $ex10DivCalculs.innerHTML = "";
-        $ex10LigneCalcul = null;
+                            $ex10DivCalculs.innerHTML = "";
+                            $ex10LigneCalcul = null;
 
-        //----------------------------------------------------------------------------------------
-        // Outils
-        //----------------------------------------------------------------------------------------
-        nouvelleLigneCalcul();
+                            //----------------------------------------------------------------------------------------
+                            // Outils
+                            //----------------------------------------------------------------------------------------
+                            nouvelleLigneCalcul();
 
-        //---------------------------------------------------------
+                            //---------------------------------------------------------
 
-        function nouvelleLigneCalcul() {
-            let $nouvelleLigneCalcul = $modifierLigneCalcul.cloneNode(true);
+                            function nouvelleLigneCalcul() {
+                                let $nouvelleLigneCalcul = $modifierLigneCalcul.cloneNode(true);
 
-            let $objetResultatCalculAleatoire = calculAleatoire();
+                                let $objetResultatCalculAleatoire = calculAleatoire();
 
-            $nouvelleLigneCalcul.getElementsByClassName("ex10ClasseNombre01")[0].value = $objetResultatCalculAleatoire.nombre01;
-            $nouvelleLigneCalcul.getElementsByClassName("ex10ClasseNombre02")[0].value = $objetResultatCalculAleatoire.nombre02;
-            $nouvelleLigneCalcul.getElementsByClassName("ex10Operateur")[0].innerHTML = $objetResultatCalculAleatoire.operateur;
-            $nouvelleLigneCalcul.getElementsByClassName("ex10ClasseReponse")[0].setAttribute("ex10ClasseReponse", $objetResultatCalculAleatoire.classeReponse);
-            // $nouvelleLigneCalcul.getElementsByClassName("ex10ClasseReponse")[0].focus();
+                                $nouvelleLigneCalcul.getElementsByClassName("ex10ClasseNombre01")[0].value = $objetResultatCalculAleatoire.nombre01;
+                                $nouvelleLigneCalcul.getElementsByClassName("ex10ClasseNombre02")[0].value = $objetResultatCalculAleatoire.nombre02;
+                                $nouvelleLigneCalcul.getElementsByClassName("ex10Operateur")[0].innerHTML = $objetResultatCalculAleatoire.operateur;
+                                $nouvelleLigneCalcul.getElementsByClassName("ex10ClasseReponse")[0].setAttribute("ex10ClasseReponse", $objetResultatCalculAleatoire.classeReponse);
+                                // $nouvelleLigneCalcul.getElementsByClassName("ex10ClasseReponse")[0].focus();
 
-            $nouvelleLigneCalcul.appendChild($ex10BoutonVerification);
+                                $nouvelleLigneCalcul.appendChild($ex10BoutonVerification);
 
-            if ($ex10DivCalculs.childNodes.length > 0) clotureLigneCalcul();
+                                if ($ex10DivCalculs.childNodes.length > 0) clotureLigneCalcul();
 
-            $ex10DivCalculs.appendChild($nouvelleLigneCalcul);
+                                $ex10DivCalculs.appendChild($nouvelleLigneCalcul);
 
-            $nouvelleLigneCalcul.getElementsByClassName("ex10ClasseReponse")[0].focus();
-        }
+                                $nouvelleLigneCalcul.getElementsByClassName("ex10ClasseReponse")[0].focus();
+                            }
 
-        function clotureLigneCalcul() {
-            let $derniereLigneCalcul = $ex10DivCalculs.lastChild;
-            let $ex10ClasseReponse = $derniereLigneCalcul.getElementsByClassName("ex10ClasseReponse")[0];
+                            function clotureLigneCalcul() {
+                                let $derniereLigneCalcul = $ex10DivCalculs.lastChild;
+                                let $ex10ClasseReponse = $derniereLigneCalcul.getElementsByClassName("ex10ClasseReponse")[0];
 
-            $ex10ClasseReponse.setAttribute("disabled", ""); // "readonly" changed by disabled.
+                                $ex10ClasseReponse.setAttribute("disabled", ""); // "readonly" changed by disabled.
 
-            // TODO verif chaines vides
-            if (Number($ex10ClasseReponse.value) === Number($ex10ClasseReponse.getAttribute("ex10ClasseReponse"))) {
-                $ex10ClasseReponse.classList.add("repOK");
-            } else {
-                $ex10ClasseReponse.classList.add("repPasOK");
-            }
-        }
+                                // TODO verif chaines vides
+                                if (Number($ex10ClasseReponse.value) === Number($ex10ClasseReponse.getAttribute("ex10ClasseReponse"))) {
+                                    $ex10ClasseReponse.classList.add("repOK");
+                                } else {
+                                    $ex10ClasseReponse.classList.add("repPasOK");
+                                }
+                            }
 
-        //=========================================================================
-        function nombreAleatoire(min, max) {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
+                            //=========================================================================
+                            function nombreAleatoire(min, max) {
+                                return Math.floor(Math.random() * (max - min + 1)) + min;
+                            }
 
-        //---------------------------------------------------------
-        function calculAleatoire() {
-            // let $calcul = new Object();
-            let $calcul = {};
+                            //---------------------------------------------------------
+                            function calculAleatoire() {
+                                // let $calcul = new Object();
+                                let $calcul = {};
 
-            let $op = nombreAleatoire(1, 4);
+                                let $op = nombreAleatoire(1, 4);
 
-            switch ($op) {
-                case 1:
-                    $calcul.operateur = "+";
-                    $calcul.nombre01 = nombreAleatoire(1, 20);
-                    $calcul.nombre02 = nombreAleatoire(1, 20);
-                    $calcul.classeReponse = $calcul.nombre01 + $calcul.nombre02;
-                    break;
-                case 2:
-                    $calcul.operateur = "-";
-                    $calcul.nombre01 = nombreAleatoire(1, 20);
-                    $calcul.nombre02 = nombreAleatoire(1, 20);
-                    if ($calcul.nombre01 < $calcul.nombre02) {
-                        [$calcul.nombre01, $calcul.nombre02] = [$calcul.nombre02, $calcul.nombre01];
-                    }
-                    $calcul.classeReponse = $calcul.nombre01 - $calcul.nombre02;
-                    break;
-                case 3:
-                    $calcul.operateur = "×";
-                    $calcul.nombre01 = nombreAleatoire(2, 10);
-                    $calcul.nombre02 = nombreAleatoire(2, 10);
-                    $calcul.classeReponse = $calcul.nombre01 * $calcul.nombre02;
-                    break;
-                case 4:
-                    $calcul.operateur = "÷";
-                    $calcul.nombre01 = nombreAleatoire(2, 10);
-                    $calcul.nombre02 = nombreAleatoire(2, 10);
-                    $calcul.classeReponse = $calcul.nombre01 * $calcul.nombre02;
-                    [$calcul.nombre01, $calcul.classeReponse] = [$calcul.classeReponse, $calcul.nombre01];
-                    break;
-            }
+                                switch ($op) {
+                                    case 1:
+                                        $calcul.operateur = "+";
+                                        $calcul.nombre01 = nombreAleatoire(1, 20);
+                                        $calcul.nombre02 = nombreAleatoire(1, 20);
+                                        $calcul.classeReponse = $calcul.nombre01 + $calcul.nombre02;
+                                        break;
+                                    case 2:
+                                        $calcul.operateur = "-";
+                                        $calcul.nombre01 = nombreAleatoire(1, 20);
+                                        $calcul.nombre02 = nombreAleatoire(1, 20);
+                                        if ($calcul.nombre01 < $calcul.nombre02) {
+                                            [$calcul.nombre01, $calcul.nombre02] = [$calcul.nombre02, $calcul.nombre01];
+                                        }
+                                        $calcul.classeReponse = $calcul.nombre01 - $calcul.nombre02;
+                                        break;
+                                    case 3:
+                                        $calcul.operateur = "×";
+                                        $calcul.nombre01 = nombreAleatoire(2, 10);
+                                        $calcul.nombre02 = nombreAleatoire(2, 10);
+                                        $calcul.classeReponse = $calcul.nombre01 * $calcul.nombre02;
+                                        break;
+                                    case 4:
+                                        $calcul.operateur = "÷";
+                                        $calcul.nombre01 = nombreAleatoire(2, 10);
+                                        $calcul.nombre02 = nombreAleatoire(2, 10);
+                                        $calcul.classeReponse = $calcul.nombre01 * $calcul.nombre02;
+                                        [$calcul.nombre01, $calcul.classeReponse] = [$calcul.classeReponse, $calcul.nombre01];
+                                        break;
+                                }
 
-            return $calcul;
-        } //function calculAleatoire(){
-        //=========================================================================</script>
-</div>
+                                return $calcul;
+                            } //function calculAleatoire(){
+                            //=========================================================================</script>
+                    </div>
 
-                    <div class="ui segment">
+                    <div class = "ui segment">
                     <pre><code class = "language-javascript line-numbers">$(".rouge")                            // ⤴ 60× plus rapide.
-document.getEementByClassName("Rouge") // Celui ci est plus precis.
+document.getEementByClassName("Rouge") // Celui‑ci est plus précis.
 document.querySelectorAll(".rouge")    // ⤸ 20 à 30 × plus rapide.
 						</code></pre>
 
-                    <pre><code class = "language-javascript line-numbers">// Voir js09 - modification du DOM.js, ligne 13 @ 21
+                        <pre><code class = "language-javascript line-numbers">// Voir js09 - modification du DOM.js, ligne 13 @ 21
 &lt;div id="divMaison">
 	&lt;div>Ceci est le hall.&lt;/div>    // ligne 32 .insertBefore()
 	&lt;div>Ceci est le salon.&lt;/div>   // ligne 16 .appendChild()
 	&lt;div>Ceci est la cuisine.&lt;/div> // ligne 20 .appendChild()
 &lt;/div></code></pre>
 
-                    <pre><code class = "language-javascript line-numbers">$salon
+                        <pre><code class = "language-javascript line-numbers">$salon
 ↳ &lt;div>Ceci est le salon&lt;/div></code></pre>
 
-                    <pre><code class = "language-javascript line-numbers">// Ligne 84
+                        <pre><code class = "language-javascript line-numbers">// Ligne 84
 element = balise.
 node = .</code></pre>
                 </fieldset>
@@ -4620,16 +4677,17 @@ node = .</code></pre>
 
         <section>
             <fieldset>
-                <legend><h2 id = "titleH22019y10m08d13H21sIntroduction"><a href="?#title-h2-table-of-contents">2019‑10‑08 ‒ 13H21 : Intro‑duction à A.J.A.X.</a></h2>
+                <legend><h2 id = "titleH22019y10m08d13H21sIntroduction">
+                        <a href = "?#title-h2-table-of-contents">2019‑10‑08 ‒ 13H21 : Intro‑duction à A.J.A.X.</a></h2>
                 </legend>
 
-                <div class="ui segment">
-                <ul>
-                    <li>Requête <b>syn‑chrone</b>, on ne peut rien faire le temps de la requête.</li>
-                    <li>Requête <b>a‑syn‑chrone</b>, on peut faire de autre chose pendant la requête.</li>
-                </ul>
+                <div class = "ui segment">
+                    <ul>
+                        <li>Requête <b>syn‑chrone</b>, on ne peut rien faire le temps de la requête.</li>
+                        <li>Requête <b>a‑syn‑chrone</b>, on peut faire de autre chose pendant la requête.</li>
+                    </ul>
 
-                <pre><code class = "language-javascript line-numbers">let $req = new XMLHttpRequest();
+                    <pre><code class = "language-javascript line-numbers">let $req = new XMLHttpRequest();
 // Mozilla, Safari, … Ligne 10 TestAjax01.html
 
 let $req = new ActiveXObject();
@@ -4643,13 +4701,13 @@ req.onreadystatechange = resultatsRequete;
 req.méthode("propriété", function)
 req.addEventListener("readystatechange", afficherResultats);
 
-req.readyState → 1, 2 commencé, 3 reception de block , (4) Tout est ok.
+req.readyState → 1, 2 commencé, 3 réception de block , (4) Tout est ok.
 req.status → (200) tout va bien, 404 erreur,…
 ┌ req.responseText
 │ req.responseXML
 └ JSON.parse(req.responseTEXT)</code></pre>
 
-                <pre><code class = "language-javascript line-numbers">Property
+                    <pre><code class = "language-javascript line-numbers">Property
 // Description
 
 .onreadystatechange
@@ -4671,30 +4729,31 @@ req.status → (200) tout va bien, 404 erreur,…
 .statusText
 // Returns the status-text (e.g. "OK" or "Not Found")</code></pre>
 
-                <ul>
-                    <li>
-                        <a href = "https://www.w3schools.com/xml/ajax_xmlhttprequest_response.asp"
-                           target = "_blank">https://www.w3schools.com/xml/ajax_xmlhttprequest_response.asp</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a href = "https://www.w3schools.com/tags/ref_httpmessages.asp"
-                           target = "_blank">https://www.w3schools.com/tags/ref_httpmessages.asp</a>
-                    </li>
-                </ul>
+                    <ul>
+                        <li>
+                            <a href = "https://www.w3schools.com/xml/ajax_xmlhttprequest_response.asp"
+                               target = "_blank">https://www.w3schools.com/xml/ajax_xmlhttprequest_response.asp</a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href = "https://www.w3schools.com/tags/ref_httpmessages.asp"
+                               target = "_blank">https://www.w3schools.com/tags/ref_httpmessages.asp</a>
+                        </li>
+                    </ul>
 
                 </div>
 
-                <div class="ui segment">
-                <h3 id="titleH3Ex2019_11TestAJAX"><a href="?#title-h2-table-of-contents">Ex2019_11 : Test A.J.A.X.</a></h3>
+                <div class = "ui segment">
+                    <h3 id = "titleH3Ex2019_11TestAJAX">
+                        <a href = "?#title-h2-table-of-contents">Ex2019_11 ‒ Test A.J.A.X.&nbsp;:</a></h3>
 
-                <pre><code class="language-html line-numbers">&lt;!-- ex2019_11.html --&gt;
+                    <pre><code class = "language-html line-numbers">&lt;!-- ex2019_11.html --&gt;
 &lt;input type = "number"
          id = "ex11TexteNombre"
         min = "0"
         max = "6"
-placeholder = " Maximum six chiffres."
+placeholder = " Maximum chiffre six."
       style = "width: 100%;"
       title = "Texte nombre." /&gt;
 &lt;br/&gt;
@@ -4705,26 +4764,50 @@ placeholder = " Maximum six chiffres."
 
 &lt;script src = "ex2019_11.js"&gt;&lt;/script&gt;</code></pre>
 
-                <pre><code class="language-php line-numbers">/* ex2019_11.php */
-// Le professeur Servais à modifié 1, 2, 3, 4 par {nom & prenom}
-// le ex2019_js11.php pourrait utilisé un switch‑case.
+                    <pre><code class = "language-php line-numbers">/* ex2019_11.php */
+// Le professeur Servais à modifié 1, 2, 3, 4 par {nom & prénom}
+// le ex2019_js11.php pourrait utiliser un switch‑case.
 
 $num = $_GET["num"];
+
 if ($num == 1) {
-	echo '{"nom":"Dubois", "prenom":"Louis", "age":"25"}';
+
+	echo '{
+		"nom":"Dubois",
+		"prenom":"Louis",
+		"age":"25"
+	}';
+
 } else if ($num == 2) {
-	echo '{"nom":"Leroy", "prenom":"Albert", "couleur":"or"}';
+
+	echo '{
+		"nom":"Leroy",
+		"prenom":"Albert",
+		"couleur":"or"
+	}';
+
 } else if ($num == 3) {
-	echo '{"nom":"Legrand", "prenom":"Alexandre"}';
-} else if ($num &gt; 3) {
-	echo '{"nom":"Doe", "prenom":"John"}';
+
+	echo '{"nom":"Legrand",
+		"prenom":"Alexandre"
+	}';
+
+} else if ($num > 3) {
+
+	echo '{"nom":"Doe",
+		"prenom":"John"
+	}';
+
 } else if ($num == null) {
+
 	echo '';
+
 } else {
+
 	echo '{}';
 }</code></pre>
 
-                <pre><code class="language-javascript line-numbers">/* ex2019_11.js */
+                    <pre><code class = "language-javascript line-numbers">/* ex2019_11.js */
 //----------------------------------------------------------------------------------------
 // init évènements…
 //----------------------------------------------------------------------------------------
@@ -4752,12 +4835,12 @@ if ($requete.readyState === 4 && $requete.status === 200) {
 let $response = JSON.parse($requete.responseText);
 // let response = $requete.responseText; modifié en JSON.parse($requete.responseText);
 
-// Il faut aussi tratier l'objet
+// Il faut aussi traiter l'objet
 let $texte = "";
 for (const ITEM in $response) {
 $texte += ITEM + " : " + $response[ITEM] + "&lt;br /&gt;";
 }
-document.getElementById("ex11DivResultat").innerHTML = $texte; // en place de reponse.
+document.getElementById("ex11DivResultat").innerHTML = $texte; // en place de réponse.
 }
 });
 $requete.send(null);
@@ -4765,130 +4848,337 @@ $requete.send(null);
 
 //----------------------------------------------------------------------------------------</code></pre>
 
-                    <div class="ui segment">
-                <!-- ex2019_11.html -->
-                <input type = "number"
-                         id = "ex11TexteNombre"
-                        min = "0"
-                        max = "6"
-                placeholder = "&nbsp;Maximum six chiffres."
-                      style = "width: 100%;"
-                      title = "Texte nombre." />
-                <br/>
-                <button id = "ex11BoutonRequete"
-                     style = "width: 100%;">Requête A.J.A.X.</button>
-                <br/>
-                <div id = "ex11DivResultat"></div>
+                    <table class = "standard-table">
+                        <tbody>
+                        <tr>
+                            <td class = "header">Value</td>
+                            <td class = "header">State</td>
+                            <td class = "header">Description</td>
+                        </tr>
+                        <tr>
+                            <td><code>0</code></td>
+                            <td><code>UNSENT</code></td>
+                            <td>Client has been created. <code>open()</code> not called yet.</td>
+                        </tr>
+                        <tr>
+                            <td><code>1</code></td>
+                            <td><code>OPENED</code></td>
+                            <td><code>open()</code> has been called.</td>
+                        </tr>
+                        <tr>
+                            <td><code>2</code></td>
+                            <td><code>HEADERS_RECEIVED</code></td>
+                            <td><code>send()</code> has been called, and headers and status are available.</td>
+                        </tr>
+                        <tr>
+                            <td><code>3</code></td>
+                            <td><code>LOADING</code></td>
+                            <td>Downloading; <code>responseText</code> holds partial data.</td>
+                        </tr>
+                        <tr>
+                            <td><code>4</code></td>
+                            <td><code>DONE</code></td>
+                            <td>The operation is complete.</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                        <div class = "ui segment info message">
+                            <p>Il y a quatre réponses possibles, au‑delà de 4, elle est toujours la même,<br>
+                            et zéro n'affiche rien.</p></div>
+
+                    <div class = "ui segment">
+                        <!-- ex2019_11.html -->
+                        <input type = "number"
+                               id = "ex11TexteNombre"
+                               min = "0"
+                               max = "6"
+                               placeholder = "&nbsp;Maximum chiffre six."
+                               style = "width: 100%;"
+                               title = "Texte nombre."/> <br/>
+                        <button id = "ex11BoutonRequete"
+                                style = "width: 100%;">Requête A.J.A.X.
+                        </button>
+                        <br/>
+                        <div id = "ex11DivResultat"></div>
 
                     </div>
-                <script>/* ex2019_11.js */
-                //----------------------------------------------------------------------------------------
-                // init évènements…
-                //----------------------------------------------------------------------------------------
-                document.getElementById("ex11BoutonRequete").addEventListener("click", requeteAjax);
+                    <script>/* ex2019_11.js */
+                        //----------------------------------------------------------------------------------------
+                        // init évènements…
+                        //----------------------------------------------------------------------------------------
+                        document.getElementById("ex11BoutonRequete").addEventListener("click", requeteAjax);
 
-                //----------------------------------------------------------------------------------------
-                // Outils
-                //----------------------------------------------------------------------------------------
-                function requeteAjax() {
+                        //----------------------------------------------------------------------------------------
+                        // Outils
+                        //----------------------------------------------------------------------------------------
+                        function requeteAjax() {
 
-                let $nombre = document.getElementById("ex11TexteNombre").value;
+                            let $nombre = document.getElementById("ex11TexteNombre").value;
 
-                let $requete = new XMLHttpRequest();
+                            let $requete = new XMLHttpRequest();
 
-                $requete.open("GET", "./php/2019-10-08_-_ex2019_11.php?num=" + $nombre, true);
-                // $requete.open("GET", "?num=" + $nombre, true);
-                // Demander au prof si PHP dans la page ???
-                // Quommênthë faire ?
+                            $requete.open("GET", "./php/2019-10-08_-_ex2019_11.php?num=" + $nombre, true);
+                            // $requete.open("GET", "?num=" + $nombre, true);
+                            // Demander au prof si PHP dans la page ???
+                            // Quommênthë faire ?
 
-                $requete.addEventListener("readystatechange", function () {
+                            $requete.addEventListener("readystatechange", function () {
 
-                if ($requete.readyState === 4 && $requete.status === 200) {
+                                if ($requete.readyState === 4 && $requete.status === 200) {
 
-                // console.log(JSON.parse($requete.responseText));
-                let $response = JSON.parse($requete.responseText);
-                // let response = $requete.responseText; modifié en JSON.parse($requete.responseText);
+                                    // console.log(JSON.parse($requete.responseText));
+                                    let $response = JSON.parse($requete.responseText);
+                                    // let response = $requete.responseText; modifié en JSON.parse($requete.responseText);
 
-                // Il faut aussi tratier l'objet
-                let $texte = "";
-                for (const ITEM in $response) {
-                $texte += ITEM + " : " + $response[ITEM] + "<br />";
-                }
-                document.getElementById("ex11DivResultat").innerHTML = $texte; // en place de reponse.
-                }
-                });
-                $requete.send(null);
-                }
+                                    // Il faut aussi traiter l'objet
+                                    let $texte = "";
+                                    for (const ITEM in $response) {
+                                        $texte += ITEM + " : " + $response[ITEM] + "<br />";
+                                    }
+                                    document.getElementById("ex11DivResultat").innerHTML = $texte; // en place de réponse.
+                                }
+                            });
+                            $requete.send(null);
+                        }
 
-                //----------------------------------------------------------------------------------------</script>
+                        //----------------------------------------------------------------------------------------</script>
 
                 </div>
 
-                <div class="ui segment info message">2019‑10‑15 ‒ 09H00</div>
+                <div class = "ui segment info message">2019‑10‑15 ‒ 09H00</div>
 
-                <pre><code class = "language-javascript line-numbers">For ($i in $variable) {};
-// le $i represnete l'inidice du talbeau ou bien le nom du parametre.
+                <pre><code class = "language-javascript line-numbers">// IN : array
+For ($i in $variable) {};
+// le $i représente l'indice du talbeau ou bien le nom du paramètre.
+
+// OF : object
 For ($i of $variable) {};
-// le $i represente…</code></pre>
+// le $i représente…</code></pre>
 
-                <table class = "standard-table">
-                    <tbody>
-                    <tr>
-                        <td class = "header">Value</td>
-                        <td class = "header">State</td>
-                        <td class = "header">Description</td>
-                    </tr>
-                    <tr>
-                        <td><code>0</code></td>
-                        <td><code>UNSENT</code></td>
-                        <td>Client has been created. <code>open()</code> not called yet.</td>
-                    </tr>
-                    <tr>
-                        <td><code>1</code></td>
-                        <td><code>OPENED</code></td>
-                        <td><code>open()</code> has been called.</td>
-                    </tr>
-                    <tr>
-                        <td><code>2</code></td>
-                        <td><code>HEADERS_RECEIVED</code></td>
-                        <td><code>send()</code> has been called, and headers and status are available.</td>
-                    </tr>
-                    <tr>
-                        <td><code>3</code></td>
-                        <td><code>LOADING</code></td>
-                        <td>Downloading; <code>responseText</code> holds partial data.</td>
-                    </tr>
-                    <tr>
-                        <td><code>4</code></td>
-                        <td><code>DONE</code></td>
-                        <td>The operation is complete.</td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class = "ui segment">
 
-                <h4><a href = "?#title-h2-table-of-contents">Exercice 12</a></h4>
+                    <h3 id="titleH3Ex2019_12"><a href = "?#title-h2-table-of-contents">ex2019_12 ‒ Test AJAX version deux&nbsp;:</a></h3>
 
-                Deux verison, la seconde est la fléché, en JavaScript =>
-                <pre><code class = "language-javascript line-numbers">function($x) {
+                    <p>Deux version, la seconde est la fléché, en JavaScript
+                        <code class = "language-javascript">=></code>.</p>
+
+                    <pre><code class = "language-html line-numbers">&lt;!-- js2019_12.html --&gt;
+&lt;input type = "number"
+         id = "ex12TxtNum"
+        min = "1"
+        max = "10"
+      title = "Nombre de 1 à 5."
+placeholder = "Nombre de 2 à 10." /&gt;
+
+&lt;button id="ex12BtnReq"&gt;Requête AJAX&lt;/button&gt;
+
+&lt;br /&gt;
+
+&lt;div id="ex12DivResult"&gt;&lt;/div&gt;
+
+&lt;script src="ex2019_12.js"&gt;&lt;/script&gt;</code></pre>
+
+                    <pre><code class = "language-php line-numbers">/* js2019_12.php */
+$num = $_GET["num"];
+
+if ($num == 1) {
+
+	echo '{
+		    "nom":"Dubois",
+		 "prenom":"Louis",
+		    "age":"25"
+	}';
+
+} else if ($num == 2) {
+
+	echo '{
+		    "nom":"Leroy",
+		 "prenom":"Albert",
+		"couleur":"or"
+		}';
+
+} else if ($num == 3) {
+
+	echo '{
+		    "nom":"Legrand",
+		 "prenom":"Alexandre"
+	}';
+
+} else if ($num &gt; 3) {
+
+	echo '{
+		    "nom":"Doe",
+	     "prenom":"John"
+	}';
+
+} else {
+
+	echo '{}';
+}</code></pre>
+
+                    <pre><code class = "language-javascript line-numbers">/* ex2019_12.js */
+//----------------------------------------------------------------------------------------
+// init évènements…
+//----------------------------------------------------------------------------------------
+document.getElementById("ex12BtnReq").addEventListener("click", ex12ReqAjax_v2);
+// La version deux est lancé.
+
+//----------------------------------------------------------------------------------------
+// Outils
+//----------------------------------------------------------------------------------------
+function ex12ReqAjax() {
+    let $num = document.getElementById("ex12TxtNum").value;
+
+    //création XMLHttpRequest, open, send + renvoi Promise
+    fetch("./php/2019-10-15_-_ex2019_12.php?num=" + $num)
+        .then(function($reponse) {
+
+            // onreadystatechange avec readyState === 4
+            return $reponse.json(); //renvoie un Promise
+        })
+        .then(function($data) {
+
+            let $texte = "";
+
+            for (const ITEM in $data) {
+                $texte += ITEM + " : " + $data[ITEM] + "&lt;br /&gt;";
+            }
+            document.getElementById("ex12DivResult").innerHTML = $texte;
+        })
+        .catch(function() {
+
+            // pas de réponse pour l'url encodée
+            alert("ERREUR");
+        });
+}
+//----------------------------------------------------------------------------------------
+// Outils
+//----------------------------------------------------------------------------------------
+function ex12ReqAjax_v2() {
+    let $ex12NombreV2 = document.getElementById("ex12TxtNum").value;
+
+    fetch("./php/2019-10-15_-_ex2019_12.php?num=" + $ex12NombreV2) //création XMLHttpRequest, open, send + renvoi Promise
+        .then($reponse =&gt; $reponse.json())
+        .then($data =&gt; {
+            let $texteV2 = "";
+            for (const ITEM_V2 in $data) {
+                $texteV2 += ITEM_V2 + " : " + $data[ITEM_V2] + "&lt;br /&gt;";
+            }
+            document.getElementById("ex12DivResult").innerHTML = $texteV2;
+        })
+        .catch(() =&gt; {
+            alert("ERREUR");
+        });
+}
+//----------------------------------------------------------------------------------------</code></pre>
+
+                    <div class = "ui segment">
+
+                        <div class = "ui segment info message">
+                            <p>Il y a quatre réponses possibles, au‑delà de 4, elle est toujours la même.</p></div>
+
+                        <input type = "number"
+                               id = "ex12TxtNum"
+                               min = "1"
+                               max = "10"
+                               title = "Nombre de 1 à 5."
+                               placeholder = "Nombre de 2 à 10."/>
+
+                        <button id = "ex12BtnReq">Requête AJAX</button>
+
+                        <br/>
+
+                        <div id = "ex12DivResult"></div>
+
+                        <!-- <script src="ex2019_12.js"></script> -->
+                    </div>
+
+                    <script>
+                        /* ex2019_11.js */
+                        //----------------------------------------------------------------------------------------
+                        // init évènements…
+                        //----------------------------------------------------------------------------------------
+                        document.getElementById("ex12BtnReq").addEventListener("click", ex12ReqAjax_v2);
+                        // La version deux est lancé.
+
+                        //----------------------------------------------------------------------------------------
+                        // Outils
+                        //----------------------------------------------------------------------------------------
+                        function ex12ReqAjax() {
+                            let $num = document.getElementById("ex12TxtNum").value;
+
+                            //création XMLHttpRequest, open, send + renvoi Promise
+                            fetch("./php/2019-10-15_-_ex2019_12.php?num=" + $num)
+                                .then(function ($reponse) {
+
+                                    // onreadystatechange avec readyState === 4
+                                    return $reponse.json(); //renvoie un Promise
+                                })
+                                .then(function ($data) {
+
+                                    let $texte = "";
+
+                                    for (const ITEM in $data) {
+                                        $texte += ITEM + " : " + $data[ITEM] + "<br />";
+                                    }
+                                    document.getElementById("ex12DivResult").innerHTML = $texte;
+                                })
+                                .catch(function () {
+
+                                    // pas de réponse pour l'url encodée
+                                    alert("ERREUR");
+                                });
+                        }
+
+                        //----------------------------------------------------------------------------------------
+                        // Outils
+                        //----------------------------------------------------------------------------------------
+                        function ex12ReqAjax_v2() {
+                            let $ex12NombreV2 = document.getElementById("ex12TxtNum").value;
+
+                            fetch("./php/2019-10-15_-_ex2019_12.php?num=" + $ex12NombreV2) //création XMLHttpRequest, open, send + renvoi Promise
+                                .then($reponse => $reponse.json())
+                                .then($data => {
+                                    let $texteV2 = "";
+                                    for (const ITEM_V2 in $data) {
+                                        $texteV2 += ITEM_V2 + " : " + $data[ITEM_V2] + "<br />";
+                                    }
+                                    document.getElementById("ex12DivResult").innerHTML = $texteV2;
+                                })
+                                .catch(() => {
+                                    alert("ERREUR");
+                                });
+                        }
+
+                        //----------------------------------------------------------------------------------------
+                    </script>
+                </div>
+
+                <div class = "ui segment">
+                    <h4 id = "titleH4LesFonctionsFléchés">
+                        <a href = "?#title-h2-table-of-contents">Le’s fonction’s fléché’s :</a></h4>
+
+                    <pre><code class = "language-javascript line-numbers">function($x) {
 	return 3 + $x
 };
 // équivaut en flécher.
 // ⚠ la fônction flécher ne ħa pash besoin de noter function précédemmênt.
 $x => 3 + $x</code></pre>
 
-                <pre><code class = "language-javascript line-numbers">function () {
+                    <pre><code class = "language-javascript line-numbers">function () {
 	return 33;
 }:
 // équivaut en flécher.
 () => 33</code></pre>
 
-                <pre><code class = "language-javascript line-numbers">function ($x, $y) {
+                    <pre><code class = "language-javascript line-numbers">function ($x, $y) {
 	return $x + $y;
 };
 // équivaut en flécher.
 ($x, $y) => $x + $y</code></pre>
 
-                <pre><code class = "language-javascript line-numbers">function ($x) {
+                    <pre><code class = "language-javascript line-numbers">function ($x) {
 	console.log($x);
 	$x = $x + 1;
 	console.log($x);
@@ -4899,41 +5189,216 @@ $x => {
 	$x = $x + 1;
 	console.log($x);
 }</code></pre>
+                </div>
 
-            </fieldset>
-        </section>
+                <div class = "ui segment info message"><p>2019‑10‑15 ‒ 13H00 :</p></div>
 
-        <!-- Begin 2019‑10‑15 ‒ 13H00 -->
-        <section>
+                <div class = "ui segment">
 
-            <fieldset>
-                <legend><h4 id = "titleH32019-10-15-13H00">2019‑10‑15 ‒ 13H00 :</h4></legend>
+                    <h3 id = "titleH3Ex2019_13">
+                        <a href = "?#title-h2-table-of-contents">ex2019_13 ‒ AJAX : liste des utilisateurs :</a></h3>
 
-                <h5><a href = "?#title-h2-table-of-contents"><h5 id = "titleH4Exercice13">Exercice 13 :</h5></a></h5>
+                    <pre><code class = "language-html line-numbers">&lt;!-- ex2019_13.html --&gt;
+&lt;button id="ex13BtnMiseÀJourUsers"&gt;Mise à jour de la liste utilisateurs&lt;/button&gt;
 
-                <div></div>
+&lt;br /&gt;
 
-                <hr>
+&lt;div id="ex13DivUsers"&gt;&lt;/div&gt;
 
-                <p>En javascript ce n'est pash du sequentiel,<br> mais de l'evenementail de ou le
-                    <code class = "language-javascript line-numbers">.then()</code> et pash :</p>
-                <pre><code class = "language-php line-numbers">instruction;
+&lt;script src="ex2019_13.js"&gt;&lt;/script&gt;</code></pre>
+
+                    <pre><code class = "language-javascript line-numbers">/* ex2019_13.js */
+//----------------------------------------------------------------------------------------
+// init évènements…
+//----------------------------------------------------------------------------------------
+document.getElementById("ex13BtnMiseÀJourUsers").addEventListener("click", ex13MiseÀjourUsers);
+//---------------------------------
+
+//----------------------------------------------------------------------------------------
+// Outils
+//----------------------------------------------------------------------------------------
+function ex13MiseÀjourUsers() {
+
+    let $ex13DivUsers = document.getElementById("ex13DivUsers");
+
+    fetch("https://jsonplaceholder.typicode.com/users")
+        .then($reponse =&gt; $reponse.json())
+        .then($data =&gt; {
+
+            //console.log("data :", data);
+
+            for (const EX13_USER of $data) {
+                //console.log("EX13_USER.address.city :", EX13_USER.address.city);
+
+                let $paragraphUser = document.createElement("p");
+
+                let $texte = document.createTextNode(EX13_USER.name);
+
+                $paragraphUser.appendChild($texte);
+
+                $ex13DivUsers.appendChild($paragraphUser);
+            }
+        });
+}
+
+//----------------------------------------------------------------------------------------
+// Outils
+//----------------------------------------------------------------------------------------
+function ex13MiseÀjourUsersV2() {
+
+    let $ex13DivUsersV2 = document.getElementById("ex13DivUsers");
+
+    fetch("https://jsonplaceholder.typicode.com/users")
+
+        .then($reponse =&gt; $reponse.json())
+
+        .then($data =&gt; {
+
+            let $texteV2 = "";
+            let $nombreV2 = 0;
+
+            for (const EX13_USER_V2 of $data) {
+
+                $nombreV2++;
+
+                let $texteV2 =
+                    "" +
+                    $nombreV2 +
+                    ". " +
+                    EX13_USER_V2.name +
+                    " (" +
+                    EX13_USER_V2.username +
+                    ") [" +
+                    EX13_USER_V2.address.city +
+                    "]";
+
+                let $paragraphUserV2 = document.createElement("p");
+
+                $paragraphUserV2.append($texteV2);
+
+                $ex13DivUsersV2.appendChild($paragraphUserV2);
+            }
+        })
+        .catch(() =&gt; {
+            alert("ERREUR");
+        });
+}
+//----------------------------------------------------------------------------------------</code></pre>
+
+                    <div class = "ui segment">
+
+                        <!-- ex2019_13.html -->
+                        <button id = "ex13BtnMiseÀJourUsers">Mise à jour de la liste utilisateurs</button>
+
+                        <br/>
+
+                        <div id = "ex13DivUsers"></div>
+
+                        <!--<script src="ex2019_13.js"></script>-->
+
+                        <script>
+                            /* ex2019_13.js */
+                            //----------------------------------------------------------------------------------------
+                            // init évènements…
+                            //----------------------------------------------------------------------------------------
+                            document.getElementById("ex13BtnMiseÀJourUsers").addEventListener("click", ex13MiseÀjourUsers);
+                            //---------------------------------
+
+                            //----------------------------------------------------------------------------------------
+                            // Outils
+                            //----------------------------------------------------------------------------------------
+                            function ex13MiseÀjourUsers() {
+
+                                let $ex13DivUsers = document.getElementById("ex13DivUsers");
+
+                                fetch("https://jsonplaceholder.typicode.com/users")
+                                    .then($reponse => $reponse.json())
+                                    .then($data => {
+
+                                        //console.log("data :", data);
+
+                                        for (const EX13_USER of $data) {
+                                            //console.log("EX13_USER.address.city :", EX13_USER.address.city);
+
+                                            let $paragraphUser = document.createElement("p");
+
+                                            let $texte = document.createTextNode(EX13_USER.name);
+
+                                            $paragraphUser.appendChild($texte);
+
+                                            $ex13DivUsers.appendChild($paragraphUser);
+                                        }
+                                    });
+                            }
+
+                            //----------------------------------------------------------------------------------------
+                            // Outils
+                            //----------------------------------------------------------------------------------------
+                            function ex13MiseÀjourUsersV2() {
+
+                                let $ex13DivUsersV2 = document.getElementById("ex13DivUsers");
+
+                                fetch("https://jsonplaceholder.typicode.com/users")
+
+                                    .then($reponse => $reponse.json())
+
+                                    .then($data => {
+
+                                        let $texteV2 = "";
+                                        let $nombreV2 = 0;
+
+                                        for (const EX13_USER_V2 of $data) {
+
+                                            $nombreV2++;
+
+                                            let $texteV2 =
+                                                "" +
+                                                $nombreV2 +
+                                                ". " +
+                                                EX13_USER_V2.name +
+                                                " (" +
+                                                EX13_USER_V2.username +
+                                                ") [" +
+                                                EX13_USER_V2.address.city +
+                                                "]";
+
+                                            let $paragraphUserV2 = document.createElement("p");
+
+                                            $paragraphUserV2.append($texteV2);
+
+                                            $ex13DivUsersV2.appendChild($paragraphUserV2);
+                                        }
+                                    })
+                                    .catch(() => {
+                                        alert("ERREUR");
+                                    });
+                            }
+
+                            //----------------------------------------------------------------------------------------
+                        </script>
+
+                    </div>
+
+                    <div class = "ui segment">
+                        <p>En javascript ce n'est pash du séquentiel,<br> mais de l'événementiel de ou le
+                            <code class = "language-javascript line-numbers">.then()</code> et pash :</p>
+                        <pre><code class = "language-php line-numbers">instruction;
 instruction;<br>
 instruction;</code></pre>
+                    </div>
 
-                <h5>RegEX</h5>
+                    <div class = "ui segment">
+                        <h5 id = "titleH5RegEx"><a href = "?#title-h2-table-of-contents">RegEX :</a></h5>
 
-                <pre><code class = "language-javascript line-numbers">var regex1 = /\w+/; // pash de quote, pash une chaine de caractere.
+                        <pre><code class = "language-javascript line-numbers">var regex1 = /\w+/; // pash de quote, pash une chaine de caractère.
 var regex2 = new RegExp('\\w+');</code></pre>
 
-                <script></script>
-            </fieldset>
-        </section>
-        <!-- End 2019‑10‑15 ‒ 13H00 -->
+                        <script></script>
 
-        <section>
-            <fieldset>
-                <h4>2019‑10‑22 ‒ 09H55</h4>
+                    </div>
+                </div>
+
+                <div class = "ui segment info message">2019‑10‑22 ‒ 09H55</div>
 
                 <pre><code class = "language-html line-numbers">&lt;!-- H.T.M.‑L. --&gt;
 &lt;table&gt;
@@ -4965,214 +5430,463 @@ $tr.appendChild($tdprenom);
 // Ajoute la ligne à la suite du tbody
 document.getElementById("tbody").appendChild($tr);</code></pre>
 
-                <br>
+                <div class = "ui segment">
 
-                <p>.lastChild est plus lourd, le prof prefere utilisé un pointeur.</p>
+                    <p>
+                        <code class = "language-javascript">.lastChild</code> est plus lourd, le prof préfère utilisé un pointeur.
+                    </p>
 
-                <h5>ex2019_14.js</h5>
+                </div>
 
-                <p>ligne 25 : `nom: ${user.nom}` </p>
+                <div class = "ui segment">
+                    <h3 id="titleH3Ex2019_14"><a href = "?#title-h2-table-of-contents">ex2019_14 ‒ AJAX : liste des utilisateurs :</a></h3>
 
-                <p>Trier deux elements, 25 < 32,<br> dans beaucoupd elanugage on aprt du princiepe que ABC est plush pette que XYZ,<br> en
-                    <abbr title = "American Standard Code for Information Interchange">A.S.C.I.I.</abbr>,<br> par contre en javascript, comme on utilise du J.S.O.N. on doit employé localCompare (ligne 17).
-                </p>
+                    <pre><code class = "language-html line-numbers">&lt;!-- ex2019_14.html --&gt;
+&lt;input type = "text" id = "ex14TxtFiltreNom" title = "Jnë‑puthë dë filtragë"/&gt;
 
-                <p>${} : « multi‑line stri‑ng’s inter‑pola‑tion » en
-                    <abbr title = "Personal Home Page / PHP : Hypertext Preprocessor">P.H.P.</abbr>, on peut utiliser directement des variables,<br> il ont décidé qeue le backquote sont l'affichage, et si on veut appeller la variable,<br> on doit employé ${} dans ce cas ${user.name}…
-                </p>
+&lt;br/&gt;
 
-                listPays.php ligne 11 :
-            </fieldset>
-        </section>
+&lt;div id = "ex14DivUtilisateurs"&gt;&lt;/div&gt;
 
-        <section>
-            <fieldset>
-                <h4>2019‑10‑22 ‒ 11H25 ‒ Ex2019_15&nbsp;:</h4>
+&lt;script src="ex2019_14.js"&gt;&lt;/script&gt;</code></pre>
 
-                <ul>
-                    <li>filter [BE]<br> ↓<br> Belgique,<br> benin.</li>
-                    <li>Ajoute checkbox</li>
-                    <li>➡️<br> Copier uniquement les elements cochés.</li>
-                </ul>
+                    <pre><code class = "language-javascript line-numbers">/* ex2019_14.js */
+//----------------------------------------------------------------------------------------
+// init variables…
+//----------------------------------------------------------------------------------------
+let $ex14DivUtilisateurs = document.getElementById("ex14DivUtilisateurs");
+let $ex14TexteFiltreNom = document.getElementById("ex14TxtFiltreNom");
 
-                <pre><code class = "language-php line-numbers">&lt;?php
-  $idP= $_GET['idPays'];
-  $pdo=new PDO('mysql:host=localhost; dbname=paysmonde; charset=utf8',
-               'root', '');
+//----------------------------------------------------------------------------------------
+// init évènements…
+//----------------------------------------------------------------------------------------
+$ex14TexteFiltreNom.addEventListener("keyup", ex14MiseÀJourUtilisateurs);
 
-  $statement=$pdo->prepare("SELECT * FROM pays WHERE idP = :idP");
-  $statement->execute([':idP'=>$idP]);
-  $results=$statement->fetchAll(PDO::FETCH_ASSOC);
-  $json=json_encode($results);
+//----------------------------------------------------------------------------------------
+// Outils
+//----------------------------------------------------------------------------------------
+function ex14MiseÀJourUtilisateurs() {
 
-  echo $json;
-?></code></pre>
+    $ex14DivUtilisateurs.innerHTML = "";
 
-                <pre><code class = "language-php line-numbers">&lt;?php
-  $filtre= $_GET['filtrePays'];
-  $pdo=new PDO('mysql:host=localhost; dbname=paysmonde; charset=utf8',
-               'root', '');
+    fetch("https://jsonplaceholder.typicode.com/users")
 
-  $statement=$pdo->prepare(
-      "(SELECT idP, nomFrP
-          FROM pays
-         WHERE nomFrP
-          LIKE :filtre1
-      ORDER BY nomFrP ASC;)"
-      ." UNION "
-     ."(SELECT idP, nomFrP
+        .then($reponse =&gt; $reponse.json())
+
+        .then($data =&gt; {
+
+            $data.sort(($a, $b) =&gt; $a.name.localeCompare($b.name));
+
+            try {
+                let $ex14Filtre = new RegExp($ex14TexteFiltreNom.value);
+
+                for (const EX14_UTILISATEURS of $data) {
+
+                    if ($ex14Filtre.test(EX14_UTILISATEURS.name)) {
+
+                        let $ex14ParagraphUtilisateurs = document.createElement("p");
+
+                        let $ex14Texte = document.createTextNode(
+                            `nom: ${EX14_UTILISATEURS.name} ville: ${EX14_UTILISATEURS.address.city}`
+                        );
+
+                        $ex14ParagraphUtilisateurs.appendChild($ex14Texte);
+                        $ex14DivUtilisateurs.appendChild($ex14ParagraphUtilisateurs);
+                    }
+                }
+            } catch (e) {
+
+                console.log("e :", e);
+            }
+        });
+}
+
+//----------------------------------------------------------------------------------------</code></pre>
+                        <div class = "ui segment info message">
+                            <p>Taper des lettre’s alphabétique’s,<br>
+et de’s nom’s et prénom’s qui correspondent apparaitront.
+</p></div>
+
+                    <div class = "ui segment">
+
+                        <!-- ex2019_14.html -->
+                        <input type = "text" id = "ex14TxtFiltreNom" title = "Jnë‑puthë dë filtragë"/>
+
+                        <br/>
+
+                        <div id = "ex14DivUtilisateurs"></div>
+
+                        <!--<script src="ex2019_14.js"></script>-->
+
+                        <script>
+                            /* ex2019_14.js */
+                            //----------------------------------------------------------------------------------------
+                            // init variables…
+                            //----------------------------------------------------------------------------------------
+                            let $ex14DivUtilisateurs = document.getElementById("ex14DivUtilisateurs");
+                            let $ex14TexteFiltreNom = document.getElementById("ex14TxtFiltreNom");
+
+                            //----------------------------------------------------------------------------------------
+                            // init évènements…
+                            //----------------------------------------------------------------------------------------
+                            $ex14TexteFiltreNom.addEventListener("keyup", ex14MiseÀJourUtilisateurs);
+
+                            //----------------------------------------------------------------------------------------
+                            // Outils
+                            //----------------------------------------------------------------------------------------
+                            function ex14MiseÀJourUtilisateurs() {
+
+                                $ex14DivUtilisateurs.innerHTML = "";
+
+                                fetch("https://jsonplaceholder.typicode.com/users")
+
+                                    .then($reponse => $reponse.json())
+
+                                    .then($data => {
+
+                                        $data.sort(($a, $b) => $a.name.localeCompare($b.name));
+
+                                        try {
+                                            let $ex14Filtre = new RegExp($ex14TexteFiltreNom.value);
+
+                                            for (const EX14_UTILISATEURS of $data) {
+
+                                                if ($ex14Filtre.test(EX14_UTILISATEURS.name)) {
+
+                                                    let $ex14ParagraphUtilisateurs = document.createElement("p");
+
+                                                    let $ex14Texte = document.createTextNode(
+                                                        `nom: ${EX14_UTILISATEURS.name} ville: ${EX14_UTILISATEURS.address.city}`
+                                                    );
+
+                                                    $ex14ParagraphUtilisateurs.appendChild($ex14Texte);
+                                                    $ex14DivUtilisateurs.appendChild($ex14ParagraphUtilisateurs);
+                                                }
+                                            }
+                                        } catch (e) {
+
+                                            console.log("e :", e);
+                                        }
+                                    });
+                            }
+
+                            //----------------------------------------------------------------------------------------
+                        </script>
+                    </div>
+
+                    <div class = "ui segment">
+
+                        <p>Trier deux éléments, 25 < 32,<br> dans beaucoup de language, on part du principe que ABC est plush petit que XYZ,<br> en
+                            <abbr title = "American Standard Code for Information Interchange">A.S.C.I.I.</abbr>,<br> par contre en javascript, comme on utilise du J.S.O.N. on doit employer
+                            <code class = "language-javascript">localCompare</code> (ligne 26).
+                        </p>
+
+                        <p><code class = "language-javascript">${}</code> : « multi‑line stri‑ng’s inter‑pola‑tion » en
+                            <abbr title = "Personal Home Page / PHP : Hypertext Preprocessor">P.H.P.</abbr>, on peut utiliser directement des variables,<br> ils ont décidé que le back‑quote sont l'affichage, et si on veut appeler la variable,<br> on doit employer
+                            <code class = "language-javascript">${}</code> dans ce cas
+                            <code class = "language-javascript">${user.name}</code>…
+                        </p>
+
+                        listPays.php ligne 11 :
+                    </div>
+
+                    <div class = "ui segment info message">2019‑10‑22 ‒ 11H25</div>
+
+                    <div class = "ui segment">
+
+                        <h3 id = "titleh3Ex2019_15">
+                            <a href = "?#title-h2-table-of-contents">Ex2019_15_pays ‒ Pays du monde&nbsp;:</a></h3>
+
+                        <ul>
+                            <li>filter [BE]<br> ↓<br> Belgique,<br> Bénin.</li>
+                            <li>Ajoute check‑box</li>
+                            <li>➡️<br> Copier uniquement le’s élémênt’s cochés.</li>
+                        </ul>
+
+                        <pre><code class = "language-html line-numbers">&lt;!-- ex2019_15_pays.html  --&gt;
+
+&lt;label for = "ex15TxtPays"&gt;Pays&lt;/label&gt;
+
+&lt;input type = "text"
+         id = "ex15TxtPays"&gt;
+
+&lt;input type = "button"
+      value = "⇒ Ajouter pays"
+         id = "Ex15BtnAjoutPays"&gt;
+
+&lt;div id = "ex15DivListePays"&gt;&lt;/div&gt;
+&lt;div id = "ex15DivPaysSelect"&gt;&lt;/div&gt;
+
+&lt;script type="text/javascript" src="ex2019_15_pays.js"&gt;&lt;/script&gt;</code></pre>
+
+                        <pre><code class = "language-css line-numbers">/* ex2019_15_pays.css */
+#ex15DivListePays {
+
+    /*
+    float: left; // Désactivation car provoque une cassure dans la page, avec la suite des documents.
+     */
+    width: 60%;
+}
+
+#ex15DivPaysSelect {
+
+    /*
+    float: left;
+     */
+    width: 40%;
+}
+
+#ex15DivInfosPays {
+
+    /*
+    float: left;
+     */
+    width: 100%;
+}</code></pre>
+
+                        <pre><code class = "language-php line-numbers">/* 2019-10-22_-_ex2019_15_liste_pays.php */
+$filtre = $_GET['filtrePays'];
+
+$pdo = new PDO('mysql:host=localhost; dbname=2019_pays_monde; charset=utf8',
+	'root', '');
+
+$statement = $pdo-&gt;prepare(
+	"(SELECT idP, nomFrP
+        FROM pays
+       WHERE nomFrP
+        LIKE :filtre1
+    ORDER BY nomFrP ASC)"
+	. " UNION "
+	. "(SELECT idP, nomFrP
           FROM pays
          WHERE nomFrP
           LIKE :filtre2
       ORDER BY nomFrP ASC)"
-     );
-  $statement->execute([':filtre1'=>$filtre.'%', /* chaîne + % = tout. */
-                       ':filtre2'=>'%'.$filtre.'%']);
-  $results=$statement->fetchAll(PDO::FETCH_ASSOC);
-  $json=json_encode($results);
+);
+$statement-&gt;execute([
+    ':filtre1' =&gt; $filtre . '%',
+	':filtre2' =&gt; '%' . $filtre . '%']);
 
-  echo $json;
-?></code></pre>
+$results = $statement-&gt;fetchAll(PDO::FETCH_ASSOC);
 
-                <h5>H.T.M.‑L. :</h5>
-                <pre><code class = "language-html line-numbers">&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-	&lt;head&gt;
-		&lt;meta charset="UTF-8" /&gt;
-		&lt;title&gt;AJAX : liste des utilisateurs&lt;/title&gt;
-	&lt;/head&gt;
-	&lt;body&gt;
-		&lt;input type="text" id="txtFiltreNom" /&gt;
-		&lt;br /&gt;
-		&lt;div id="divUsers"&gt;&lt;/div&gt;
+$json = json_encode($results);
 
-		&lt;script src="ex2019_14.js"&gt;&lt;/script&gt;
-	&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+echo $json;</code></pre>
 
-                <pre><code class = "language-javascript line-numbers">// ============================================================
-const TEXTE_PAYS = document.getElementById("Ex2019_15TxtPays");
-const DIV_LISTE_PAYS = document.getElementById("Ex2019_15DivListePays");
+                        <pre><code class = "language-javascript line-numbers">/* ex2019_15_pays.js */
+"use strict";
 
-TEXTE_PAYS.addEventListener("input", afficheListePays);
+//----------------------------------------------------------------------------------------
+// init constantes…
+//----------------------------------------------------------------------------------------
+const EX15_TEXTE_PAYS = document.getElementById("ex15TxtPays");
+const EX15_DIV_LISTE_PAYS = document.getElementById("ex15DivListePays");
+const EX15_BOUTON_AJOUT_PAYS = document.getElementById("Ex15BtnAjoutPays");
 
-// ============================================================
+//----------------------------------------------------------------------------------------
+// init évènements…
+//----------------------------------------------------------------------------------------
+EX15_TEXTE_PAYS.addEventListener("input", ex15AfficheListePays);
+EX15_BOUTON_AJOUT_PAYS.addEventListener("click", ex15AjoutPays);
 
-function afficheListePays() {
-//console.log("Liste des pays");
-let $filtrePays = TEXTE_PAYS.value.trim();
-console.log("filtrePays :" + $filtrePays);
+//----------------------------------------------------------------------------------------
 
-// IL faut absoulement inseré le parametre.
-fetch("./prof/ex2019_15/listePays.php?filtrePays=" + $filtrePays)
-/*
-    // Quand l'info reviendra :
-    .then(reponse => {
-        console.log("réponse :", reponse);
-    });
-    */
-// Transformation en format JSON
-    .then($reponse => $reponse.json())
-    .then($listePays => {
-        // console.log("listePays :", $listePays);
-        DIV_LISTE_PAYS.innerHTML = "";
-        for (const PAYS of $listePays) {
-            // console.log("pays :", pays);
-            // console.log("pays.nomFrP :", pays.nomFrP);
-            let $paragraphPays = document.createElement("span");
-            $paragraphPays.innerHTML = PAYS.nomFrP + "<br/>";
+function ex15AfficheListePays() {
+    //console.log("Liste des pays");
 
-            DIV_LISTE_PAYS.appendChild($paragraphPays);
+    let $ex15FiltrePays = EX15_TEXTE_PAYS.value.trim();
+    console.log("filtrePays :" + $ex15FiltrePays);
+
+    // IL faut absolumênt inséré le paramètre.
+    fetch("./php/2019-10-22_-_ex2019_15_liste_pays.php?filtrePays=" + $ex15FiltrePays)
+
+        /*
+			// Quand l'info reviendra :
+			.then(reponse =&gt; {
+				console.log("réponse :", reponse);
+			});
+			*/
+
+        // Transformation en format JSON
+        .then($reponse =&gt; $reponse.json())
+
+        .then($ex15ListePays =&gt; {
+
+            // console.log("listePays :", $listePays);
+
+            EX15_DIV_LISTE_PAYS.innerHTML = "";
+
+            for (const EX15_PAYS of $ex15ListePays) {
+
+                // console.log("pays :", pays);
+                // console.log("pays.nomFrP :", pays.nomFrP);
+
+                let $ex15ParagraphPays = document.createElement("p");
+                $ex15ParagraphPays.classList.add("p-pays");
+
+                let $ex15CheckBoxPays = document.createElement("input");
+                $ex15CheckBoxPays.type = "checkbox";
+                $ex15CheckBoxPays.classList.add("chk-pays");
+                // Chk = checkbox
+
+                let $ex15NomPays = document.createElement("span");
+                $ex15NomPays.innerHTML = EX15_PAYS.nomFrP;
+                $ex15NomPays.classList.add("nom-pays");
+
+                $ex15ParagraphPays.appendChild($ex15CheckBoxPays);
+                $ex15ParagraphPays.appendChild($ex15NomPays);
+
+                EX15_DIV_LISTE_PAYS.appendChild($ex15ParagraphPays);
+            }
+        });
+}
+
+function ex15AjoutPays() {
+
+    //console.log("ajout pays");
+
+    for (const EX15_P_PAYS of EX15_DIV_LISTE_PAYS.getElementsByClassName("p-pays")) {
+
+        if (EX15_P_PAYS.getElementsByClassName("chk-pays")[0].checked) {
+            console.log(EX15_P_PAYS.getElementsByClassName("nom-pays")[0].innerHTML);
         }
-    });
-};</code></pre>
+    }
+}
 
-                <div>
-                    <label for = "Ex2019_15TxtPays">Pays</label>
+//=========================================================================</code></pre>
 
-                    <input type = "text"
-                           id = "Ex2019_15TxtPays"><br> <input type = "text"
-                                                               value = "⇒"
-                                                               id = "Ex2019_15Btn">
+                        <!-- ex2019_15_pays.html  -->
+                        <div class = "ui segment info message">
+                            <p>Regarde dans la console (F12) pour vôri les pays sélectionné apparaître une fois le bouton appuyé.</p>
+                        </div>
 
-                </div>
+                        <div class = "ui segment">
 
-                <div id = "Ex2019_15DivListePays"></div>
-                <div id = "Ex2019_15DivPaysSelect"></div>
+                            <div>
+                                <label for = "ex15TxtPays">Pays</label>
 
-                <script>
-                    "use strict";
+                                <input type = "text"
+                                       id = "ex15TxtPays">
 
-                    // ============================================================
-                    const TEXTE_PAYS = document.getElementById("Ex2019_15TxtPays");
-                    const DIV_LISTE_PAYS = document.getElementById("Ex2019_15DivListePays");
+                                <input type = "button"
+                                       value = "⇒ Ajouter pays"
+                                       id = "Ex15BtnAjoutPays">
+                            </div>
 
-                    TEXTE_PAYS.addEventListener("input", afficheListePays);
+                            <div id = "ex15DivListePays"></div>
+                            <div id = "ex15DivPaysSelect"></div>
 
-                    // ============================================================
+                            <!--<script type="text/javascript" src="ex2019_15_pays.js"></script>-->
 
-                    function afficheListePays() {
-                        //console.log("Liste des pays");
-                        let $filtrePays = TEXTE_PAYS.value.trim();
-                        console.log("filtrePays :" + $filtrePays);
+                            <script>
+                                /* ex2019_15_pays.js */
+                                "use strict";
 
-                        // IL faut absoulement inseré le parametre.
-                        fetch("./prof/ex2019_15/listePays.php?filtrePays=" + $filtrePays)
-                            /*
-								// Quand l'info reviendra :
-								.then(reponse => {
-									console.log("réponse :", reponse);
-								});
-								*/
-                            // Transformation en format JSON
-                            .then($reponse => $reponse.json())
-                            .then($listePays => {
-                                // console.log("listePays :", $listePays);
-                                DIV_LISTE_PAYS.innerHTML = "";
-                                for (const PAYS of $listePays) {
-                                    // console.log("pays :", pays);
-                                    // console.log("pays.nomFrP :", pays.nomFrP);
-                                    let $paragraphPays = document.createElement("span");
-                                    $paragraphPays.innerHTML = PAYS.nomFrP + "<br />"; // nomFrP : NomFrançaisDuPays.
+                                //----------------------------------------------------------------------------------------
+                                // init constantes…
+                                //----------------------------------------------------------------------------------------
+                                const EX15_TEXTE_PAYS = document.getElementById("ex15TxtPays");
+                                const EX15_DIV_LISTE_PAYS = document.getElementById("ex15DivListePays");
+                                const EX15_BOUTON_AJOUT_PAYS = document.getElementById("Ex15BtnAjoutPays");
 
-                                    DIV_LISTE_PAYS.appendChild($paragraphPays);
+                                //----------------------------------------------------------------------------------------
+                                // init évènements…
+                                //----------------------------------------------------------------------------------------
+                                EX15_TEXTE_PAYS.addEventListener("input", ex15AfficheListePays);
+                                EX15_BOUTON_AJOUT_PAYS.addEventListener("click", ex15AjoutPays);
 
-                                    // Chk = checkbox
+                                //----------------------------------------------------------------------------------------
+
+                                function ex15AfficheListePays() {
+                                    //console.log("Liste des pays");
+
+                                    let $ex15FiltrePays = EX15_TEXTE_PAYS.value.trim();
+                                    console.log("filtrePays :" + $ex15FiltrePays);
+
+                                    // IL faut absolumênt inséré le paramètre.
+                                    fetch("./php/2019-10-22_-_ex2019_15_liste_pays.php?filtrePays=" + $ex15FiltrePays)
+
+                                        /*
+											// Quand l'info reviendra :
+											.then(reponse => {
+												console.log("réponse :", reponse);
+											});
+											*/
+
+                                        // Transformation en format JSON
+                                        .then($reponse => $reponse.json())
+
+                                        .then($ex15ListePays => {
+
+                                            // console.log("listePays :", $listePays);
+
+                                            EX15_DIV_LISTE_PAYS.innerHTML = "";
+
+                                            for (const EX15_PAYS of $ex15ListePays) {
+
+                                                // console.log("pays :", pays);
+                                                // console.log("pays.nomFrP :", pays.nomFrP);
+
+                                                let $ex15ParagraphPays = document.createElement("p");
+                                                $ex15ParagraphPays.classList.add("p-pays");
+
+                                                let $ex15CheckBoxPays = document.createElement("input");
+                                                $ex15CheckBoxPays.type = "checkbox";
+                                                $ex15CheckBoxPays.classList.add("chk-pays");
+                                                // Chk = checkbox
+
+                                                let $ex15NomPays = document.createElement("span");
+                                                $ex15NomPays.innerHTML = EX15_PAYS.nomFrP;
+                                                $ex15NomPays.classList.add("nom-pays");
+
+                                                $ex15ParagraphPays.appendChild($ex15CheckBoxPays);
+                                                $ex15ParagraphPays.appendChild($ex15NomPays);
+
+                                                EX15_DIV_LISTE_PAYS.appendChild($ex15ParagraphPays);
+                                            }
+                                        });
                                 }
-                            });
-                    };
-                </script>
 
-            </fieldset>
-        </section>
+                                function ex15AjoutPays() {
 
-        <section>
+                                    //console.log("ajout pays");
 
-            <fieldset>
+                                    for (const EX15_P_PAYS of EX15_DIV_LISTE_PAYS.getElementsByClassName("p-pays")) {
 
-                <h3>2019‑11‑05 ‒ Mardi :</h3>
+                                        if (EX15_P_PAYS.getElementsByClassName("chk-pays")[0].checked) {
+                                            console.log(EX15_P_PAYS.getElementsByClassName("nom-pays")[0].innerHTML);
+                                        }
+                                    }
+                                }
 
-                <pre><code class = "language-javascript line-numbers">for in
+                                //=========================================================================
+                            </script>
+
+                        </div>
+                    </div>
+
+                        <div class = "ui segment info message"><p>2019‑11‑05 ‒ Mardi</p></div>
+
+                        <pre><code class = "language-javascript line-numbers">for in
 for of</code></pre>
 
-                <pre><code class = "language-javascript line-numbers">// Exemple :
+                        <pre><code class = "language-javascript line-numbers">// Exemple :
 let $tab ["ab", "xy", "AB", "ZX"];
 
 in 1&nbsp;&nbsp;2&nbsp;&nbsp;3&nbsp;&nbsp;4&nbsp;&nbsp;// index
 of ab&nbsp;xy&nbsp;ab&nbsp;zx // valeur</code></pre>
-                <p>même type que l'element qui est dans le tableau. (typade dynamique).
+                        <p>même type que l'élémênt qui est dans le tableau. (typage dynamique).
 
-                <p>Difference dans la facon d'acceder.</p>
+                        <p>Différence dans la façon d'accéder.</p>
 
-                <pre><code class = "language-javascript line-numbers">for(let $i in tab) {
+                        <pre><code class = "language-javascript line-numbers">for(let $i in tab) {
       … tab[$i] …
 }
 
 for(let $el of tab) {
     … $el …
-la on imprime directement la variable;
-on ne fait plush referecne au tbleau.
+là on imprime directement la variable;
+on ne fait plush référence au tableau.
 
 // Objet
 let $pers = { "nom" : "Dubois",
@@ -5184,180 +5898,181 @@ for (let $a in pers) {
     … pers[$a] …
 }</code></pre>
 
-                <pre><code class = "language-javascript line-numbers">pers.nom</code></pre>
+                        <pre><code class = "language-javascript line-numbers">pers.nom</code></pre>
 
-                <p>norm‑ale‑ment en objet on fait cela,<br> mais pash en javascript.</p>
+                        <p>norm‑ale‑ment en objet on fait cela,<br> mais pash en javascript.</p>
 
-                <p>On peut donc faire cela :</p>
+                        <p>On peut donc faire cela :</p>
 
-                <pre><code class = "language-javascript line-numbers">pers[nom]</code></pre>
+                        <pre><code class = "language-javascript line-numbers">pers[nom]</code></pre>
 
-                <p>En JSON cela fonctionne, mais un objet javascript, les objets peuvent aussi contenir des méthodes et risque de les afficher. JSON ne peut pash reprendre des méthodes.</p>
+                        <p>En JSON cela fonctionne, mais un objet javascript, les objets peuvent aussi contenir des méthodes et risque de les afficher. JSON ne peut pash reprendre des méthodes.</p>
 
-                <pre><code class = "language-javascript line-numbers">Objet « of » : { … , … }
+                        <pre><code class = "language-javascript line-numbers">Objet « of » : { … , … }
 Array « in » : ( … , … )</code></pre>
 
-                <p>Promise permet de jouer avec cette asyncrhonisem.</p>
+                        <p>Promise permet de jouer avec cet asynchronisme.</p>
 
-                <h5>jQuery :</h5>
-                <pre><code class = "language-javascript line-numbers">$x.hide(3000); // 3 secondes pour cacher. Grace à un set timeout (en arrière plain.)
+                        <h5>jQuery :</h5>
+                        <pre><code class = "language-javascript line-numbers">$x.hide(3000); // 3 secondes pour cacher. Grace à un set timeout (en arrière plain.)
                     $x.show();</code></pre>
 
-                <h6>PROMISES</h6>
+                        <h6>PROMISES</h6>
 
-                <p>Sa remplace les callbacks.</p>
+                        <p>Sa remplace les callbacks.</p>
 
-                <pre><code class = "language-javascript line-numbers">// CallBack
+                        <pre><code class = "language-javascript line-numbers">// CallBack
 $x.hide(3000, $x.show(2000, …));
 // Execute show après les 3 secondes,
-// afin de ne pash que il le ce lance immediatement,
-// comme la méthode précedente.</code></pre>
+// afin de ne pash que il le ce lance immédiatemênt,
+// comme la méthode précédênte.</code></pre>
 
-                <pre><code class = "language-javascript line-numbers">// Promajzë / Promise
+                        <pre><code class = "language-javascript line-numbers">// Promajzë / Promise
 $x.hide(2000)
-.then( … ) // execute que qnad tout c'est bien passé.
+.then( … ) // exécute que quand tout c'est bien passé.
 .then( … );</code></pre>
 
-                <p>Il on rajouté</p>
-                <pre><code class = "language-javascript line-numbers">await
+                        <p>Ils ont rajouté</p>
+                        <pre><code class = "language-javascript line-numbers">await
 async</code></pre>
 
-                <p>Sa simplifie l'écriture des promises.</p>
-                <pre><code class = "language-javascript line-numbers">x = fetch … ;
+                        <p>Sa simplifie l'écriture des promises.</p>
+                        <pre><code class = "language-javascript line-numbers">x = fetch … ;
 // Mais y a un risque de décalage.
 // Donc on écrirait :
 await x = fetch … ;</code></pre>
 
-                Segolene
-                <div class = "ui segment"><h4>Code Postaux :</h4>
+                        Ségolène
+                        <div class = "ui segment"><h4>Code Postaux :</h4>
 
-                    Exerice 16 :
-                    <p>Exercice on input un chiffre postal et la localité qui correspond apparaît.</p>
+                            Exercice 16 :
+                            <p>Exercice on input un chiffre postal et la localité qui correspond apparaît.</p>
 
-                    <p>Je n'avais pash bien compris les consignes. Et j'avais affihcer les CP dans une div alors que il fallait un select (liste déroulante.)</p>
+                            <p>Je n'avais pash bien compris les consignes. Et j'avais afficher les CP dans une div alors que il fallait un select (liste déroulante.)</p>
 
-                    Ma version : <input type = "text"
-                                        id = "Ex2019_16CodePostal"
-                                        placeholder = "Inséré le code postal"><br>
+                            Ma version : <input type = "text"
+                                                id = "Ex2019_16CodePostal"
+                                                placeholder = "Inséré le code postal"><br>
 
-                    <div id = "Ex2019_16Localité"
-                         placeholder = "Localité"
-                         readonly>
+                            <div id = "Ex2019_16Localité"
+                                 placeholder = "Localité"
+                                 readonly>
 
-                    </div>
+                            </div>
 
-                    <script>
-                        "use strict";
+                            <script>
+                                "use strict";
 
-                        // ============================================================
-                        const CODE_POSTAL = document.getElementById("Ex2019_16CodePostal");
-                        const LOCALITÉ = document.getElementById("Ex2019_16Localité")
+                                // ============================================================
+                                const CODE_POSTAL = document.getElementById("Ex2019_16CodePostal");
+                                const LOCALITÉ = document.getElementById("Ex2019_16Localité")
 
-                        CODE_POSTAL.addEventListener("input", afficheListeLocalitee);
+                                CODE_POSTAL.addEventListener("input", afficheListeLocalitee);
 
-                        // ============================================================
+                                // ============================================================
 
-                        function afficheListeLocalitee() {
-                            // window.alert("Liste des pays");
-                            // Fonctionne
+                                function afficheListeLocalitee() {
+                                    // window.alert("Liste des pays");
+                                    // Fonctionne
 
-                            let $filtreCodesPostaux = CODE_POSTAL.value.trim();
-                            // window.alert("Codes postaux :" + $filtreCodesPostaux);
-                            // Fonctionne
+                                    let $filtreCodesPostaux = CODE_POSTAL.value.trim();
+                                    // window.alert("Codes postaux :" + $filtreCodesPostaux);
+                                    // Fonctionne
 
-                            // Il faut absolument inseré le parametre.
-                            fetch("./php/2019-11-05_-_code_postal.php?filtreCodesPostaux=" + $filtreCodesPostaux)
+                                    // Il faut absolument insérer le paramètre.
+                                    fetch("./php/2019-11-05_-_code_postal.php?filtreCodesPostaux=" + $filtreCodesPostaux)
 
-                                // Transformation en format JSON
-                                .then($reponse => $reponse.json())
-                                .then($listeLocalité => {
+                                        // Transformation en format JSON
+                                        .then($reponse => $reponse.json())
+                                        .then($listeLocalité => {
 
-                                    // console.log("liste localité :", $listeLocalité);
-                                    LOCALITÉ.innerHTML = "";
-                                    for (const LISTE_LOCALITÉ of $listeLocalité) {
-                                        // console.log("pays :", pays);
-                                        // console.log("pays.nomFrP :", pays.nomFrP);
-                                        let $paragraphLocalité = document.createElement("span");
-                                        $paragraphLocalité.innerHTML = LISTE_LOCALITÉ.commune + "<br />";
+                                            // console.log("liste localité :", $listeLocalité);
+                                            LOCALITÉ.innerHTML = "";
+                                            for (const LISTE_LOCALITÉ of $listeLocalité) {
+                                                // console.log("pays :", pays);
+                                                // console.log("pays.nomFrP :", pays.nomFrP);
+                                                let $paragraphLocalité = document.createElement("span");
+                                                $paragraphLocalité.innerHTML = LISTE_LOCALITÉ.commune + "<br />";
 
-                                        LOCALITÉ.appendChild($paragraphLocalité);
-                                        // Chk = checkbox
-                                    }
-                                });
-                        };
-                    </script>
+                                                LOCALITÉ.appendChild($paragraphLocalité);
+                                                // Chk = checkbox
+                                            }
+                                        });
+                                };
+                            </script>
 
-                    <p>Version prof :</p>
+                            <p>Version prof :</p>
 
-                    // ComboBox <label for = "comboBoxCP">CP:</label> <select name = "comboBoxCP"
-                                                                              id = ""></select>
+                            // ComboBox <label for = "comboBoxCP">CP:</label> <select name = "comboBoxCP"
+                                                                                      id = ""></select>
 
-                    <script>
-                        // Initialement l'html pointera à 1000, mais le second select n'affiche rien,
-                        // on devra remedier à cela. Et puis pq brussels alors que l'o est à Namur / Namen.
+                            <script>
+                                // Initialement l'html pointera à 1000, mais le second select n'affiche rien,
+                                // on devra remédier à cela. Et puis pq Brussels alors que l'o est à Namur / Namen.
 
-                        // Au début les poiteur,
-                        // puis les méthodes et fonctions.
+                                // Au début les pointeurs,
+                                // puis les méthodes et fonctions.
 
-                        // Mise en place du mécanisme evenementiel.
-                        // ling4
+                                // Mise en place du mécanisme évènemêntiel.
+                                // ling4
 
-                        // majCboCP = mise à jour ComboBox Code Postal
+                                // majCboCP = mise à jour ComboBox Code Postal
 
-                        // A chaque étapge bien lancé un console.log pour être sur que êllë fonctionne.
+                                // A chaque étape bien lancé un <code class="language-javascript">console.log();</code>, pour être sûr que êllë fonctionne.
 
-                        fetch // Pash de parametre.
-                        console.log(); // emmet : clo
+                                fetch // Pash de paramètre.
+                                console.log();
+                                // Emmet : clo
 
-                        // $optCP.innerHTML à cause des égaux on ne peut pash mettre diretment à la suite de createElement("option");
+                                // $optCP.innerHTML à cause des égaux on ne peut pash mettre directemênt à la suite de createElement("option");
 
-                        // ligne 13 du P.H.P. commune au peu mettre aussi un bindparam
+                                // ligne 13 du P.H.P. commune au peu mettre aussi un bindparam
 
-                        // Ligne 19 ajoute nettoyage : $cboCP.innerHTML = "";
-                        // Linge 20 affichage par défaut.
+                                // Ligne 19 ajoute nettoyage : $cboCP.innerHTML = "";
+                                // Linge 20 affichage par défaut.
 
-                        // ligne 25 majCboLoc = mise à jour ComboBox Localité
+                                // ligne 25 majCboLoc = mise à jour ComboBox Localité
 
-                        // On déplace la ligne nettoyage en dehors de la boucle pour ne pas avoir de erreur en cas de remise de la premier selection sur Choisissez
+                                // On déplace la ligne nettoyage en dehors de la boucle pour ne pas avoir de erreur en cas de remise de la premier selection sur Choisissez
 
-                        // $cboLoc.removeAttribut()… Remplacé par :
-                        // $cboLoc.attribut = true; // Puis.
-                        // $cboLoc.hidden = true;
-                        // $DivLoc.hidden = true; // creez une div car CPdans label appariassant
+                                // $cboLoc.removeAttribut()… Remplacé par :
+                                // $cboLoc.attribut = true; // Puis.
+                                // $cboLoc.hidden = true;
+                                // $DivLoc.hidden = true; // Créez une div car CPdans label apparaissant
 
-                        // Le prof estieme que le code pourrait etre amelioré pour éviter les recurrances & redondance de nettoyage par exemple…
-                    </script>
+                                // Le prof estime que le code pourrait être amélioré pour éviter les récurrences & redondance de nettoyage par exemple…
+                            </script>
 
-                    <p>Le prof voudrait une variantes, quand on tape une localité un zone de texte ou on tape un chiffre ou un terme il nous montre une div avec le terme ou chiffre adequate, un peu comme liste de pays. Puis qund on click il copie le nom quelque part autre &lt;div&gt; vous avez choisie la ville $ville de avec pour code poste $cp.</p>
-                    Loc [Nom] 5000 Namur 5004 Bouge.
+                            <p>Le prof voudrait une variante, quand on tape une localité une zone de texte ou on tape un chiffre ou un terme il nous montre une div avec le terme ou chiffre adéquate, un peu comme liste de pays. Puis quand on clique, il copie le nom quelque part autre &lt;div&gt; vous avez choisi la ville $ville de avec pour code poste $cp.</p>
+                            Loc [Nom] 5000 Namur 5004 Bouge.
 
-                    <h5>2019‑11‑12 ‒ 09H00 :</h5>
+                            <h5>2019‑11‑12 ‒ 09H00 :</h5>
 
-                    Exercice 16B
-                    <ul>
-                        <li>1ère étape : filtrage.</li>
-                        <li>2ème étape : remplissage de la liste déroulante.</li>
-                        <li>3ème étage selection de l'element.</li>
-                    </ul>
+                            Exercice 16B
+                            <ul>
+                                <li>1ère étape : filtrage.</li>
+                                <li>2ème étape : remplissage de la liste déroulante.</li>
+                                <li>3ème étage selection de l'élément.</li>
+                            </ul>
 
-                    <p>liste déroulante, <code>.addEventListener()</code> : change</p>
+                            <p>liste déroulante, <code>.addEventListener()</code> : change</p>
 
-                    <p>Quand on efface la premier lettre est vide il faut tenter de éviter que il cherche.</p>
+                            <p>Quand on efface la première lettre est vide il faut tenter de éviter que il cherche.</p>
 
-                    <p>Le mécanisme de filtrage on l'avait déjà fait.</p>
+                            <p>Le mécanisme de filtrage on l'avait déjà fait.</p>
 
-                    <p>Dans le cas ou le CP n'a que un choix. Il faudrait passé la selection manuel.</p>
+                            <p>Dans le cas où le CP n'a que un choix. Il faudrait passer la selection manuel.</p>
 
-                    <pre><code class = "language-javascript line-numbers">let nbr = document.getElementById("txtNbr");
+                            <pre><code class = "language-javascript line-numbers">let nbr = document.getElementById("txtNbr");
 nbr.value = nbr.value + 1;</code></pre>
-                    <pre><code class = "language-javascript line-numbers">document.getElementById → 1
+                            <pre><code class = "language-javascript line-numbers">document.getElementById → 1
 document.getElementByName → *
 document.getElementByTag → *
 document.getElementByClass → *</code></pre>
 
-                    <p>Nouweau</p>
+                            <p>Nouweau</p>
 
-                    <pre><code class = "language-javascript line-numbers">document.querySelector("") → 1
+                            <pre><code class = "language-javascript line-numbers">document.querySelector("") → 1
 
 document.querySelector("#truc.Rouge") → *
 // Attentation renvoi tableau donc crochet pour chercher.
@@ -5365,7 +6080,7 @@ document.querySelector("#truc.Rouge") → *
 // jQuery
 $("#trucRouge")</code></pre>
 
-                    <pre><code class = "language-javascript line-numbers">element propriety attribute.
+                            <pre><code class = "language-javascript line-numbers">element propriety attribute.
 // Tous les elements n'ont pash les meme propriétés.
 
 .setAttribute
@@ -5373,14 +6088,14 @@ $("#trucRouge")</code></pre>
 .removeAttribute
 .toggleAttribute // Si n'existe pash.</code></pre>
 
-                    <pre><code class = "language-javascript line-numbers">createElement
-createTextNode // Noeud sa reprend tout, un element est un noeud.
-                        TextNode est un noeud spécialisé.
+                            <pre><code class = "language-javascript line-numbers">createElement
+createTextNode // Nœud sa reprend tout, un élément est un nœud.
+                        TextNode est un nœud spécialisé.
 
 &lt;h1&gt;Coucoulme&lt;/h1&gt;
 Element  TextNode</code></pre>
 
-                    <pre><code class = "language-javascript line-numbers">document.createElement("p");
+                            <pre><code class = "language-javascript line-numbers">document.createElement("p");
 // Il faut le placer.
 document.getElementById("div1").appendChild(); // Voir photo.
 // Il est important de créer une variable du createElement pour pouvoir interagir.
@@ -5388,18 +6103,19 @@ let $newP = document.createElement("p");
     $newP.innerHTML = "coucou";
 
 document.ElementById("div2").appendChild($newP);
-// Il le déplace, c'est importante. Il ne fait pash un doublon.</code></pre>
+// Il le déplace, c'est important. Il ne fait pash un doublon.</code></pre>
 
-                    // Copie c'est clone. Mais il y deux version, une en profondeur ou en surface. Il ne copie pash les évènements.
+                            // Copie c'est clone. Mais il y deux versions, une en profondeur ou en surface. Il ne copie pash les évènements.
 
-                    // Avec une fonction anonyme on ne peut suprrimier un eventListener car il n'y a pash de pointeur dans les fonction anonyme.
+                            // Avec une fonction anonyme on ne peut supprimer un
+                            <code class = "language-javascript">eventListener</code> car il n'y a pash de pointeur dans les fonctions anonyme.
 
-                    <h5>Le Timer [2019‑11‑12 10H22]</h5>
+                            <h5>Le Timer [2019‑11‑12 10H22]</h5>
 
-                    <pre><code class = "language-javascript line-numbers">.setInterval(saluer, 3000) // Toute les × milli‑secondes. Mecanisme de ????.
-// Pash de parenthese à l'appel de la fonction. Car si il ont les met, il affichera le result et ne fera pash l'appel de la fonction.
+                            <pre><code class = "language-javascript line-numbers">.setInterval(saluer, 3000) // Toute les × milli‑secondes. Mécanisme de ????.
+// Pash de parenthèse à l'appel de la fonction. Car si il ont les met, il affichera le result et ne fera pash l'appel de la fonction.
 .clearInterval(saluer, 3000)
-// Stop j'arrete.
+// Stop j'arrête.
 // Oui mais lequel ?
 // Pour le cibler on crée une variable.
 let $t1 = setInterval(saluer, 3000);
@@ -5408,11 +6124,11 @@ clearInterval($t1);
 .setTimeout() // Après × secondes.
 .clearTimeout()</code></pre>
 
-                    <p>L'objectif est de gerer le temps.</p>
+                            <p>L'objectif est de gérer le temps.</p>
 
-                    <h6>Quommênthë récupérer le temps ?</h6>
+                            <h6>Quommênthë récupérer le temps ?</h6>
 
-                    <pre><code class = "language-javascript line-numbers">let $now new Date();
+                            <pre><code class = "language-javascript line-numbers">let $now new Date();
 // Vous créez une nouvelle variable.
 
 now.getDay()      // ⇒ 12. Jour.
@@ -5423,9 +6139,9 @@ now.getUtcHours() // ⇒ 10. Heure (en temps universel).
 
 now.setMonth(11)  // ⇒ Décembre. Mois.</code></pre>
 
-                    <h6>Date de anniversaire.</h6>
+                            <h6>Date de anniversaire.</h6>
 
-                    <pre><code class = "language-javascript line-numbers">// On récupère de une DB
+                            <pre><code class = "language-javascript line-numbers">// On récupère de une DB
 // $DateDeNaissance (25/04/1979)
 
 let $today = new Date();
@@ -5441,253 +6157,254 @@ if($today < $dateAnniversaire) {
     age …
 };</code></pre>
 
-                    <h5>Exercice 17</h5>
+                            <h5>Exercice 17</h5>
 
-                    <p>Temp : [display] btn‑start, btn‑lap, btn‑stop btr reset</p>
+                            <p>Temp : [display] btn‑start, btn‑lap, btn‑stop btr reset</p>
 
-                    <pre><code class = "language-javascript line-numbers">Start = $dateDébut - Date();
+                            <pre><code class = "language-javascript line-numbers">Start = $dateDébut - Date();
 
 Stop = now ⇐ $dateDébut
        now - $dateDébut</p></code></pre>
 
-                    <label id = lblChrono
-                           for = "ex17textChrono">Temps :</label> <input id = "ex17textChrono"
-                                                                         name = "ex-17-text-chrono"
-                                                                         type = "text"> <input type = "button"
-                                                                                               id = "ex17BtnStart"
-                                                                                               value = "Start">
-                    <input type = "button"
-                           id = "ex17BtnLap"
-                           value = "Lap"
-                           disabled> <input type = "button"
-                                            id = "ex17BtnStop"
-                                            value = "Stop"
-                                            disabled> <input type = "button"
-                                                             id = "ex17BtnReset"
-                                                             value = "Reset"
-                                                             disabled>
+                            <label id = lblChrono
+                                   for = "ex17textChrono">Temps :</label> <input id = "ex17textChrono"
+                                                                                 name = "ex-17-text-chrono"
+                                                                                 type = "text"> <input type = "button"
+                                                                                                       id = "ex17BtnStart"
+                                                                                                       value = "Start">
+                            <input type = "button"
+                                   id = "ex17BtnLap"
+                                   value = "Lap"
+                                   disabled> <input type = "button"
+                                                    id = "ex17BtnStop"
+                                                    value = "Stop"
+                                                    disabled> <input type = "button"
+                                                                     id = "ex17BtnReset"
+                                                                     value = "Reset"
+                                                                     disabled>
 
-                    <div id = "ex17DivLap"></div>
-                    <script>
-                        "use strict"
+                            <div id = "ex17DivLap"></div>
+                            <script>
+                                "use strict"
 
-                        // Phase 1 : création des constantes.
-                        const BTN_START = document.getElementById("ex17BtnStart");
-                        const BTN_LAP = document.getElementById("ex17BtnLap");
-                        const BTN_STOP = document.getElementById("ex17BtnStop");
-                        const BTN_RESET = document.getElementById("ex17BtnReset");
-                        const TEXT_CHRONO = document.getElementById("ex17textChrono");
-                        const DIV_LAP = document.getElementById("ex17DivLap");
+                                // Phase 1 : création des constantes.
+                                const BTN_START = document.getElementById("ex17BtnStart");
+                                const BTN_LAP = document.getElementById("ex17BtnLap");
+                                const BTN_STOP = document.getElementById("ex17BtnStop");
+                                const BTN_RESET = document.getElementById("ex17BtnReset");
+                                const TEXT_CHRONO = document.getElementById("ex17textChrono");
+                                const DIV_LAP = document.getElementById("ex17DivLap");
 
-                        // ────────────────────────────────────────────────────────────────────────
+                                // ────────────────────────────────────────────────────────────────────────
 
-                        // Phase 2 : evenement.
-                        BTN_START.addEventListener("click", startChrono);
-                        BTN_LAP.addEventListener("click", lapChrono);
-                        BTN_STOP.addEventListener("click", stopChrono);
-                        BTN_RESET.addEventListener("click", resetChrono);
-
-
-                        // Phase 05
-                        // Ce temps on aura besoin dans tous les elements, donc global.
-                        let $now = new Date();
-
-                        // Phase 08
-                        let $startTime; // Global.
-                        // Phase 13
-                        let $timer;     // Global.
-
-                        // ────────────────────────────────────────────────────────────────────────
-                        // Phase 06 : Gestion du Chrono, création des 4 fonctions vide.
-                        // ────────────────────────────────────────────────────────────────────────
-                        function startChrono() {
-                            // window.alert("Start lancé");
-
-                            $startTime = new Date();
-                            // console.log("startTime :", $startTime)
-                            // window.alert("startTime : " + $startTime)
-
-                            // Phase 12 : Affichage chrono.
-                            $timer = setInterval(affichageChrono, 1);
-
-                            // Phase 07 : Activation des boutons.
-                            BTN_START.disabled = true;
-                            BTN_LAP.disabled = false;
-                            BTN_STOP.disabled = false;
-                            BTN_RESET.disabled = true;
-                            // RESET.toggleAttribute("disabled", true);
-                        }
-
-                        function lapChrono() {
-                            // window.alert("Lap.");
-
-                            let $now = new Date();
-                            let $time = $now - $startTime; // Durée en ms.
-                            // console.log("Lap time : ", $time);
-                            // window.alert("Lap time : " + $time);
-
-                            // Phase 10 :
-                            DIV_LAP.innerHTML += tps2String($time) + "<br>";
-                        }
-
-                        function stopChrono() {
-                            // window.alert("Chrono stoppé.");
-
-                            // Phase 12
-                            clearInterval($timer);
-
-                            // Phase 08
-                            let $now = new Date();
-                            let $time = $now - $startTime; // Durée en ms.
-                            // console.log("Final Time : ", $time);
-                            // window.alert("Final Time : " + $time);
-
-                            // Phase 10 :
-                            DIV_LAP.innerHTML += tps2String($time) + "<br>";
-
-                            // Phase 12 : Affichage chrono.
-                            TEXT_CHRONO.value = tps2String(0);
-
-                            // Phase 07 : Activation des boutons.
-                            BTN_START.disabled = true;  // Désactivé.
-                            BTN_LAP.disabled = true;  // Désactivé.
-                            BTN_STOP.disabled = true;  // Désactivé.
-                            BTN_RESET.disabled = false; // Activé.
-                            // RESET.toggleAttribute("disabled", false);
-
-                        }
-
-                        function resetChrono() {
-
-                            // window.alert("Start lancé");
-                            DIV_LAP.innerHTML = "";
-                            TEXT_CHRONO.value = tps2String(0);
-
-                            // Phase 07 : Activation des boutons.
-                            BTN_START.disabled = false; // Actif
-                            BTN_LAP.disabled = true;    // Inaccessible.
-                            BTN_STOP.disabled = true;   // Inaccessible
-                            BTN_RESET.disabled = true;  // Inaccessible
-                            // RESET.toggleAttribute("disabled", true);
-
-                            // Phase 11:
-                            DIV_LAP.innerHTML = "";
-                        }
-
-                        // Phase 12 : Affichage chrono.
-
-                        function affichageChrono() {
-                            // clearTimeout($timer);
-
-                            let $now = new Date();
-                            let $time = $now - $startTime; // Durée en m.s.
-                            TEXT_CHRONO.value = tps2String($time);
-
-                            $timer = setTimeout(affichageChrono, 1);
-                        }
-
-                        // ────────────────────────────────────────────────────────────────────────
-                        // Phase 09 : Outils
-                        // ────────────────────────────────────────────────────────────────────────
-
-                        // Converter m.s. ⇒ hh:mm:ss,ms
-                        function tps2String($tps_ms) { // $tps_ms : Paramètre.
-                            let $temps = new Date($tps_ms);
-
-                            // return "tps en ms" + $temps;
-
-                            // Transformer le temps standard en temps heure & seconde.
-                            // Tue Nov 12 2019 14:00:27 GMT+0100 (Central European Standard Time)
-                            let $heures = $temps.getUTCHours();
-                            if ($heures < 10) $heures = "0" + $heures;
-                            // Premiere méthode, Ecriture simplifié sans accolade.
-
-                            let $minutes = $temps
-                                .getUTCMinutes()
-                                .toString()
-                                .padStart(2, "0");
-                            // Celle que le prof conseil.
-
-                            let $secondes = $temps.getUTCSeconds();
-                            $secondes = ("0" + $secondes).slice(-2);
-                            // Autre méthode.
-
-                            let $milliSecondes = $temps
-                                .getUTCMilliseconds()
-                                .toString()
-                                .padStart(3, "0");
-
-                            return $heures + ":" + $minutes + ":" + $secondes + "," + $milliSecondes;
-
-                        }
-                    </script>
-
-                    <h5>ex17b : Faite une variante avec la valeur primaire du lap + l'addition des lap precedents.</h5>
-
-                    <p>Nbr du tour, temps du tour, addition des tours successif.</p>
-
-                    <p>ex17c : Afficher (avec une classe) à chaque fois le meilleur tour.<br> et quand on appuit stop, il affiche le meilleur temps final.
-                    </p>
-
-                    <h4>Exercice18A</h4>
-
-                    <h5>Les timers…</h5>
-
-                    <p>Compte à rebourd en progress‑bar 100% à 0%.</p>
-                    <p>Timer 1 : [ input ] Start Stop</p>
-
-                    <label for = "ex18Timer">Timer 1 : <input type = "text"
-                                                              id = "ex18Timer"
-                                                              name = "ex-18-timer"></label> <label for = "ex18BtnStart"><input type = "button"
-                                                                                                                               id = "ex18BtnStart"
-                                                                                                                               name = "ex-18-btn-start"
-                                                                                                                               value = "start"
-                                                                                                                               disabled></label>
-                    <label for = "ex18Stop"><input type = "button"
-                                                   id = "ex18Stop"
-                                                   name = "ex-18-btn-stop"
-                                                   value = "stop"
-                                                   disabled></label><br> <br>
-                    <progress id = "ex18Progress"
-                              max = "100"
-                              value = "100"></progress>
-
-                    <script>
-                        "use strict";
-
-                        // Phase 1 : création des constantes.
-                        const TEXT_TIMER = document.getElementById("ex18Timer");
-                        const BTN_START = document.getElementById("ex18BtnStart");
-                        const BTN_STOP = document.getElementById("ex18BtnStop");
-                        const PROGRESS_CHRONO = document.getElementById("ex18Progress");
-
-                        // ────────────────────────────────────────────────────────────────────────
-
-                        // Phase 2 : evenement.
-                        TEXT_TIMER.addEventListener("keyup", activeStart);
-                        BTN_START.addEventListener("click", startTimer);
-                        BTN_STOP.addEventListener("click", stopTimer);
-
-                        // ────────────────────────────────────────────────────────────────────────
-
-                        function activeStart() {
-
-                            window.alert("activeStart lancé.");
-                            BTN_START.disabled = false;
-                        }
-
-                        function startTimer() {
+                                // Phase 2 : evenement.
+                                BTN_START.addEventListener("click", startChrono);
+                                BTN_LAP.addEventListener("click", lapChrono);
+                                BTN_STOP.addEventListener("click", stopChrono);
+                                BTN_RESET.addEventListener("click", resetChrono);
 
 
-                        }
+                                // Phase 05
+                                // Ce temps on aura besoin dans tous les elements, donc global.
+                                let $now = new Date();
 
-                        function stopTimer() {
+                                // Phase 08
+                                let $startTime; // Global.
+                                // Phase 13
+                                let $timer;     // Global.
+
+                                // ────────────────────────────────────────────────────────────────────────
+                                // Phase 06 : Gestion du Chrono, création des 4 fonctions vide.
+                                // ────────────────────────────────────────────────────────────────────────
+                                function startChrono() {
+                                    // window.alert("Start lancé");
+
+                                    $startTime = new Date();
+                                    // console.log("startTime :", $startTime)
+                                    // window.alert("startTime : " + $startTime)
+
+                                    // Phase 12 : Affichage chrono.
+                                    $timer = setInterval(affichageChrono, 1);
+
+                                    // Phase 07 : Activation des boutons.
+                                    BTN_START.disabled = true;
+                                    BTN_LAP.disabled = false;
+                                    BTN_STOP.disabled = false;
+                                    BTN_RESET.disabled = true;
+                                    // RESET.toggleAttribute("disabled", true);
+                                }
+
+                                function lapChrono() {
+                                    // window.alert("Lap.");
+
+                                    let $now = new Date();
+                                    let $time = $now - $startTime; // Durée en ms.
+                                    // console.log("Lap time : ", $time);
+                                    // window.alert("Lap time : " + $time);
+
+                                    // Phase 10 :
+                                    DIV_LAP.innerHTML += tps2String($time) + "<br>";
+                                }
+
+                                function stopChrono() {
+                                    // window.alert("Chrono stoppé.");
+
+                                    // Phase 12
+                                    clearInterval($timer);
+
+                                    // Phase 08
+                                    let $now = new Date();
+                                    let $time = $now - $startTime; // Durée en ms.
+                                    // console.log("Final Time : ", $time);
+                                    // window.alert("Final Time : " + $time);
+
+                                    // Phase 10 :
+                                    DIV_LAP.innerHTML += tps2String($time) + "<br>";
+
+                                    // Phase 12 : Affichage chrono.
+                                    TEXT_CHRONO.value = tps2String(0);
+
+                                    // Phase 07 : Activation des boutons.
+                                    BTN_START.disabled = true;  // Désactivé.
+                                    BTN_LAP.disabled = true;  // Désactivé.
+                                    BTN_STOP.disabled = true;  // Désactivé.
+                                    BTN_RESET.disabled = false; // Activé.
+                                    // RESET.toggleAttribute("disabled", false);
+
+                                }
+
+                                function resetChrono() {
+
+                                    // window.alert("Start lancé");
+                                    DIV_LAP.innerHTML = "";
+                                    TEXT_CHRONO.value = tps2String(0);
+
+                                    // Phase 07 : Activation des boutons.
+                                    BTN_START.disabled = false; // Actif
+                                    BTN_LAP.disabled = true;    // Inaccessible.
+                                    BTN_STOP.disabled = true;   // Inaccessible
+                                    BTN_RESET.disabled = true;  // Inaccessible
+                                    // RESET.toggleAttribute("disabled", true);
+
+                                    // Phase 11:
+                                    DIV_LAP.innerHTML = "";
+                                }
+
+                                // Phase 12 : Affichage chrono.
+
+                                function affichageChrono() {
+                                    // clearTimeout($timer);
+
+                                    let $now = new Date();
+                                    let $time = $now - $startTime; // Durée en m.s.
+                                    TEXT_CHRONO.value = tps2String($time);
+
+                                    $timer = setTimeout(affichageChrono, 1);
+                                }
+
+                                // ────────────────────────────────────────────────────────────────────────
+                                // Phase 09 : Outils
+                                // ────────────────────────────────────────────────────────────────────────
+
+                                // Converter m.s. ⇒ hh:mm:ss,ms
+                                function tps2String($tps_ms) { // $tps_ms : Paramètre.
+                                    let $temps = new Date($tps_ms);
+
+                                    // return "tps en ms" + $temps;
+
+                                    // Transformer le temps standard en temps heure & seconde.
+                                    // Tue Nov 12 2019 14:00:27 GMT+0100 (Central European Standard Time)
+                                    let $heures = $temps.getUTCHours();
+                                    if ($heures < 10) $heures = "0" + $heures;
+                                    // Premiere méthode, Ecriture simplifié sans accolade.
+
+                                    let $minutes = $temps
+                                        .getUTCMinutes()
+                                        .toString()
+                                        .padStart(2, "0");
+                                    // Celle que le prof conseil.
+
+                                    let $secondes = $temps.getUTCSeconds();
+                                    $secondes = ("0" + $secondes).slice(-2);
+                                    // Autre méthode.
+
+                                    let $milliSecondes = $temps
+                                        .getUTCMilliseconds()
+                                        .toString()
+                                        .padStart(3, "0");
+
+                                    return $heures + ":" + $minutes + ":" + $secondes + "," + $milliSecondes;
+
+                                }
+                            </script>
+
+                            <h5>ex17b : Faite une variante avec la valeur primaire du lap + l'addition des lap précédents.</h5>
+
+                            <p>Nbr du tour, temps du tour, addition des tours successif.</p>
+
+                            <p>ex17c : Afficher (avec une classe) à chaque fois le meilleur tour.<br> et quand on appui stop, il affiche le meilleur temps final.
+                            </p>
+
+                            <h4>Exercice18A</h4>
+
+                            <h5>Les timers…</h5>
+
+                            <p>Compte à rebours en progress‑bar 100% à 0%.</p>
+                            <p>Timer 1 : [ input ] Start Stop</p>
+
+                            <label for = "ex18Timer">Timer 1 : <input type = "text"
+                                                                      id = "ex18Timer"
+                                                                      name = "ex-18-timer"></label>
+                            <label for = "ex18BtnStart"><input type = "button"
+                                                               id = "ex18BtnStart"
+                                                               name = "ex-18-btn-start"
+                                                               value = "start"
+                                                               disabled></label>
+                            <label for = "ex18Stop"><input type = "button"
+                                                           id = "ex18Stop"
+                                                           name = "ex-18-btn-stop"
+                                                           value = "stop"
+                                                           disabled></label><br> <br>
+                            <progress id = "ex18Progress"
+                                      max = "100"
+                                      value = "100"></progress>
+
+                            <script>
+                                "use strict";
+
+                                // Phase 1 : création des constantes.
+                                const TEXT_TIMER = document.getElementById("ex18Timer");
+                                const BTN_START = document.getElementById("ex18BtnStart");
+                                const BTN_STOP = document.getElementById("ex18BtnStop");
+                                const PROGRESS_CHRONO = document.getElementById("ex18Progress");
+
+                                // ────────────────────────────────────────────────────────────────────────
+
+                                // Phase 2 : évènement.
+                                TEXT_TIMER.addEventListener("keyup", activeStart);
+                                BTN_START.addEventListener("click", startTimer);
+                                BTN_STOP.addEventListener("click", stopTimer);
+
+                                // ────────────────────────────────────────────────────────────────────────
+
+                                function activeStart() {
+
+                                    window.alert("activeStart lancé.");
+                                    BTN_START.disabled = false;
+                                }
+
+                                function startTimer() {
 
 
-                        }
-                    </script>
+                                }
 
-                </div>
+                                function stopTimer() {
+
+
+                                }
+                            </script>
+
+                        </div>
             </fieldset>
         </section>
 
@@ -5769,8 +6486,10 @@ Stop = now ⇐ $dateDébut
 
                     <figure class = "cônsi-jne">
                         <img src = "assets/img/qours/2019-11-19_-_11h33m47s_VID.png"
+                             style = "width: 99%;"
                              alt = "Qônsi‑ʒne’s du Professeur Servais.">
                         <img src = "assets/img/qours/2019-11-19_-_11h55m22s_VID.png"
+                             style = "width: 99%;"
                              alt = "Qônsi‑ʒne’s du Professeur Servais.">
                         <figcaption>Qônsi‑ʒne’s du Professeur Servais.</figcaption>
                     </figure>
@@ -5788,7 +6507,7 @@ Stop = now ⇐ $dateDébut
                         </li>
                         <li>Ajouter
                             <ul>
-                                <li>Fitonacci. Prenom. Taille. Poids. [Supprimer]</li>
+                                <li>Fitonacci. Prénom. Taille. Poids. [Supprimer]</li>
                                 <li>DeVinci. Leonard. Taille. Poids. [Supprimer]</li>
                             </ul>
                         </li>
@@ -5866,7 +6585,7 @@ Stop = now ⇐ $dateDébut
                     }
 
                     /*
-					// Si on coche un case Commencer apparaît.
+					// Si on coche une case Commencer apparaît.
 					// <input type="button" id="ex19BoutonCommencer" value="Cômmêncer">
 					// Je ne suis pash parvenu à creer une boucle if & checked en utilisant :
 					// let $var = document.querySelectorAll('.checkbox').checked
@@ -5971,8 +6690,8 @@ Stop = now ⇐ $dateDébut
 
                                     function listeDétaillé() {
                                         // gestion de’s participants
-                                        // les trois petit point destructure le resultat / liste,
-                                        // en element et le transforme en tableau car on utilise [].
+                                        // les trois petit point déstructure le résultat / liste,
+                                        // en élémênt et le transforme en tableau car on utilise [].
 
                                         EX19_DIV_AFFICHAGE_DES_PARTICIPANTS_ACTIF.setAttribute("style", "display: initial;");
 
@@ -6125,7 +6844,9 @@ let $p = $("&lt;p&gt;", {text: …, class: …, …});</code></pre>
 
         <section>
 
-            <fieldset><h2><a href = "?#title-h2-table-of-contents">Vue‑J.S.&nbsp;:</a></h2>
+            <fieldset>
+                <legend><h2 id = "titleH2VueJS"><a href = "?#title-h2-table-of-contents">Vue‑J.S.&nbsp;:</a></h2>
+                </legend>
 
                 <div class = "ui segment info message">2019‑11‑19 ‒ 14H54 :</div>
 
@@ -6153,7 +6874,7 @@ let $p = $("&lt;p&gt;", {text: …, class: …, …});</code></pre>
                 <div class = "ui segment">
 
                     <p>VueJS utilise de’s directive’s.</p>
-                    <h5>Vue01.js</h5>
+                    <h3 id = "titleH3Vue01"><a href = "?#title-h2-table-of-contents">Vue01.js</a></h3>
                     <ul>
                         <li><code class = "language-javascript">v-bind</code></li>
                         <li><code class = "language-javascript">v-model</code></li>
@@ -6168,7 +6889,8 @@ let $p = $("&lt;p&gt;", {text: …, class: …, …});</code></pre>
 
                 <div class = "ui segment">
 
-                    <h4>Exemple js01 en E.‑S.6</h4>
+                    <h3 id = "titleH3ExempleJS01EcmaScript6">
+                        <a href = "?#title-h2-table-of-contents">Exemple js01 en E.‑S.6</a></h3>
 
                     <pre><code class = "language-html line-numbers">&lt;!-- js01.html --&gt;
 &lt;p&gt;
@@ -6188,36 +6910,39 @@ function majSpanNom() {
 	JS01_SPAN_NOM.innerHTML = JS01_TEXTE_NOM.value;
 }</code></pre>
 
-                    <!-- vue01.html -->
-                    <p>
-                        <label for = "js01TxtNom">Nom:</label>
+                    <div class = "ui segment">
+                        <!-- vue01.html -->
+                        <p>
+                            <label for = "js01TxtNom">Nom:</label>
 
-                        <input type = "text"
-                               id = "js01TxtNom"/>
-                    </p>
+                            <input type = "text"
+                                   id = "js01TxtNom"/>
+                        </p>
 
-                    <p>Bonjour <span id = "js01SpanNom"></span> !</p>
+                        <p>Bonjour <span id = "js01SpanNom"></span> !</p>
 
-                    <script>
-                        // vue01.js
-                        const JS01_TEXTE_NOM = document.getElementById("js01TxtNom");
-                        const JS01_SPAN_NOM = document.getElementById("js01SpanNom");
+                        <script>
+                            // vue01.js
+                            const JS01_TEXTE_NOM = document.getElementById("js01TxtNom");
+                            const JS01_SPAN_NOM = document.getElementById("js01SpanNom");
 
-                        JS01_TEXTE_NOM.addEventListener("keyup", majSpanNom);
+                            JS01_TEXTE_NOM.addEventListener("keyup", majSpanNom);
 
-                        function majSpanNom() {
-                            JS01_SPAN_NOM.innerHTML = JS01_TEXTE_NOM.value;
-                        }
-                    </script>
+                            function majSpanNom() {
+                                JS01_SPAN_NOM.innerHTML = JS01_TEXTE_NOM.value;
+                            }
+                        </script>
 
+                    </div>
                 </div>
 
                 <div class = "ui segment">
 
-                    <h4 id = "titleH3VueJS01">
+                    <h3 id = "titleH3VueJS01">
                         <a href = "?#title-h2-table-of-contents"><a href = "?#title-h2-table-of-contents">Vue‑J.S._01</a></a>
-                    </h4>
-                    <h5>Exemple 1 en Vue‑J.S. :</h5>
+                    </h3>
+                    <h4 id = "titleH4Exemple1EnVueJS">
+                        <a href = "?#title-h2-table-of-contents">Exemple 1 en Vue‑J.S. :</a></h4>
 
                     <pre><code class = "language-html line-numbers">&lt;!-- vue01.html --&gt;
 &lt;div id = "vueJS01App"&gt;
@@ -6262,63 +6987,66 @@ function majSpanNom() {
 			   v-bind:value = "loisir"/&gt;{{ loisir }}&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 
-                    <!-- vue01.html -->
-                    <div id = "vueJS01App">
-                        <p>
-                            <label for = "vueJS01Nom">Nom:</label>
+                    <div class = "ui segment">
 
-                            <!-- .lazy décalage en vue. -->
-                            <input id = "vueJS01Nom"
-                                   type = "text"
-                                   v-model.lazy = "nom"/>  <!-- permet un onChange. -->
-                        </p>
+                        <!-- vue01.html -->
+                        <div id = "vueJS01App">
+                            <p>
+                                <label for = "vueJS01Nom">Nom:</label>
 
-                        <p>
-                            Bonjour <span>{{ nom == "Dominique" ? "Maître" : nom.toUpperCase() }}</span> !
-                        </p>
+                                <!-- .lazy décalage en vue. -->
+                                <input id = "vueJS01Nom"
+                                       type = "text"
+                                       v-model.lazy = "nom"/>  <!-- permet un onChange. -->
+                            </p>
 
-                        <h5 id = "titleH4VueJS01CheckBoxList">CheckBox affiche une liste&nbsp;:</h5>
+                            <p>
+                                Bonjour <span>{{ nom == "Dominique" ? "Maître" : nom.toUpperCase() }}</span> !
+                            </p>
 
-                        <p>
-                            <input title = "Afficher la liste de’s loisir’s"
-                                   type = "checkbox"
-                                   v-model = "vueJS01affLoisirs"/> afficher la liste des loisirs </p>
+                            <h5 id = "titleH4VueJS01CheckBoxList">CheckBox affiche une liste&nbsp;:</h5>
 
-                        <!-- Affiche en VueJS. -->
+                            <p>
+                                <input title = "Afficher la liste de’s loisir’s"
+                                       type = "checkbox"
+                                       v-model = "vueJS01affLoisirs"/> afficher la liste des loisirs </p>
 
-                        <ul v-show = "vueJS01affLoisirs">
+                            <!-- Affiche en VueJS. -->
 
-                            <!-- Boucle For en VueJS -->
-                            <li v-for = "loisir in loisirs">{{ loisir }}</li>
-                        </ul>
+                            <ul v-show = "vueJS01affLoisirs">
 
-                        <h5 id = "titleH4VueJS01Select">Select & option’s&nbsp;:</h5>
+                                <!-- Boucle For en VueJS -->
+                                <li v-for = "loisir in loisirs">{{ loisir }}</li>
+                            </ul>
 
-                        <select>
-                            <option v-bind:value = "loisir"
-                                    v-for = "loisir in loisirs">{{ loisir }}
-                            </option>
-                        </select>
+                            <h5 id = "titleH4VueJS01Select">Select & option’s&nbsp;:</h5>
 
-                        <h5 id = "titleH4VueJS01CheckBox">CheckBox&nbsp;:</h5>
+                            <select>
+                                <option v-bind:value = "loisir"
+                                        v-for = "loisir in loisirs">{{ loisir }}
+                                </option>
+                            </select>
 
-                        <p v-for = "loisir in loisirs">
+                            <h5 id = "titleH4VueJS01CheckBox">CheckBox&nbsp;:</h5>
 
-                            <input type = "checkbox"
-                                   v-bind:value = "loisir"/>{{ loisir }}
-                        </p>
+                            <p v-for = "loisir in loisirs">
+
+                                <input type = "checkbox"
+                                       v-bind:value = "loisir"/>{{ loisir }}
+                            </p>
+                        </div>
+
+                        <script>
+                            // vue01.js
+                            let $vueJS01app = new Vue({
+                                el: "#vueJS01App",
+                                data: {
+                                    nom: "",
+                                    loisirs: ["Bière", "Sieste", "JavaScript"],
+                                    vueJS01affLoisirs: true
+                                }
+                            });</script>
                     </div>
-
-                    <script>
-                        // vue01.js
-                        let $vueJS01app = new Vue({
-                            el: "#vueJS01App",
-                            data: {
-                                nom: "",
-                                loisirs: ["Bière", "Sieste", "JavaScript"],
-                                vueJS01affLoisirs: true
-                            }
-                        });</script>
                 </div>
 
                 <pre><code class = "language-javascript line-numbers">&lt;span&gt;{{ nom == "Dominique" ? "Maitre" : nom.toUpperCase () }}&lt;/span&gt;</code></pre>
@@ -6357,7 +7085,7 @@ function majSpanNom() {
                         </li>
                     </ul>
 
-                    <pre><code class = "language-javascript line-numbers">                            // vue02.js
+                    <pre><code class = "language-javascript line-numbers">// vue02.js
 let $vue02JSApp = new Vue({
 	el: "#vue02JSApp",
 	data: {
@@ -6365,14 +7093,17 @@ let $vue02JSApp = new Vue({
 		vue02JSPrenom: ""
 	},
 	methods: {
-		vue02JSSalutBouton() {
+		vue02JSalutBouton() {
 			console.log("Hello, je suis le bouton");
+			window.alert("Hello, je suis le bouton");
 		},
 		vue02JSAuRevoirBouton() {
 			console.log("Au revoir du bouton");
+			window.alert("Au revoir du bouton");
 		},
 		vue02JSSalutDiv() {
 			console.log("Hello, je suis le div");
+			window.alert("Hello, je suis le div");
 		},
 		vue02JSNomComplet() {
 			return this.vue02JSPrenom + " " + this.vue02JSNom;
@@ -6380,30 +7111,34 @@ let $vue02JSApp = new Vue({
 	}
 });</code></pre>
 
-                    <hr>
+                    <div class = "ui segment">
 
-                    <!-- // vue02.html -->
-                    <div id = "vue02JSApp">
-                        <input type = "text"
-                               v-model = "vue02JSNom"/> {{ vue02JSNom }}<br/>
+                        <!-- // vue02.html -->
+                        <div id = "vue02JSApp">
+                            <input type = "text"
+                                   v-model = "vue02JSNom"/> {{ vue02JSNom }}<br/>
 
-                        <input type = "text"
-                               v-model = "vue02JSPrenom"/> {{ vue02JSPrenom }}<br/> {{ vue02JSNomComplet()|capitalize }}<br/>
+                            <input type = "text"
+                                   v-model = "vue02JSPrenom"/> {{ vue02JSPrenom }}<br/> {{ vue02JSNomComplet()|capitalize }}<br/>
 
-                        <div class = "ui segment info message">
-                            <p>Utiliser la console pour voir le’s effets de’s clique’s gauche & droit sur le’s box’s</p>
-                        </div>
+                            <div class = "ui segment info message">
+                                <p>Utiliser la console pour voir le’s effets de’s clique’s,<br> le clique gauche & droit sur le bouton affiche deux réponse différente dans la console,<br> j'ai aussi rajouté
+                                    <code>window.alert();</code> pour l'afficher directement dans le navigateur sans passé par la console.<br> Vous observerez que le clic droit sur le bouton n'affiche pash le menu du navigateur,<br>et ce jrâce à
+                                    <code>.prevent</code>.<br> La div rouge avec clique gauche affiche autre chose et avec le droit le menu du navigateur…
+                                </p>
+                            </div>
 
-                        <div
-                                v-on:click = "vue02JSSalutDiv"
-                                style = "height: 60px; width: 100px; background-color: red">
+                            <div
+                                    v-on:click = "vue02JSSalutDiv"
+                                    style = "height: 60px; width: 100px; background-color: red">
 
-                            <button
-                                    v-on:click.left.stop = "vue02JSalutBouton"
-                                    v-on:click.right.stop.prevent = "vue02JSAuRevoirBouton">Saluer
-                                <!-- Empêche sur le navigateur accomplisse se’s fonction’s native (menu btn droit). -->
-                                <!-- VueJS dans l'html. -->
-                            </button>
+                                <button
+                                        v-on:click.left.stop = "vue02JSalutBouton"
+                                        v-on:click.right.stop.prevent = "vue02JSAuRevoirBouton">Saluer
+                                    <!-- Empêche sur le navigateur accomplisse se’s fonction’s native (menu btn droit). -->
+                                    <!-- VueJS dans l'html. -->
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -6416,14 +7151,17 @@ let $vue02JSApp = new Vue({
                                 vue02JSPrenom: ""
                             },
                             methods: {
-                                vue02JSSalutBouton() {
+                                vue02JSalutBouton() {
                                     console.log("Hello, je suis le bouton");
+                                    window.alert("Hello, je suis le bouton");
                                 },
                                 vue02JSAuRevoirBouton() {
                                     console.log("Au revoir du bouton");
+                                    window.alert("Au revoir du bouton");
                                 },
                                 vue02JSSalutDiv() {
                                     console.log("Hello, je suis le div");
+                                    window.alert("Hello, je suis le div");
                                 },
                                 vue02JSNomComplet() {
                                     return this.vue02JSPrenom + " " + this.vue02JSNom;
@@ -6505,73 +7243,74 @@ function tps2str(tps_ms) {
     return `${$heures}:${$minutes}:${$secondes}.${$millisecondes}`;
 }</code></pre>
 
-                    <hr>
+                    <div class = "ui segment">
 
-                    <!-- vue03.html -->
-                    <div id = "vue03JSApp">
+                        <!-- vue03.html -->
+                        <div id = "vue03JSApp">
 
-                        <p>Heure de début: {{ heureDebut }}</p>
+                            <p>Heure de début: {{ heureDebut }}</p>
 
-                        <p>Heure actuelle: {{ maintenant }}</p>
+                            <p>Heure actuelle: {{ maintenant }}</p>
 
-                        <button @click = "addLapTime">LapTime</button>
+                            <button @click = "addLapTime">LapTime</button>
 
-                        <ul>
-                            <li v-for = "time in laps">{{ time }}</li>
-                        </ul>
+                            <ul>
+                                <li v-for = "time in laps">{{ time }}</li>
+                            </ul>
+
+                        </div>
+
+                        <script>// vue03.js
+
+                            let $vue03JSApp = new Vue({
+                                el: "#vue03JSApp",
+                                data: {
+                                    heureDebut: tps2str(new Date()),
+                                    maintenant: "",
+                                    laps: []
+                                },
+                                methods: {
+                                    miseAJourHeure() {
+                                        console.log("Mise à jour de l'heure");
+
+                                        this.maintenant = tps2str(new Date());
+                                    },
+                                    addLapTime() {
+                                        this.laps.push(this.maintenant);
+                                    }
+                                },
+                                mounted() {
+                                    this.timer = setInterval(this.miseAJourHeure, 100);
+                                },
+                                destroyed() {
+                                    clearInterval(this.timer);
+                                }
+                            });
+
+                            function tps2str(tps_ms) {
+                                let $tps = new Date(tps_ms);
+
+                                let $heures = $tps
+                                    .getHours()
+                                    .toString()
+                                    .padStart(2, "0");
+                                let $minutes = $tps
+                                    .getMinutes()
+                                    .toString()
+                                    .padStart(2, "0");
+                                let $secondes = $tps
+                                    .getSeconds()
+                                    .toString()
+                                    .padStart(2, "0");
+                                let $millisecondes = $tps
+                                    .getMilliseconds()
+                                    .toString()
+                                    .padStart(3, "0");
+
+                                return `${$heures}:${$minutes}:${$secondes}.${$millisecondes}`;
+                            }</script>
 
                     </div>
-
-                    <script>// vue03.js
-
-                        let $vue03JSApp = new Vue({
-                            el: "#vue03JSApp",
-                            data: {
-                                heureDebut: tps2str(new Date()),
-                                maintenant: "",
-                                laps: []
-                            },
-                            methods: {
-                                miseAJourHeure() {
-                                    console.log("Mise à jour de l'heure");
-
-                                    this.maintenant = tps2str(new Date());
-                                },
-                                addLapTime() {
-                                    this.laps.push(this.maintenant);
-                                }
-                            },
-                            mounted() {
-                                this.timer = setInterval(this.miseAJourHeure, 100);
-                            },
-                            destroyed() {
-                                clearInterval(this.timer);
-                            }
-                        });
-
-                        function tps2str(tps_ms) {
-                            let $tps = new Date(tps_ms);
-
-                            let $heures = $tps
-                                .getHours()
-                                .toString()
-                                .padStart(2, "0");
-                            let $minutes = $tps
-                                .getMinutes()
-                                .toString()
-                                .padStart(2, "0");
-                            let $secondes = $tps
-                                .getSeconds()
-                                .toString()
-                                .padStart(2, "0");
-                            let $millisecondes = $tps
-                                .getMilliseconds()
-                                .toString()
-                                .padStart(3, "0");
-
-                            return `${$heures}:${$minutes}:${$secondes}.${$millisecondes}`;
-                        }</script>
-
                 </div>
 
                 <div class = "ui segment">
@@ -6657,86 +7396,728 @@ function tps2str(tps_ms) {
     return `${heures}:${minutes}:${secondes}.${millisecondes}`;
 }</code></pre>
 
-                    <p>Dia‑ghramme d'état de transition.</p>
+                    <div class = "ui segment">
+                        <p>Dia‑ghramme d'état de transition.</p>
 
-                    <p><code>tps2str :</code> temps to string.</p>
+                        <p><code>tps2str :</code> temps to string.</p>
 
-                    <!-- vue04.html -->
-                    <div id = "vue04JSApp">
-                        <p>{{ temps }}</p>
-                        <button @click = "startChrono"
-                                :disabled = "etat != 'P'">Start
-                        </button>
-                        <button @click = "stopChrono"
-                                :disabled = "etat != 'F'">Stop
-                        </button>
-                        <button @click = "addLapTime"
-                                :disabled = "etat != 'F'">LapTime
-                        </button>
-                        <button @click = "resetChrono"
-                                :disabled = "etat != 'A'">Reset
-                        </button>
-                        <ul>
-                            <li v-for = "lap in laps">{{ lap }}</li>
-                        </ul>
+                        <!-- vue04.html -->
+                        <div id = "vue04JSApp">
+                            <p>{{ temps }}</p>
+                            <button @click = "startChrono"
+                                    :disabled = "etat != 'P'">Start
+                            </button>
+                            <button @click = "stopChrono"
+                                    :disabled = "etat != 'F'">Stop
+                            </button>
+                            <button @click = "addLapTime"
+                                    :disabled = "etat != 'F'">LapTime
+                            </button>
+                            <button @click = "resetChrono"
+                                    :disabled = "etat != 'A'">Reset
+                            </button>
+                            <ul>
+                                <li v-for = "lap in laps">{{ lap }}</li>
+                            </ul>
+                        </div>
+
+                        <script>// vue04.js
+                            let vue04JSApp = new Vue({
+                                el: "#vue04JSApp",
+                                data: {
+                                    hdep: 0,
+                                    temps: tps2str(0),
+                                    etat: "P", // P = pret, F = en fonction, A = arret
+                                    laps: []
+                                },
+                                methods: {
+                                    startChrono() {
+                                        this.etat = "F";
+                                        this.hdep = new Date();
+                                        this.timer = setInterval(this.majTemps, 1);
+                                    },
+                                    stopChrono() {
+                                        this.etat = "A";
+                                        clearInterval(this.timer);
+                                    },
+                                    resetChrono() {
+                                        this.etat = "P";
+                                        this.temps = tps2str(0);
+                                        this.laps = [];
+                                    },
+                                    addLapTime() {
+                                        this.laps.push(this.temps);
+                                    },
+                                    majTemps() {
+                                        this.temps = tps2str(new Date() - this.hdep);
+                                    }
+                                }
+                            });
+
+                            function tps2str(tps_ms) {
+                                let tps = new Date(tps_ms);
+
+                                let heures = tps
+                                    .getUTCHours()
+                                    .toString()
+                                    .padStart(2, "0");
+                                let minutes = tps
+                                    .getMinutes()
+                                    .toString()
+                                    .padStart(2, "0");
+                                let secondes = tps
+                                    .getSeconds()
+                                    .toString()
+                                    .padStart(2, "0");
+                                let millisecondes = tps
+                                    .getMilliseconds()
+                                    .toString()
+                                    .padStart(3, "0");
+
+                                return `${heures}:${minutes}:${secondes}.${millisecondes}`;
+                            }</script>
                     </div>
 
-                    <script>// vue04.js
-                        let vue04JSApp = new Vue({
-                            el: "#vue04JSApp",
+                </div>
+
+                <div class = "ui segment info message">2019‑12‑03 ‒ 09H00.</div>
+
+                <div class = "ui segment">
+                    <ul>
+                        <li>
+                            <code class = "language-javascript">v-bind:truc =</code><br>&lt;p : couleur = "…"&gt;, rendu de manière dynamique.
+                        </li>
+                        <li><code class = "language-javascript">v-model</code> = {foreach}</li>
+                        <li><code class = "language-javascript">v-for = condition</code>.</li>
+                        <li><code class = "language-javascript">v-if</code></li>
+                        <li><code class = "language-javascript">v-else</code></li>
+                        <li><code class = "language-javascript">v-elseif</code></li>
+                        <li><code class = "language-javascript">v-show</code> {hidden ou pash.}</li>
+                        <li>
+                            <code class = "language-javascript">v-on:click</code> indique l'element que l'on souhaite.}<br> alias
+                            <code class = "language-javascript">@click</code></li>
+                    </ul>
+
+                    <p>Quand on crée une vue,<br> on doit ajouter de’s element’s.<br> On utilise pash ID mais REF.</p>
+
+                    <ul>
+                        <li><code class = "language-javascript">el:</code> element ou s'appliquera le Vue‑J.S.</li>
+                        <li><code class = "language-javascript">data:</code> {variable}</li>
+                        <li><code class = "language-javascript">methods:</code> {function}</li>
+                        <li>
+                            <code class = "language-javascript">mounted()</code> {seul}<br> avant la création : état,<br> après la création : état<br> lors.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class = "ui segment">
+                    <h4 id = "titleH4TestVueJS"><a href = "?#title-h2-table-of-contents">Test</a></h4>
+
+                    <pre><code class = "language-html line-numbers">&lt;div id="testApp"&gt;
+    a:&lt;input type="text" v-model = "a" /&gt;&lt;br&gt;
+    b:&lt;input type="text" v-model = "b" /&gt;&lt;br&gt;
+    &lt;p&gt;v-model un lien entre ici est là‑bas, input dans console & variable.&lt;/p&gt;
+    b² :{{carreB}}
+&lt;/div&gt;</code></pre>
+
+                    <pre><code class = "language-javascript line-numbers">let $testApp = new Vue({
+    el: "#testApp",
+    data: {
+        a: 0,
+        b: 0
+    },
+    /*methods: { // fonctionne uniquement quand A & B seront changé.
+        carreB() {
+            console.log("Carré de " + this.b);
+            return this.b * this.b;
+        }
+    }*/
+    computed: { // fonctionne uniquement quand B sera changé.
+        carreB() {
+            // window.alert("Carré de " + this.a);
+            console.log("Carré de " + this.b);
+            // window.alert("Carré de " + this.b);
+            return this.b * this.b;
+        }
+    }
+});</code></pre>
+
+                    <div class = "ui segment">
+                        <div id = "testApp">
+                            a: <input type = "text"
+                                      v-model = "a"/><br> b: <input type = "text"
+                                                                    v-model = "b"/><br> b²: {{carreB}}
+                        </div>
+
+                        <p>
+                            <code class = "language-javascript">v-model</code> un lien entre ici est la‑bas,<br><code class = "language-javascript">input</code> dans console & variable.
+                        </p>
+
+                        <script>
+                            let $testApp = new Vue({
+                                el: "#testApp",
+                                data: {
+                                    a: 0,
+                                    b: 0
+                                },
+                                /*methods: { // fonctionne uniquement quand A & B seront changé.
+									carreB() {
+										console.log("Carré de " + this.b);
+										return this.b * this.b;
+									}
+								}*/
+                                computed: { // fonctionne uniquement quand B sera changé.
+                                    carreB() {
+                                        // window.alert("Carré de " + this.a);
+                                        console.log("Carré de " + this.b);
+                                        // window.alert("Carré de " + this.b);
+                                        return this.b * this.b;
+                                    }
+                                }
+                            });
+                        </script>
+                    </div>
+                </div>
+
+                <div class = "ui segment">
+                    <h4 id = "titleH4DiagrammeDeTransition">
+                        <a href = "?#title-h2-table-of-contents">Dia‑gramme état de transition.</a></h4>
+
+                    <img src = "assets/img/qours/2019‑12‑03_09h48m55s_PHOTO.jpg"
+                         style = "width: 99%;"
+                         alt = "">
+
+                    <img src = "assets/img/qours/2019‑12‑03_09h54m31s_PHOTO.jpg"
+                         style = "width: 99%;"
+                         alt = "">
+
+                    <img src = "assets/img/qours/2019‑12‑03_14h55m22s_PHOTO.jpg"
+                         style = "width: 99%;"
+                         alt = "">
+
+                </div>
+
+                <div class = "ui segment info message">
+
+                    <h3 id = "titleH3vue05Inscriptions">
+                        <a href = "?#title-h2-table-of-contents">Vue‑J.S._05_inscriptions</a></h3>
+
+                    <pre><code class = "language-html line-numbers">&lt;!-- vue05_inscriptions.html --&gt;
+&lt;div id = "vue05App"&gt;
+    &lt;!-- ------------------------------------ --&gt;
+    &lt;div&gt;
+        &lt;p&gt;Choix du / des pays&lt;/p&gt;
+
+        &lt;!-- si je ne suis pash dans le état choix pays alors désactivé. --&gt;
+        &lt;fieldset :disabled = "!vue05EtatChoixPays"&gt;
+
+            &lt;p v-for = "pays in listePays"
+                :key = "pays"&gt;
+
+                &lt;input type = "checkbox"
+                     :value = "pays"
+                    v-model = "paysChoisis"/&gt; {{ pays }}
+            &lt;/p&gt;
+        &lt;/fieldset&gt;
+        {{ vue05NombrePaysChoisis }} {{ paysChoisis }}&lt;br/&gt;
+
+        &lt;!-- si je ne suis pash dans le état choix pays alors désactivé. --&gt;
+        &lt;button @click = "vue05CommenceInscription"
+             :disabled = "!vue05EtatChoixPays"&gt;Commencer les inscriptions&lt;/button&gt;
+
+    &lt;/div&gt;
+    &lt;!-- ------------------------------------ --&gt;
+    &lt;!-- div v-show, quand on arrive à l'étatInscription. --&gt;
+    &lt;div v-show = "vue05EtatInscription"&gt;
+        &lt;p&gt;
+            &lt;label for = ""&gt;Participants: &lt;/label&gt;
+
+                &lt;select v-model = "idPSel"
+                      :disabled = "!vue05EtatInscription"&gt;
+
+                    &lt;option v-for = "personne in listePersonnes"
+                                :key = "personne.idP"
+                              :value = "personne.idP"
+                           :disabled = "personne.selectionne"&gt;
+                        {{ personne.nomP }} {{ personne.prenomP }} ({{ personne.paysP }})
+                    &lt;/option&gt;
+            &lt;/select&gt;
+            &lt;button @click = "ajouter"
+                 :disabled = "!vue05EtatInscription"&gt;Ajouter&lt;/button&gt;
+        &lt;/p&gt;
+        &lt;!--
+        &lt;ul&gt;
+            &lt;li v-for="personne in vue05PersonnesChoisies" :key="personne.idP"&gt;
+                &lt;button :value="personne.idP" @click="supprimer"&gt;❌&lt;/button&gt;
+                {{ personne.idP }} {{ personne.nomP }} {{ personne.prenomP }} {{ personne.masseP }}
+            &lt;/li&gt;
+        &lt;/ul&gt;
+        --&gt;
+        &lt;table style="width: auto; margin: 0 0 auto 0;"&gt;
+            &lt;thead&gt;
+                    &lt;tr&gt;
+                        &lt;th style="width: 6em;"&gt;Retirer&lt;/th&gt;
+                        &lt;th style="width: 4em;"&gt;ID&lt;/th&gt;
+                        &lt;th style="width: 12em;"&gt;Nom&lt;/th&gt;
+                        &lt;th style="width: 12em;"&gt;Prénom&lt;/th&gt;
+                        &lt;th style="width: 4em;"&gt;Poids&lt;/th&gt;
+                    &lt;/tr&gt;
+                &lt;/thead&gt;
+                &lt;tbody&gt;
+                &lt;tr v-for = "personne in vue05PersonnesChoisies"
+                    :key = "personne.idP"&gt;
+                    &lt;td&gt;
+                        &lt;button :value = "personne.idP"
+                                @click = "supprimer"
+                                 style = "width: 100%;"&gt;❌
+                        &lt;/button&gt;
+                    &lt;/td&gt;
+                    &lt;td&gt;{{ personne.idP }}&lt;/td&gt;
+                    &lt;td&gt;{{ personne.nomP }}&lt;/td&gt;
+                    &lt;td&gt;{{ personne.prenomP }}&lt;/td&gt;
+                    &lt;td&gt;{{ personne.masseP }}&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/tbody&gt;
+        &lt;/table&gt;
+        &lt;b&gt;Masse totale :&lt;/b&gt; {{ vue05MasseTotale }}.
+    &lt;/div&gt;
+    &lt;!-- ------------------------------------ --&gt;
+&lt;/div&gt;
+
+&lt;script src = "assets/js/vue-js/vue.js"&gt;&lt;/script&gt;
+&lt;script src = "vue05_inscriptions.js"&gt;&lt;/script&gt;</code></pre>
+
+                    <pre><code class = "language-javascript line-numbers">/* vue05_inscription.js */
+let $vue05App = new Vue({
+    el: "#vue05App",
+    data: {
+        listePays: [],      // [] = tableau et donc {} = objet.
+        paysChoisis: [],    // v-model lié avec les cases à cocher pays
+        listePersonnes: [],
+        idPSel: 0,          // v-model lié avec le select des personnes
+        etat: ""            // gestion des états: "" → "vue05EtatChoixPays" → "vue05EtatInscription"
+    },
+    mounted() {
+        //passage à l'état suivant
+        this.vue05EtatChoixPaysEntry();
+    },
+    methods: {
+        // ------------------------------------------
+        // gestion des états
+        // ------------------------------------------
+        vue05EtatChoixPaysEntry() {
+            // init de la liste des pays
+            this.listePays = [];
+
+            // requête : liste des pays
+            fetch("./php/2019‑12‑02_-_vue2019_05_listePays.php")
+                .then($reponse =&gt; $reponse.json())
+                .then($liste =&gt; {
+
+                    // ajout à la liste des pays
+                    for (let $pays of $liste) this.listePays.push($pays.paysP);
+
+                    // quand la liste est chargée (Promise)
+                    // tri par ordre alphabétique
+                    // tri fonction de comparaison.
+                    // ainsi la liste pays est dans l'ordre alphabétique.
+                    this.listePays.sort((a, b) =&gt; a.localeCompare(b));
+
+                    //passage à l'état suivant
+                    this.etat = "vue05EtatChoixPays";
+
+                });
+        },
+        vue05CommenceInscription() {
+
+            // Si on n'est pas dans l'étatChoixPays, on quitte.
+            if (!this.vue05EtatChoixPays || this.vue05NombrePaysChoisis == 0) return;
+            // On ne peut lancer, si on ne a rien choisie : différent de 0.
+
+            this.etatInscriptionEntry();
+        },
+        // ---------------------------
+        etatInscriptionEntry() {
+            // init de la liste des personnes
+            this.listePersonnes = [];
+
+            // gestion des Promise
+            let $promesses = [];
+
+            this.paysChoisis.forEach($pays =&gt; {
+                //pour chaque pays coché
+
+                //requête : liste des personnes
+                let $promesse = fetch("./php/2019-12-02_-_vue2019_05_liste_personne_un_pays.php?pays=" + $pays)
+
+                    .then($reponse =&gt; $reponse.json())
+                    .then($liste =&gt; {
+                        // ajout à la liste des personnes
+                        for (let $personnes of $liste) {
+                            $personnes.selectionne = false; // attribut supplémentaire
+                            // Le prof ajoute un attribut « sélectionne = false » pour avoir la possibilité par la suite pouvoir interagir.
+
+                            this.listePersonnes.push($personnes);
+                        }
+                    });
+                $promesses.push($promesse);
+            });
+
+            // le travail continuera lorsque tous les pays seront traités
+            /*
+            L'objet Promise (pour « promesse ») est utilisé pour réaliser des traitements de façon asynchrone.
+            Une promesse représente une valeur qui peut être disponible maintenant,
+            dans le futur voire jamais.
+             */
+            Promise.all($promesses).then(() =&gt; {
+
+                // Double tri à car on pourrait avoir le même nom.
+                this.listePersonnes.sort((a, b) =&gt;
+                    // tri sur le nom et le prénom
+                    (a.nomP + a.prenomP).localeCompare(b.nomP + b.prenomP)
+                );
+                this.etat = "vue05EtatInscription"; //passage à l'état suivant
+            });
+        },
+        ajouter() {
+            // Si on n'est pash dans l'étatInscription, on quitte.
+            if (!this.vue05EtatInscription) return;
+
+            let $participant = this.listePersonnes.find(element =&gt; element.idP === this.idPSel);
+
+            $participant.selectionne = true;
+        },
+        supprimer(evenement) {
+            // evenement paramètre event.
+
+            // Si on n'est pash dans l'étatInscription, on quitte.
+            if (!this.vue05EtatInscription) return;
+
+            // let $idx renommé en $SuppressionParticipantParID
+            let $SuppressionParticipantParID = evenement.target.value;
+
+            let $participant = this.listePersonnes.find($element =&gt; $element.idP == $SuppressionParticipantParID);
+
+            // Le prof ajoute un attribut « selectionne = false »,
+            // pour avoir la possibilité par la suite pouvoir interagir.
+            $participant.selectionne = false;
+        }
+        // ------------------------------------------
+    },
+    computed: {
+        // ------------------------------------------
+        // gestion des états
+        // ------------------------------------------
+        vue05EtatChoixPays() {
+            return this.etat === "vue05EtatChoixPays";
+            // on change de état dans la boucle.
+            // On peut envisager de’s message’s de erreur’s.
+        },
+        vue05EtatInscription() {
+            return this.etat === "vue05EtatInscription";
+            // on change de état dans la boucle.
+            // On peut envisager de’s message’s de erreur’s.
+        },
+        // ------------------------------------------
+        vue05NombrePaysChoisis() {
+
+            // Le prof voudrait connaître le nombre de pays choisie.
+            return this.paysChoisis.length;
+        },
+        vue05PersonnesChoisies() {
+            // liste des personnes sélectionnées
+            return this.listePersonnes.filter(element =&gt; element.selectionne);
+        },
+        vue05MasseTotale() {
+            // calcul du total des masses des personnes sélectionnées
+            return this.vue05PersonnesChoisies.reduce((a, e) =&gt; a + Number(e.masseP), 0);
+        }
+    }
+});</code></pre>
+
+                    <div class = "ui segment">
+                        <!-- vue05_inscriptions.html -->
+                        <div id = "vue05App">
+                            <!-- ------------------------------------ -->
+                            <div>
+                                <p>Choix du/des pays</p>
+
+                                <!-- si je ne suis pash dans le état choix pays alors désactivé. -->
+                                <fieldset :disabled = "!vue05EtatChoixPays">
+
+                                    <p v-for = "pays in listePays"
+                                       :key = "pays">
+                                        <input type = "checkbox"
+                                               :value = "pays"
+                                               v-model = "paysChoisis"/> {{ pays }}
+                                    </p>
+                                </fieldset>
+                                {{ vue05NombrePaysChoisis }} {{ paysChoisis }} <br/>
+
+                                <!-- si je ne suis pash dans le état choix pays alors désactivé. -->
+                                <button @click = "vue05CommenceInscription"
+                                        :disabled = "!vue05EtatChoixPays">
+                                    Commencer les inscriptions
+                                </button>
+                            </div>
+                            <!-- ------------------------------------ -->
+                            <!-- div v-show, quand on arrive à l'étatInscription. -->
+                            <div v-show = "vue05EtatInscription">
+                                <p>
+                                    <label for = "">Participants: </label> <select v-model = "idPSel"
+                                                                                   :disabled = "!vue05EtatInscription">
+                                        <option
+                                                v-for = "personne in listePersonnes"
+                                                :key = "personne.idP"
+                                                :value = "personne.idP"
+                                                :disabled = "personne.selectionne"
+                                        >
+                                            {{ personne.nomP }} {{ personne.prenomP }} ({{ personne.paysP }})
+                                        </option>
+                                    </select>
+                                    <button @click = "ajouter"
+                                            :disabled = "!vue05EtatInscription">Ajouter
+                                    </button>
+                                </p>
+                                <!--
+								<ul>
+									<li v-for="personne in vue05PersonnesChoisies" :key="personne.idP">
+										<button :value="personne.idP" @click="supprimer">❌</button>
+										{{ personne.idP }} {{ personne.nomP }} {{ personne.prenomP }} {{ personne.masseP }}
+									</li>
+								</ul>
+								-->
+                                <table style = "width: auto; margin: 0 0 auto 0;">
+                                    <thead>
+                                    <tr>
+                                        <th style = "width: 6em;">Retirer</th>
+                                        <th style = "width: 4em;">ID</th>
+                                        <th style = "width: 12em;">Nom</th>
+                                        <th style = "width: 12em;">Prénom</th>
+                                        <th style = "width: 4em;">Poids</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for = "personne in vue05PersonnesChoisies"
+                                        :key = "personne.idP">
+                                        <td>
+                                            <button :value = "personne.idP"
+                                                    @click = "supprimer"
+                                                    style = "width: 100%;">❌
+                                            </button>
+                                        </td>
+                                        <td>{{ personne.idP }}</td>
+                                        <td>{{ personne.nomP }}</td>
+                                        <td>{{ personne.prenomP }}</td>
+                                        <td>{{ personne.masseP }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <b>Masse totale :</b> {{ vue05MasseTotale }}.
+                            </div>
+                            <!-- ------------------------------------ -->
+                        </div>
+
+                    </div>
+
+                    <!--
+                    <script src = "assets/js/vue-js/vue.js"></script>
+                    <script src = "vue05_inscriptions.js"></script>
+                    -->
+
+                    <script>/* vue05_inscription.js */
+                        let $vue05App = new Vue({
+                            el: "#vue05App",
                             data: {
-                                hdep: 0,
-                                temps: tps2str(0),
-                                etat: "P", // P = pret, F = en fonction, A = arret
-                                laps: []
+                                listePays: [],      // [] = tableau et donc {} = objet.
+                                paysChoisis: [],    // v-model lié avec les cases à cocher pays
+                                listePersonnes: [],
+                                idPSel: 0,          // v-model lié avec le select des personnes
+                                etat: ""            // gestion des états: "" → "vue05EtatChoixPays" → "vue05EtatInscription"
+                            },
+                            mounted() {
+                                //passage à l'état suivant
+                                this.vue05EtatChoixPaysEntry();
                             },
                             methods: {
-                                startChrono() {
-                                    this.etat = "F";
-                                    this.hdep = new Date();
-                                    this.timer = setInterval(this.majTemps, 1);
+                                // ------------------------------------------
+                                // gestion des états
+                                // ------------------------------------------
+                                vue05EtatChoixPaysEntry() {
+                                    // init de la liste des pays
+                                    this.listePays = [];
+
+                                    // requête : liste des pays
+                                    fetch("./php/2019‑12‑02_-_vue2019_05_listePays.php")
+                                        .then($reponse => $reponse.json())
+                                        .then($liste => {
+
+                                            // ajout à la liste des pays
+                                            for (let $pays of $liste) this.listePays.push($pays.paysP);
+
+                                            // quand la liste est chargée (Promise)
+                                            // tri par ordre alphabétique
+                                            // tri fonction de comparaison.
+                                            // ainsi la liste pays est dans l'order alphabétique.
+                                            this.listePays.sort((a, b) => a.localeCompare(b));
+
+                                            //passage à l'état suivant
+                                            this.etat = "vue05EtatChoixPays";
+
+                                        });
                                 },
-                                stopChrono() {
-                                    this.etat = "A";
-                                    clearInterval(this.timer);
+                                vue05CommenceInscription() {
+
+                                    // Si on n'est pas dans l'étatChoixPays, on quitte.
+                                    if (!this.vue05EtatChoixPays || this.vue05NombrePaysChoisis == 0) return;
+                                    // On ne peut lancer, si on ne a rien choisie : différent de 0.
+
+                                    this.etatInscriptionEntry();
                                 },
-                                resetChrono() {
-                                    this.etat = "P";
-                                    this.temps = tps2str(0);
-                                    this.laps = [];
+                                // ---------------------------
+                                etatInscriptionEntry() {
+                                    // init de la liste des personnes
+                                    this.listePersonnes = [];
+
+                                    // gestion des Promise
+                                    let $promesses = [];
+
+                                    this.paysChoisis.forEach($pays => {
+                                        //pour chaque pays coché
+
+                                        //requête : liste des personnes
+                                        let $promesse = fetch("./php/2019-12-02_-_vue2019_05_liste_personne_un_pays.php?pays=" + $pays)
+
+                                            .then($reponse => $reponse.json())
+                                            .then($liste => {
+                                                // ajout à la liste des personnes
+                                                for (let $personnes of $liste) {
+                                                    $personnes.selectionne = false; // attribut supplémentaire
+                                                    // Le prof ajoute un attribut « selectionne = false » pour avoir la possibilité par la suite pouvoir interagir.
+
+                                                    this.listePersonnes.push($personnes);
+                                                }
+                                            });
+                                        $promesses.push($promesse);
+                                    });
+
+                                    // le travail continuera lorsque tous les pays seront traités
+                                    /*
+									L'objet Promise (pour « promesse ») est utilisé pour réaliser des traitements de façon asynchrone.
+									Une promesse représente une valeur qui peut être disponible maintenant,
+									dans le futur voire jamais.
+									 */
+                                    Promise.all($promesses).then(() => {
+
+                                        // Double tri à car on pourrait avoir le même nom.
+                                        this.listePersonnes.sort((a, b) =>
+                                            (a.nomP + a.prenomP).localeCompare(b.nomP + b.prenomP)
+                                        ); // tri sur le nom et le prénom
+                                        this.etat = "vue05EtatInscription"; //passage à l'état suivant
+                                    });
                                 },
-                                addLapTime() {
-                                    this.laps.push(this.temps);
+                                ajouter() {
+                                    // Si on n'est pash dans l'étatInscription, on quitte.
+                                    if (!this.vue05EtatInscription) return;
+
+                                    let $participant = this.listePersonnes.find(element => element.idP === this.idPSel);
+
+                                    $participant.selectionne = true;
                                 },
-                                majTemps() {
-                                    this.temps = tps2str(new Date() - this.hdep);
+                                supprimer(evenement) {
+                                    // evenement paramètre event.
+
+                                    // Si on n'est pash dans l'étatInscription, on quitte.
+                                    if (!this.vue05EtatInscription) return;
+
+                                    // let $idx renommé en $SuppressionParticipantParID
+                                    let $SuppressionParticipantParID = evenement.target.value;
+
+                                    let $participant = this.listePersonnes.find($element => $element.idP == $SuppressionParticipantParID);
+
+                                    // Le prof ajoute un attribut « sélectionne = false » pour avoir la possibilité par la suite pouvoir interagir.
+                                    $participant.selectionne = false;
+                                }
+                                // ------------------------------------------
+                            },
+                            computed: {
+                                // ------------------------------------------
+                                // gestion des états
+                                // ------------------------------------------
+                                vue05EtatChoixPays() {
+                                    return this.etat === "vue05EtatChoixPays";
+                                    // on change de état dans la boucle.
+                                    // On peut envisager de’s message’s de erreur’s.
+                                },
+                                vue05EtatInscription() {
+                                    return this.etat === "vue05EtatInscription";
+                                    // on change de état dans la boucle.
+                                    // On peut envisager de’s message’s de erreur’s.
+                                },
+                                // ------------------------------------------
+                                vue05NombrePaysChoisis() {
+
+                                    // Le prof voudrait connaître le nombre de pays choisie.
+                                    return this.paysChoisis.length;
+                                },
+                                vue05PersonnesChoisies() {
+                                    // liste des personnes sélectionnées
+                                    return this.listePersonnes.filter(element => element.selectionne);
+                                },
+                                vue05MasseTotale() {
+                                    // calcul du total des masses des personnes sélectionnées
+                                    return this.vue05PersonnesChoisies.reduce((a, e) => a + Number(e.masseP), 0);
                                 }
                             }
                         });
+                    </script>
+                </div>
 
-                        function tps2str(tps_ms) {
-                            let tps = new Date(tps_ms);
+                <div class = "ui segment">
 
-                            let heures = tps
-                                .getUTCHours()
-                                .toString()
-                                .padStart(2, "0");
-                            let minutes = tps
-                                .getMinutes()
-                                .toString()
-                                .padStart(2, "0");
-                            let secondes = tps
-                                .getSeconds()
-                                .toString()
-                                .padStart(2, "0");
-                            let millisecondes = tps
-                                .getMilliseconds()
-                                .toString()
-                                .padStart(3, "0");
+                    <h4 id = "titleH4ArrayFonctionnalite">
+                        <a href = "?#title-h2-table-of-contents">Array, fonctionnalité :</a></h4>
+                    <ul>
+                        <li><code class = "language-javascript">.sort((a,b) => a > b)</code></li>
+                        <li><code class = "language-javascript">.filter(a => a >= 25)</code> : plusieurs.</li>
+                        <li><code class = "language-javascript">.find(a=> a >=25)</code> : 1</li>
+                        <li>
+                            <code class = "language-javascript">.reduce</code> : somme, moyenne.<br> fonctionne avec un accumulateur & l'élement que l'on manipule.<br>
+                            <code class = "language-javascript">reduce((acc, el) => acc = acc + el.masseP)</code><br> il faut ajouter un paramètre, on commence à 0.
+                        </li>
+                        <li><code class = "language-javascript">.push</code></li>
+                    </ul>
+                </div>
 
-                            return `${heures}:${minutes}:${secondes}.${millisecondes}`;
-                        }</script>
+                <div class = "ui segment">
 
+                    <div class = "ui segment info message">2019‑12‑03 ‒ 14H00</div>
+
+                    <h3 id = "titleH3TestHorloge"><a href = "?#title-h2-table-of-contents">TestHorloge.html :</a>
+                    </h3>
+
+                    <pre><code class = "language-html line-numbers"></code></pre>
+
+                    <pre><code class = "language-javascript line-numbers"></code></pre>
+
+                    <code class = "language-javascript">data:</code> : function qui contient un objet de élémênt.
+
+                    <code class = "language-javascript">mounted</code> : c'est ce qui est chargé en premier en mémoire. Template remplace la balise.
+
+                    <div class = "ui segment info message">2019‑12‑03 ‒ 14H26</div>
+
+                    <p>Le professeur souhaite non montrer un méthode ou le code html ne intègre pash de affichage vue v-… mais de’s composant’s de ou le &lt;mon-horloge&gt;&lt;/mon-horloge&gt;
+                        lié à `<span>{{time}}</span>`.
+
+                </div>
+
+                <div class = "ui segment">
+                    <h3> TestCpt : Clients. File d'attente.</h3>
+
+                    <div class = "ui segment info message">2019‑12‑03 ‒ 15H00</div>
+                    hdep = heureDepart tps : temps ⇒ time // enfct en fonctionnement. // cl = client.
+
+                    majHeure, 500); // toute le’s 500 m.s.
                 </div>
 
             </fieldset>
