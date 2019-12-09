@@ -1,6 +1,6 @@
 <?php
 $pdo = new PDO(
-  'mysql:host=localhost; dbname=2019_11_19_ex19_2019_population; charset=utf8',
+  'mysql:host=localhost; dbname=2019_population; charset=utf8',
   'root',
   ''
 );
