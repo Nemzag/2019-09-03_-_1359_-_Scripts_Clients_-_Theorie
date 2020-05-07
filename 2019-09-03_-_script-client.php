@@ -8649,7 +8649,6 @@ function listeDétaillé_ex2019_19() {
 											$selectionParticipants_ex2019_19.setAttribute("multiple", "");
 											$selectionParticipants_ex2019_19.setAttribute("style", "height:50em;");
 											*/
-                                            
                                             for (const PERSONNAGE_PAR_PAYS_EX2019_19 of $listePersonneParPays_ex2019_19) {
 
                                                 // console.log("Personnage :", PERSONNAGE_PAR_PAYS_EX2019_19);
