@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Horloges...</title>
+	</head>
+	<body>
+		<div id="app">
+			<h1>Les horloges :</h1>
+			<p>il est <mon-horloge></mon-horloge>.</p>
+			<p>voici une autre horloge : <mon-horloge></mon-horloge> !</p>
+
+			<button @click="ajout">Ajouter une horloge</button>
+			<ul>
+				<li v-for="horloge in horloges" :key="horloge">
+					{{horloge}} <mon-horloge></mon-horloge>
+				</li>
+			</ul>
+		</div>
+
+		<script src="vue.js"></script>
+		<script src="testHorloge.js"></script>
+	</body>
+</html>

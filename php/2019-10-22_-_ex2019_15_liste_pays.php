@@ -8,9 +8,12 @@ $statement = $pdo->prepare(
 	. " UNION "
 	. "(SELECT idP, nomFrP FROM pays WHERE nomFrP LIKE :filtre2 ORDER BY nomFrP ASC)"
 );
+
 $statement->execute([':filtre1' => $filtre . '%',
 	':filtre2' => '%' . $filtre . '%']);
+
 $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
 $json = json_encode($results);
 
 echo $json;

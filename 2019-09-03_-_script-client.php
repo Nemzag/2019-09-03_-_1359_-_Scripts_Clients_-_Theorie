@@ -132,6 +132,11 @@
             border: 1px solid hsla(0, 0%, 0%, 0.50);
         }
 
+        input.js8-events {
+            width: 9em;
+            text-align: justify;
+        }
+
         .repOK {
             background-color: green;
             color: white;
@@ -186,9 +191,11 @@
         table.ex2019-19-perso {
             border-collapse: collapse;
         }
+
         table.ex2019-19-perso, tr, td, th {
             border: 1px solid black;
         }
+
         .ex2019-19-perso td, th {
             padding: 0.5em 1em 0.5em 1em;
             width: 20%;
@@ -278,7 +285,7 @@ console.log("Variable $a1 :", $a1);
 //----------------------------------------------------------------------------------------
 
 if (1) {
-  $a2 = 12; // ! déclaration GLOBALE !!!
+  $a2 = 12;     // ! déclaration GLOBALE !!!
   var $b2 = 22; // déclaration GLOBALE !!!
   let $c2 = 32; // déclaration locale
 }
@@ -295,12 +302,12 @@ const PI = 3.14;
 // ! erreur car PI est une valeur constante
 
 const TAB = [1, 2, 3];
-TAB[0] = 11; // ok car on modifie le contenu de tab sans recréer le tableau
-TAB.push(4); // ok car on modifie le contenu de tab sans recréer le tableau
+TAB[0] = 1;     // ok car on modifie le contenu de tab sans recréer le tableau
+TAB.push(4);    // ok car on modifie le contenu de tab sans recréer le tableau
 console.log("Constante TAB :", TAB);
 
-// tab = [3, 2, 1];  // ! erreur car l'adresse de tab est constante
-// tab = tab.concat([6, 7, 8]);  // ! erreur car l'adresse de tab est constante</code ></pre >
+// TAB = [3, 2, 1];              // ! erreur car l'adresse de TAB est constante
+// TAB = tab.concat([6, 7, 8]);  // ! erreur car l'adresse de TAB est constante</code ></pre >
 
                     </div >
 
@@ -317,49 +324,49 @@ console.log("Constante TAB :", TAB);
  ! les tableaux associatifs n'existent pas en js et seront émulés par des objets
  */
 
-let filles = ["Marie", "Sophie", "Clara"];
-let garcons = ["Christian", "Jean"];
+let $filles = ["Marie", "Sophie", "Clara"];
+let $garcons = ["Christian", "Jean"];
 
 // affichage d'un tableau
-console.log(filles);
-console.log(filles.toString());
+console.log($filles);
+console.log($filles.toString());
 
 console.log("------------ boucle for classique");
-for (let i = 0; i &lt; filles.length; i++) {
+for (let $i = 0; $i &lt; $filles.length; $i++) {
   // déclaration, condition, incrémentation.
   // Dans une méthode, var : publique, pash le let : private.
   // for equivalent du foreach.
-  console.log(i, filles[i]);
+    console.log($i, $filles[$i]);
 }
 
 console.log("------------ boucle for in");
-for (const KEY in filles) {
-  console.log(KEY, filles[KEY]);
+for (const KEY in $filles) {
+    console.log(KEY, $filles[KEY]);
 }
 
 console.log("------------ boucle for on");
-for (const ELEMENT of filles) {
-  console.log(ELEMENT);
+for (const ELEMENT of $filles) {
+    console.log(ELEMENT);
 }
 
 //----------------------------------------------------------------------------------------
 console.log("------------ tableaux dynamiques");
-filles[5] = "Erika";
-console.log(filles);
+$filles[5] = "Erika";
+console.log($filles);
 
-filles.push("Nadia"); // Rajoute à la fin…
-console.log(filles);
+$filles.push("Nadia"); // Rajoute à la fin…
+console.log($filles);
 
 //----------------------------------------------------------------------------------------
 console.log("------------ déstructuration");
-console.log(...filles); // Tous les éléments dans l'objet.
+console.log(...$filles); // Tous les éléments dans l'objet.
 
 //----------------------------------------------------------------------------------------
 console.log("------------ assemblage");
-let mixtes1 = [filles, garçons]; // ! tableau reprenant 2 tableaux
-console.log(mixtes1);
+let $mixtes1 = [$filles, $garçons]; // ! tableau reprenant 2 tableaux
+console.log($mixtes1);
 
-let mixtes2 = [...filles, ...garçons]; // un seul tableau - équivalent de filles.concat(garçons)
+let $mixtes2 = [...$filles, ...$garçons]; // un seul tableau - équivalent de filles.concat(garçons)
 console.log(mixtes2);</code ></pre >
 
                     </div >
@@ -377,44 +384,47 @@ console.log(mixtes2);</code ></pre >
 
 console.log("------------ les objets javascript");
 // * dans un objet, les valeurs peuvent être de n'importe quel type (même une fonction)
-let objetPers = {
+let $objetPers = {
 	prénom: "John",
 	nom: "Doe",
 	saluer: function() {
 		console.log(`bonjour, je suis ${this.nom}, ${this.prénom}.`);
 	}
 };
-console.log("objetPers:", objetPers);
-console.log('objetPers["prénom"]:', objetPers["prénom"]); // le nom de la clé (key) doit être entre guillemets
-console.log("objetPers.prénom:", objetPers.prénom);
-objetPers.saluer();
+console.log("$objetPers:", $objetPers);
+console.log('$objetPers["prénom"]:', $objetPers["prénom"]);
+// le nom de la clé (key) doit être entre guillemets
+console.log("$objetPers.prénom:", $objetPers.prénom);
+$objetPers.saluer();
 
-console.log("Object.keys(objetPers):", Object.keys(objetPers)); //Object.keys() permet d'obtenir toutes les clés de l'objet
-console.log("Object.values(objetPers):", Object.values(objetPers)); //Object.values() permet d'obtenir toutes les valeurs de l'objet
+console.log("Object.keys($objetPers):", Object.keys($objetPers));
+// Object.keys() permet d'obtenir toutes les clés de l'objet.
+console.log("Object.values($objetPers):", Object.values($objetPers));
+// Object.values() permet d'obtenir toutes les valeurs de l'objet.
 
 console.log("------------ parcours d'un objet");
-for (let key in objetPers) {
-	console.log("key :", key, "\tvalue :", objetPers[key]);
+for (let $key in $objetPers) {
+	console.log("$key :", $key, "\tvalue :", $objetPers[$key]);
 }
 
 console.log("------------ modification d'un objet");
-objetPers.nom = "Dodo";
-objetPers.age = 42;
-console.log("objetPers :", objetPers);
+$objetPers.nom = "Dodo";
+$objetPers.age = 42;
+console.log("$objetPers :", $objetPers);
 
 console.log("------------ les objets JSON");
 // * tout à fait équivalent aux objets ci-dessus sauf que :
 // * dans un objet JSON les valeurs peuvent être des strings, des nombres, des arrays, des objets, des booléens ou null
 // ! mais pas des fonctions
 
-let jsonPers = {
+let $jsonPers = {
 	prénom: "John",
 	nom: "Doe"
 };
 
-console.log("jsonPers:", jsonPers);
-console.log("Object.keys(jsonPers):", Object.keys(jsonPers));
-console.log("Object.values(jsonPers):", Object.values(jsonPers));</code ></pre >
+console.log("$jsonPers:", $jsonPers);
+console.log("Object.keys($jsonPers):", Object.keys($jsonPers));
+console.log("Object.values($jsonPers):", Object.values($jsonPers));</code ></pre >
 
                     </div >
 
@@ -428,16 +438,22 @@ console.log("Object.values(jsonPers):", Object.values(jsonPers));</code ></pre >
  * manipulation des objets : copie en surface et en profondeur
  */
 
-const OBJECT_1 = { prénom: "John", nom: "Doe", hobbies: ["chasse", "lecture"] };
+const OBJECT_1 = {
+    prénom: "John",
+    nom: "Doe",
+    hobbies: ["chasse", "lecture"]
+};
 console.log("Object One :", OBJECT_1);
-//console.log("Object One sous forme de chaîne :", JSON.stringify(OBJECT_1));
+// console.log("Object One sous forme de chaîne :", JSON.stringify(OBJECT_1));
 
 //------------------------------------------------------------------------------------------------------------
 // copie par référence ( alias )
 //------------------------------------------------------------------------------------------------------------
 console.log("-------copie par référence");
-const OBJECT_2 = OBJECT_1; // OBJECT_1 et OBJECT_2 désigne le même objet
-OBJECT_2.prenom = "Jane"; // ! les prénoms de OBJECT_1 et OBJECT_2 sont tous les 2 modifiés
+const OBJECT_2 = OBJECT_1;
+// OBJECT_1 et OBJECT_2 désigne le même objet.
+OBJECT_2.prénom = "Jane";
+// ! les prénoms de OBJECT_1 et OBJECT_2 sont tous les 2 modifiés.
 console.log("Object Two :", OBJECT_2);
 console.log("Object One :", OBJECT_1);
 
@@ -445,50 +461,50 @@ console.log("Object One :", OBJECT_1);
 // clonage d'un objet en superficie
 //------------------------------------------------------------------------------------------------------------
 console.log("-------clonage superficiel");
-const OBJET_3 = Object.assign({}, obj1); // copie de toutes les valeurs de obj1 vers un nouvel objet
-OBJET_3.prenom = "Patrick"; // modifié unique‑mênt dans obj3
-OBJET_3.hobbies[0] = "pêche"; // ! modifié aussi dans l'array hobbies de obj1
-console.log("obj3:", OBJET_3);
-console.log("obj1:", OBJECT_1);
+const OBJECT_3 = Object.assign({}, OBJECT_1); // copie de toutes les valeurs de obj1 vers un nouvel objet
+OBJECT_3.prenom = "Patrick"; // modifié unique‑mênt dans obj3
+OBJECT_3.hobbies[0] = "pêche"; // ! modifié aussi dans l'array hobbies de obj1
+console.log("OBJECT_3:", OBJECT_3);
+console.log("OBJECT_1:", OBJECT_1);
 
 //------------------------------------------------------------------------------------------------------------
 // clonage d'un objet en profondeur
 //------------------------------------------------------------------------------------------------------------
 console.log("-------clonage en profondeur");
-const OBJET_4 = JSON.parse(JSON.stringify(OBJECT_1)); // transformation en string puis retransformation en objet
-OBJET_4.prenom = "Steph"; // modifié uniquemênt dans OBJET_4.
-OBJET_4.hobbies[0] = "PHP"; // modifié uniquemênt dans l'array hobbies de OBJET_4.
-console.log("obj4:", OBJET_4);
-console.log("obj1:", OBJET_1);
+const OBJECT_4 = JSON.parse(JSON.stringify(OBJECT_1)); // transformation en string puis retransformation en objet
+OBJECT_4.prenom = "Steph"; // modifié uniquemênt dans OBJET_4.
+OBJECT_4.hobbies[0] = "PHP"; // modifié uniquemênt dans l'array hobbies de OBJET_4.
+console.log("OBJECT_4:", OBJECT_4);
+console.log("OBJECT_1:", OBJECT_1);
 
 //------------------------------------------------------------------------------------------------------------
 // protection de l'objet
 //------------------------------------------------------------------------------------------------------------
 console.log("-------protection de l'objet");
-const OBJET_11 = { nom: "Médor", espèce: "Chien" };
-const OBJET_12 = JSON.parse(JSON.stringify(OBJET_11));
+const OBJECT_11 = { nom: "Médor", espèce: "Chien" };
+const OBJECT_12 = JSON.parse(JSON.stringify(OBJECT_11));
 // transformation en string puis retransformation en objet.
-const OBJET_13 = JSON.parse(JSON.stringify(OBJET_11));
+const OBJECT_13 = JSON.parse(JSON.stringify(OBJECT_11));
 // transformation en string puis retransformation en objet.
 
-console.log("obj11:", OBJET_11);
-console.log("obj12:", OBJET_12);
-console.log("obj13:", OBJET_13);
+console.log("obj11:", OBJECT_11);
+console.log("obj12:", OBJECT_12);
+console.log("obj13:", OBJECT_13);
 
-OBJET_11.nom = "Milou";
-OBJET_11.couleur = "blanc"; // ajout d'une nouvelle propriété possible
+OBJECT_11.nom = "Milou";
+OBJECT_11.couleur = "blanc"; // ajout d'une nouvelle propriété possible
 
-Object.seal(OBJET_12);
-OBJET_12.nom = "Milou";
-OBJET_12.couleur = "blanc"; // ! impossible de modifier la structure de l'objet
+Object.seal(OBJECT_12);
+OBJECT_12.nom = "Rasta";
+OBJECT_12.couleur = "Rouge"; // ! impossible de modifier la structure de l'objet
 
-Object.freeze(obj13);
-obj13.nom = "Milou"; // ! impossible de modifier les valeurs
-obj13.couleur = "blanc"; // ! impossible de modifier la structure de l'objet
+Object.freeze(OBJECT_13);
+OBJECT_13.nom = "Vandol"; // ! impossible de modifier les valeurs
+OBJECT_13.couleur = "Vert"; // ! impossible de modifier la structure de l'objet
 
-console.log("obj11:", OBJET_11);
-console.log("obj12(seal):", OBJET_12);
-console.log("obj13(freeze):", OBJET_13);</code ></pre >
+console.log("obj11:", OBJECT_11);
+console.log("obj12(seal):", OBJECT_12);
+console.log("obj13(freeze):", OBJECT_13);</code ></pre >
 
                     </div >
 
@@ -502,75 +518,86 @@ console.log("obj13(freeze):", OBJET_13);</code ></pre >
  * les fonctions
  */
 
-// fonctions avec et sans retour de valeur
-
+// Fonctions avec et sans retour de valeur.
 function saluer() {
   console.log("hello !");
 }
-saluer(); // appel de la fonction
+
+// Appel de la fonction.
+saluer();
 
 function somme($nb1, $nb2) {
-  let $total = $nb1 + $nb2; // ! total est une variable globale
-  return $total;
+    let $total = $nb1 + $nb2;
+    // ⚠ total est une variable globale
+    return $total;
 }
 console.log("Fonction « somme(10,6); » :", somme(10, 6));
 
 //----------------------------------------------------------------------------------------
 
-// différentes façons d'écrire les fonctions
+// Différentes façons d'écrire les fonctions.
 
-// fonction classique
+// Fonction classique.
 function parler() {
-  console.log("je parle !");
+    console.log("je parle !");
 }
+// Appel de la fonction.
 parler();
 
-// fonction anonyme stockée dans une variable
+// Fonction anonyme stockée dans une variable.
 let $crier = function() {
-  console.log("je crie !");
+    console.log("je crie !");
 };
+// Appel de la fonction.
 $crier();
 
-// fonctions fléchées
+// Fonctions fléchées.
 let $hurler = () => {
-  console.log("Je hurle !");
+    console.log("Je hurle !");
 };
+// Appel de la fonction.
 $hurler();
 
-let $doubleDe = $nbre => {
-  return $nbre * 2;
+let $doubleDe = $nombre => {
+    return $nombre * 2;
 };
 console.log("$doubleDe(6) :", $doubleDe(6));
 
-let $tripleDe = $nbre => $nbre * 3; // possible lorsque la fonction est uniquement composée d'un return
+let $tripleDe = $nbre => $nbre * 3;
+// Possible lorsque la fonction est unique‑mênt côm‑posée d'un return.
 console.log("Fonction fléché $tripleDe(6) :", $tripleDe(6));
+
+//----------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------------------
 
 // paramètres
 
 function présentation(prénom, nom = "Martin") {
-  // ! le ou les paramètres, facultatifs doivent toujours être les derniers
-	// ⚠ ce ne est pash une variable.
-  console.log(`Bonjour je m'appelle ${prénom} ${nom} !`);
+    // ! le ou les paramètres, facultatifs doivent toujours être les derniers
+    // ⚠ ce ne est pash une variable.
+    console.log(`Bonjour je m'appelle ${prénom} ${nom} !`);
 }
-présentation("John", "Doe");
-présentation("Jean"); // par défaut, le nom est "Martin"
-présentation(); // ! le prénom est indéfini
 
-function totalAchats(tauxTVA, ...montants) {
-  // ! il ne peut y avoir qu'une seule variable de type ...rest
-  // ! cette variable doit toujours être le dernier paramètre de la fonction
-  // * montants est considéré comme un tableau
-  let total = 0;
-  for (let i = 0; i &lt; montants.length; i++) {
-    total = total + montants[i];
-  }
-  return total * (1 + tauxTVA);
+présentation("John", "Doe");
+// par défaut, le nom est "Martin"
+présentation("Jean");
+// ⚠ le prénom est indéfini
+présentation();
+
+function totalAchats($tauxTVA, ...$montants) {
+    // ! il ne peut y avoir qu'une seule variable de type ...rest
+    // ! cette variable doit toujours être le dernier paramètre de la fonction
+    // * montants est considéré comme un tableau
+    let $total = 0;
+    for (let $i = 0; $i < $montants.length; $i++) {
+        $total = $total + $montants[$i];
+    }
+    return $total * (1 + $tauxTVA);
 }
 console.log(
-  "totalAchats(0.21, 55, 14, 12, 23) :",
-  totalAchats(0.21, 55, 14, 12, 23)
+    "totalAchats(0.21, 55, 14, 12, 23) :",
+    totalAchats(0.21, 55, 14, 12, 23)
 );
 
 //----------------------------------------------------------------------------------------</code ></pre >
@@ -585,69 +612,72 @@ console.log(
 
                         <pre ><code class = "language-javascript line-numbers" >// js06 - l'objet Array.js
 /*
- * quelques méthodes de l'objet Array (voir la documentation officielle pour plus d'infos)
+ * Quelques méthodes de l'objet Array (voir la documentation officielle pour plus d'infos),
  *
- ! certaines méthodes modifient le tableau : push, pop, fill, sort, reverse, forEach...
- * d'autres méthodes créent un nouveau tableau : map, concat, filter...
+ * ⚠ certaines méthodes modifient le tableau : push, pop, fill, sort, reverse, forEach…
+ * d'autres méthodes créent un nouveau tableau : map, concat, filter…
  *
- * les fonctions passées en argument peuvent être des fonctions classiques ou fléchées
+ * les fonctions passées en argument peuvent être de’s fonction’s classique’s ou fléchée’s
  */</code ></pre >
 
                         <pre ><code class = "language-javascript line-numbers" >const RESULTATS = [7, 12, 15, 4, 19];
 console.log("Resultats :", RESULTATS);
 
 //----------------------------------------------------------------------------------------
-// * méthodes qui renvoient un nouveau tableau
+// Méthodes qui renvoient un nouveau tableau
 //----------------------------------------------------------------------------------------
 console.log("-------------- pas de modification du tableau original");
 
-// renvoie un tableau reprenant uniquement les éléments répondant à la condition donnée par la fonction
+// Renvoie un tableau reprenant uniquement les éléments répondant à la condition donnée par la fonction.
 console.log(
-  "RESULTATS.filter((x) => x >= 10 ) :",
-  RESULTATS.filter(x => x >= 10)
+  "RESULTATS.filter(($x) => $x >= 10 ) :",
+  RESULTATS.filter($x => $x >= 10)
 );
 
-// renvoie un nouveau tableau dont chaque élément correspond à la transformation indiquée dans la fonction
-console.log("RESULTATS.map((a) => a / 2 ) :", resultats.map(a => a / 2));
 
-// renvoie UN résultat qui est l'accumulation de toutes les valeurs suivant la fonction passée
-// total est l'accumulateur et vaut 0 au départ
-// élément désigne successivement chacun des éléments du tableau
+// Renvoie un nouveau tableau dont chaque élémênt correspond à la transformation indiquée dans la fonction
+console.log("RESULTATS.map(($a) => $a / 2 ) :", RESULTATS.map($a => $a / 2));
+
+// Renvoie UN résultat qui est l'accumulation de toutes les valeurs suivant la fonction passée.
+// Total est l'accumulateur et vaut 0 au départ.
+// Élémênt désigne successive‑mênt chacun des élémênts du tableau.
 console.log(
-  "RESULTATS.reduce((total, element) => total += element ) :",
+  "RESULTATS.reduce((total, element) => total += element) :",
   RESULTATS.reduce((total, element) => (total += element))
-);</code ></pre >
+);
 
-                        <pre ><code class = "language-javascript line-numbers" >//----------------------------------------------------------------------------------------
-// ! méthodes qui modifient le tableau original
+//----------------------------------------------------------------------------------------
+// ⚠ méthodes qui modifient le tableau original
 //----------------------------------------------------------------------------------------
 console.log("-------------- !!! modification du tableau original !!!");
 
-// push : ajoute un élément et retourne la nouvelle taille
+// .push : ajoute un élément et retourne la nouvelle taille
 let $taille = RESULTATS.push(3);
-console.log("Resultats :", RESULTATS, "taille : ", $taille);
+console.log("RESULTATS :", RESULTATS, "taille : ", $taille);
 
-// pop : retire un élément et retourne l'élément supprimé
+// .pop : retire un élément et retourne l'élément supprimé
 let $dernierTest = RESULTATS.pop();
-console.log("Resultats :", RESULTATS, "dernierTest : ", $dernierTest);
+console.log("RESULTATS :", RESULTATS, "dernierTest : ", $dernierTest);
+
 
 // inverse le tableau
 RESULTATS.reverse();
-console.log("resultats.reverse() :", resultats);
+console.log("RESULTATS.reverse() :", RESULTATS);
 
 // ! tri par ordre alphabétique
-resultats.sort();
-console.log("resultats.sort() :", resultats);
+RESULTATS.sort();
+console.log("RESULTATS.sort() :", RESULTATS);
 
 // * tri utilisant une fonction de comparaison
 // la fonction doit renvoyer : une valeur négative si a &lt; b, 0 si a==b, une valeur positive si a &gt; b
-resultats.sort((a, b) => b < a); //si b < a, on trie
-console.log("resultats.sort( (a,b) => b > a ) :", resultats);</code ></pre >
+RESULTATS.sort((a, b) => b < a); //si b < a, on trie
+console.log("RESULTATS.sort( (a,b) => b > a ) :", RESULTATS);
+</code ></pre >
 
                         <pre ><code class = "language-javascript line-numbers" >//----------------------------------------------------------------------------------------
-// * quelques exemples plus avancés
+// * Quelques exemples plus avancés
 //----------------------------------------------------------------------------------------
-console.log("-------------- quelques exemples");
+console.log("-------------- Quelques exemples");
 
 let $suite = Array(10)
 //crée un tableau de 10 éléments vides
@@ -655,15 +685,20 @@ let $suite = Array(10)
 	.fill(0)
 	//remplit le tableau de 0
 
-	.map((val, i) => i + 1);
+	.map((val, $i) => $i + 1);
 	//renvoie un tableau dont chaque élément est remplacé par son indice + 1
 	/*
 	La méthode map(),
 	crée un nouveau tableau avec les résultats de l'appel d'une fonction fournie,
 	sur chaque élément du tableau appelant.
+    Le rappel de la méthode Map prend trois arguments,
+    bien que vous ne puissiez également écrire un rappel qu'en utilisant un ou deux arguments.
+    Voici les trois arguments nécessaires: array.map ((valeur, index, tableau) => {...}) ;.
+    [].map(value => value + 1)
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
 	*/
 
-console.log("suite :", $suite);
+console.log("Suite :", $suite);
 
 //----------------------------------------------------------------------------------------
 
@@ -680,7 +715,7 @@ console.log("Variable $fibo1 :", $fibo1);
 
 //----------------------------------------------------------------------------------------
 
-let $fibo2 = [...Array(10)].reduce((acc, val, i) => acc.concat(i < 2 ? 1 : acc[i - 2] + acc[i - 1]), []);
+let $fibo2 = [...Array(10)].reduce((acc, val, $i) => acc.concat($i < 2 ? 1 : acc[$i - 2] + acc[$i - 1]), []);
 // Crée un tableau de 10 éléments vides,
 // le déstructure et le recompose pour obtenir un tableau de 10 éléments "undefined".
 /*
@@ -699,9 +734,9 @@ console.log("Variable $fibo2 :", $fibo2);
 
 //----------------------------------------------------------------------------------------
 
-let $alea = [...Array(10)].map(x => Math.floor(Math.random() * 11));
+let $alea = [...Array(10)].map($x => Math.floor(Math.random() * 11));
 //renvoie un tableau dont chaque élément est une valeur entière aléatoire entre 0 et 10
-console.log("alea :", $alea);
+console.log("$alea :", $alea);
 
 //----------------------------------------------------------------------------------------
 </code ></pre >
@@ -809,13 +844,34 @@ let $largeur = window.innerWidth;
 
                     <div class = "ui segment" >
 
-                        <h3 id = "titleH42019y09m24sJs07DomAccess" >
+                        <h3 id = "titleH42019y09m24sJs08LesEvenements" >
                             <a href = "?#title-h2-table-of-contents" >2019‑09‑24&nbsp;‒&nbsp;js08 - les évènemênts&nbsp;:</a >
                         </h3 >
 
+                        <pre><code class="language-html line-numbers">// js08 - les évènements.html
+&lt;input type="button" id="btnSaluer" value="Bouton saluer"&gt;
+
+&lt;br&gt;
+
+&lt;input type="button" id="btnManger" value="Bouton manger"&gt;
+
+&lt;div id="div1_js08"&gt;
+    &lt;input type="button" id="btn1_js08" value="Bouton un"&gt;
+&lt;/div&gt;
+
+&lt;div id="div2_js08"&gt;
+    &lt;input type="button" id="btn2_js08" value="Bouton deux"&gt;
+&lt;/div&gt;
+
+&lt;div id="div3_js08"&gt;
+    &lt;input type="button" id="btn3_js08" value="Bouton trois"&gt;
+&lt;/div&gt;
+
+&lt;input type = "checkbox" id="chkValid_js08"&gt; Vérifier validité&lt;/input&gt;</code></pre>
+
                         <pre ><code class = "language-javascript line-numbers" >// js08 - les évènements.js
 
-							/*
+/*
  * gestion des évènements dans une page html
  * (voir la documentation officielle pour plus d'infos)
  */
@@ -837,12 +893,13 @@ document.getElementById("btnManger").addEventListener("click", function() {
 	console.log("Je mange !");
 });
 
+
 //----------------------------------------------------------------------------------------
 // * désassociation d'un évènement à un objet du DOM
 //----------------------------------------------------------------------------------------
 document.getElementById("btnSaluer").removeEventListener("click", saluer);
 
-// ! impossible de désassocier "btnManger" car on utilise une fonction anonyme
+// ⚠ impossible de désassocier "btnManger" car on utilise une fonction anonyme
 
 //----------------------------------------------------------------------------------------
 // * propagation des évènements
@@ -850,11 +907,11 @@ document.getElementById("btnSaluer").removeEventListener("click", saluer);
 
 // * bubbling (de l'intérieur vers l'extérieur)
 // --------------------------------------------
-// soit un bouton 'btn1' dans un div 'div1'
-document.getElementById("btn1").addEventListener("click", function() {
+// soit un bouton 'btn1_js08' dans un div 'div1_js08'
+document.getElementById("btn1_js08").addEventListener("click", function() {
 	console.log("click sur le &lt;button&gt;");
 });
-document.getElementById("div1").addEventListener("click", function() {
+document.getElementById("div1_js08").addEventListener("click", function() {
 	console.log("click dans le &lt;div&gt;");
 });
 // click sur le bouton :
@@ -863,15 +920,15 @@ document.getElementById("div1").addEventListener("click", function() {
 
 // * capturing (de l'extérieur vers l'intérieur)
 // ---------------------------------------------
-// soit un bouton 'btn2' dans un div 'div2'
-document.getElementById("btn2").addEventListener(
+// soit un bouton 'btn2_js08' dans un div 'div2_js08'
+document.getElementById("btn2_js08").addEventListener(
 	"click",
 	function() {
 		console.log("click sur le &lt;button&gt;");
 	},
 	true // useCapture
 );
-document.getElementById("div2").addEventListener(
+document.getElementById("div2_js08").addEventListener(
 	"click",
 	function() {
 		console.log("Le repas est bon ! (click dans &lt;div&gt;");
@@ -882,14 +939,15 @@ document.getElementById("div2").addEventListener(
 // =&gt; "click dans le &lt;div&gt;"
 // =&gt; "click sur le &lt;button&gt;"
 
+
 // * stopper la propagation des évènements
 // ---------------------------------------
-// soit un bouton 'btn3' dans un div 'div3'
-document.getElementById("btn3").addEventListener("click", function(evt) {
+// soit un bouton 'btn3_js08' dans un div 'div3_js08'
+document.getElementById("btn3_js08").addEventListener("click", function(evt) {
 	evt.stopPropagation();
 	console.log("click sur le &lt;button&gt;");
 });
-document.getElementById("div3").addEventListener("click", function() {
+document.getElementById("div3_js08").addEventListener("click", function() {
 	console.log("click sur le &lt;button&gt;");
 });
 // click sur le bouton :
@@ -898,8 +956,8 @@ document.getElementById("div3").addEventListener("click", function() {
 
 // * empêcher le comportement normal d'un élément
 // ----------------------------------------------
-// soit un checkbox 'chkValid'
-document.getElementById("chkValid").addEventListener("click", function(evt) {
+// soit un checkbox ' chkValid_js08'
+document.getElementById(" chkValid_js08").addEventListener("click", function(evt) {
 	evt.preventDefault();
 	console.log("impossible de cocher ou décocher la case");
 });
@@ -908,6 +966,131 @@ document.getElementById("chkValid").addEventListener("click", function(evt) {
 // ! le bouton ne se (dé)coche pas
 
 //----------------------------------------------------------------------------------------</code ></pre >
+
+                        <div class="ui segment">
+
+                            <div class="ui segment info message">
+                                <p>Voir cônsôle, pour réaction de’s évène‑mênt’s…</p>
+                            </div>
+
+                            <input class="js8-events" type="button" id="btnSaluer" value="Bouton saluer">
+
+                            <br >
+
+                            <input class="js8-events" type="button" id="btnManger" value="Bouton manger">
+
+                            <div id="div1_js08">
+                                <input class="js8-events" type="button" id="btn1_js08" value="Bouton un">
+                            </div>
+
+                            <div id="div2_js08">
+                                <input class="js8-events" type="button" id="btn2_js08" value="Bouton deux">
+                            </div>
+
+                            <div id="div3_js08">
+                                <input class="js8-events" type="button" id="btn3_js08" value="Bouton trois">
+                            </div>
+
+                            <input type = "checkbox" id="chkValid_js08"> Vérifier validité</input>
+
+                        </div>
+                        <script >// js08 - les évènements.js
+
+                            /*
+							 * gestion des évènements dans une page html
+							 * (voir la documentation officielle pour plus d'infos)
+							 */
+
+                            //----------------------------------------------------------------------------------------
+                            // * association d'un évènement à un objet du DOM
+                            //----------------------------------------------------------------------------------------
+
+                            // association d'une fonction nommée
+                            document.getElementById("btnSaluer").addEventListener("click", saluer);
+                            // ! saluer sans parenthèse
+
+                            function saluer() {
+                                console.log("Bonjour");
+                            }
+
+                            // association d'une fonction anonyme
+                            document.getElementById("btnManger").addEventListener("click", function() {
+                                console.log("Je mange !");
+                            });
+
+
+                            //----------------------------------------------------------------------------------------
+                            // * désassociation d'un évènement à un objet du DOM
+                            //----------------------------------------------------------------------------------------
+                            document.getElementById("btnSaluer").removeEventListener("click", saluer);
+
+                            // ⚠ impossible de désassocier "btnManger" car on utilise une fonction anonyme
+
+                            //----------------------------------------------------------------------------------------
+                            // * propagation des évènements
+                            //----------------------------------------------------------------------------------------
+
+                            // * bubbling (de l'intérieur vers l'extérieur)
+                            // --------------------------------------------
+                            // soit un bouton 'btn1_js08' dans un div 'div1_js08'
+                            document.getElementById("btn1_js08").addEventListener("click", function() {
+                                console.log("click sur le <button>");
+                            });
+                            document.getElementById("div1_js08").addEventListener("click", function() {
+                                console.log("click dans le <div>");
+                            });
+                            // click sur le bouton :
+                            // => "click sur le <button>"
+                            // => "click dans le <div>"
+
+                            // * capturing (de l'extérieur vers l'intérieur)
+                            // ---------------------------------------------
+                            // soit un bouton 'btn2_js08' dans un div 'div2_js08'
+                            document.getElementById("btn2_js08").addEventListener(
+                                "click",
+                                function() {
+                                    console.log("click sur le <button>");
+                                },
+                                true // useCapture
+                            );
+                            document.getElementById("div2_js08").addEventListener(
+                                "click",
+                                function() {
+                                    console.log("Le repas est bon ! (click dans <div>");
+                                },
+                                true // useCapture
+                            );
+                            // click sur le bouton :
+                            // => "click dans le <div>"
+                            // => "click sur le <button>"
+
+
+                            // * stopper la propagation des évènements
+                            // ---------------------------------------
+                            // soit un bouton 'btn3_js08' dans un div 'div3_js08'
+                            document.getElementById("btn3_js08").addEventListener("click", function(evt) {
+                                evt.stopPropagation();
+                                console.log("click sur le <button>");
+                            });
+                            document.getElementById("div3_js08").addEventListener("click", function() {
+                                console.log("click sur le <button>");
+                            });
+                            // click sur le bouton :
+                            // => "click sur le <button>"
+                            // ! la propagation du click est stoppée
+
+                            // * empêcher le comportement normal d'un élément
+                            // ----------------------------------------------
+                            // soit un checkbox ' chkValid_js08'
+                            document.getElementById("chkValid_js08").addEventListener("click", function(evt) {
+                                evt.preventDefault();
+                                console.log("impossible de cocher ou décocher la case");
+                            });
+                            // click sur le check‑box :
+                            // => affichage du message
+                            // ! le bouton ne se (dé)coche pas
+
+                            //----------------------------------------------------------------------------------------</script >
 
                     </div >
 
@@ -924,13 +1107,13 @@ document.getElementById("chkValid").addEventListener("click", function(evt) {
  */
 
 //----------------------------------------------------------------------------------------
-// * ajout, suppression d'éléments du DOM
+// * Ajout, suppression d'éléments du DOM
 //----------------------------------------------------------------------------------------
 
-// désignation d'un objet du DOM
+// Désignation d'un objet du DOM
 let $maison = document.getElementById("divMaison");
 
-// création et ajout d'un nouvel objet à la fin d'un container
+// Création et ajout d'un nouvel objet à la fin d'un container
 let $salon = document.createElement("div"); //création
 $salon.innerHTML = "Ceci est le salon"; //modification d'une propriété
 $maison.appendChild($salon); // ajout à la fin du 'divMaison'
@@ -940,25 +1123,25 @@ $cuisine.innerHTML = "Ceci est le cuisine"; //modification d'une propriété
 $maison.appendChild($cuisine); // ajout à la fin du 'divMaison'
 // maison: salon + cuisine
 
-// création et ajout d'un nouvel objet avant un autre
+// Création et ajout d'un nouvel objet avant un autre
 let $salleAManger = document.createElement("div"); //création
 $salleAManger.innerHTML = "Ceci est la salle à manger"; //modification d'une propriété
 $maison.insertBefore($salleAManger, $cuisine); // ajout avant le div 'Cuisine'
 // maison: salon + salleAManger + cuisine
 
-// création et ajout d'un nouvel objet au début d'un container
+// Création et ajout d'un nouvel objet au début d'un container
 let $hall = document.createElement("div"); //création
 $hall.innerHTML = "Ceci est le hall d'entrée"; //modification d'une propriété
 $maison.insertBefore($hall, $maison.firstChild); // ajout au début du 'divMaison'
 // maison: hall + salon + salleAManger + cuisine
 
-// suppression d'un objet du DOM
+// Suppression d'un objet du DOM
 $cuisine.remove; // supprime le div 'Cuisine'
 $maison.removeChild($maison.childNodes[0]); //supprime le premier nœud (hall)
 // maison: salon + salleAManger
 
 //----------------------------------------------------------------------------------------
-// * gestion des attributs
+// * Gestion des attributs
 //----------------------------------------------------------------------------------------
 $maison.innerHTML = "Voici ma maison";
 
@@ -972,11 +1155,11 @@ $maison.classList.toggle("div-maison-select"); // si la classe existe elle est s
 $maison.setAttribute("superficie", "600");
 // ajoute un attribut
 
-let superficie = $maison.getAttribute("superficie");
-// récupère la valeur de l'attribut
+let $superficie = $maison.getAttribute("superficie");
+// Récupère la valeur de l'attribut
 
 $maison.removeAttribute("superficie");
-// supprime l'attribut
+// Supprime l'attribut
 
 //----------------------------------------------------------------------------------------
 // * navigation dans le DOM
@@ -1878,6 +2061,11 @@ document.getElementById("t").value = "hello";
 
 // Fonction anonyme : n'a pash de nom.</code ></pre >
                     </div >
+                </fieldset>
+
+                <fieldset>
+
+                    <legend><h2 id="titleH2ExercicesJavaScript"><a href="?#title-h2-table-of-contents">Exercice Java‑Script&nbsp;:</a></h2></legend>
 
                     <div class = "ui segment" >
 
@@ -3996,7 +4184,8 @@ function ex08CalculAleatoire() {
 
                     <div class = "ui segment" >
                         <h3 id = "titleH3Ex2019_09_calculs" >
-                            <a href = "?#title-h2-table-of-contents" >Ex2019_09_calculs avec opérateur mutagène</a > :</h3 >
+                            <a href = "?#title-h2-table-of-contents" >Ex2019_09_calculs avec opérateur mutagène</a > :
+                        </h3 >
 
                         <div class = "ui segment info message" >
                             <p >Répondre à un calcul aléatoire avec opérateur mutagène</p >
@@ -5331,7 +5520,7 @@ function ex13MiseÀjourUsersV2() {
 
                     <div class = "ui segment" >
 
-                        <p><b>Cliquez sur ce bouton pour afficher la liste de’s utilisateur’s&nbsp;:</b></p>
+                        <p ><b >Cliquez sur ce bouton pour afficher la liste de’s utilisateur’s&nbsp;:</b ></p >
 
                         <!-- ex2019_13.html -->
                         <button id = "ex13BtnMiseÀJourUsers" >Mise à jour de la liste utilisateurs</button >
@@ -6530,33 +6719,33 @@ function miseÀJourComboBoxLocalité () {
 
                 <div class = "ui segment info message" >2019‑11‑12 ‒ 09H00 :</div >
 
-                <div class="ui segment">
-                <h3 id = "titleH3Ex2019_16B" ><a href = "?#title-h2-table-of-contents" >Exercice 16B</a ></h3 >
+                <div class = "ui segment" >
+                    <h3 id = "titleH3Ex2019_16B" ><a href = "?#title-h2-table-of-contents" >Exercice 16B</a ></h3 >
 
-                <ul >
-                    <li >1ère étape : filtrage.</li >
-                    <li >2ème étape : remplissage de la liste déroulante.</li >
-                    <li >3ème étage selection de l'élément.</li >
-                </ul >
+                    <ul >
+                        <li >1ère étape : filtrage.</li >
+                        <li >2ème étape : remplissage de la liste déroulante.</li >
+                        <li >3ème étage selection de l'élément.</li >
+                    </ul >
 
-                <p >liste déroulante, <code class = "language-javascript" >.addEventListener()</code > : change</p >
+                    <p >liste déroulante, <code class = "language-javascript" >.addEventListener()</code > : change</p >
 
-                <p >Quand on efface la première lettre est vide il faut tenter de éviter que il cherche.</p >
+                    <p >Quand on efface la première lettre est vide il faut tenter de éviter que il cherche.</p >
 
-                <p >Le mécanisme de filtrage, on l'avait déjà fait.</p >
+                    <p >Le mécanisme de filtrage, on l'avait déjà fait.</p >
 
-                <p >Dans le cas où le CP n'a que un choix. Il faudrait passer la selection manuel.</p >
+                    <p >Dans le cas où le CP n'a que un choix. Il faudrait passer la selection manuel.</p >
 
-                <pre ><code class = "language-javascript line-numbers" >let nbr = document.getElementById("txtNbr");
+                    <pre ><code class = "language-javascript line-numbers" >let nbr = document.getElementById("txtNbr");
 nbr.value = nbr.value + 1;</code ></pre >
-                <pre ><code class = "language-javascript line-numbers" >document.getElementById → 1
+                    <pre ><code class = "language-javascript line-numbers" >document.getElementById → 1
 document.getElementByName → *
 document.getElementByTag → *
 document.getElementByClass → *</code ></pre >
 
-                <p >Nouweau</p >
+                    <p >Nouweau</p >
 
-                <pre ><code class = "language-javascript line-numbers" >document.querySelector("") → 1
+                    <pre ><code class = "language-javascript line-numbers" >document.querySelector("") → 1
 
 document.querySelector("#truc.Rouge") → *
 // Attentation renvoi tableau donc crochet pour chercher.
@@ -6564,7 +6753,7 @@ document.querySelector("#truc.Rouge") → *
 // jQuery
 $("#trucRouge")</code ></pre >
 
-                <pre ><code class = "language-javascript line-numbers" >element propriety attribute.
+                    <pre ><code class = "language-javascript line-numbers" >element propriety attribute.
 // Tous les elements n'ont pash les meme propriétés.
 
 .setAttribute
@@ -6572,14 +6761,14 @@ $("#trucRouge")</code ></pre >
 .removeAttribute
 .toggleAttribute // Si n'existe pash.</code ></pre >
 
-                <pre ><code class = "language-javascript line-numbers" >createElement
+                    <pre ><code class = "language-javascript line-numbers" >createElement
 createTextNode // Nœud sa reprend tout, un élément est un nœud.
                         TextNode est un nœud spécialisé.
 
 &lt;h1&gt;Coucoulme&lt;/h1&gt;
 Element  TextNode</code ></pre >
 
-                <pre ><code class = "language-javascript line-numbers" >document.createElement("p");
+                    <pre ><code class = "language-javascript line-numbers" >document.createElement("p");
 // Il faut le placer.
 document.getElementById("div1").appendChild(); // Voir photo.
 // Il est important de créer une variable du createElement pour pouvoir interagir.
@@ -6589,13 +6778,13 @@ let $newP = document.createElement("p");
 document.ElementById("div2").appendChild($newP);
 // Il le déplace, c'est important. Il ne fait pash un doublon.</code ></pre >
 
-                    <pre><code class="language-javascript line-numbers">// Copie c'est clone. Mais il y deux versions, une en profondeur ou en surface.
+                    <pre ><code class = "language-javascript line-numbers" >// Copie c'est clone. Mais il y deux versions, une en profondeur ou en surface.
 // Il ne copie pash les évènements.
 
 // Avec une fonction anonyme, on ne peut supprimer un eventListener,
-// car il n'y a pash de pointeur dans les fonctions anonyme.</code></pre>
+// car il n'y a pash de pointeur dans les fonctions anonyme.</code ></pre >
 
-                </div>
+                </div >
 
                 <div class = "ui segment info message" >2019‑11‑12 ‒ 10H22 :</div >
 
@@ -6638,11 +6827,11 @@ now.setMonth(11)  // ⇒ Décembre. Mois.</code ></pre >
 
                 </div >
 
-                <div class="ui segment">
-                <h4 id = "titleH4Date de anniversaire" >
-                    <a href = "?#title-h2-table-of-contents" >Date de anniversaire&nbsp;:</a ></h4 >
+                <div class = "ui segment" >
+                    <h4 id = "titleH4Date de anniversaire" >
+                        <a href = "?#title-h2-table-of-contents" >Date de anniversaire&nbsp;:</a ></h4 >
 
-                <pre ><code class = "language-javascript line-numbers" >// On récupère de une DB
+                    <pre ><code class = "language-javascript line-numbers" >// On récupère de une DB
 // $DateDeNaissance (25/04/1979)
 
 let $today = new Date();
@@ -6657,7 +6846,7 @@ let $age = $today.getFullYear() - $DateNaissance.getFullYear();
 if($today < $dateAnniversaire) {
     age …
 };</code ></pre >
-                </div>
+                </div >
 
                 <div class = "ui segment" >
 
@@ -7864,7 +8053,7 @@ function initialiseProgressBar_ex2019_18() {
                         <h4 id = "titleH4Ex2019_19GazmenArifi" >
                             <a href = "?#title-h2-table-of-contents" >Ma version&nbsp;:</a ></h4 >
 
-                        <pre><code class="language-css line-numbers">/* Ex2019_19_equipes_Gaz‑mên_Arifi.css */
+                        <pre ><code class = "language-css line-numbers" >/* Ex2019_19_equipes_Gaz‑mên_Arifi.css */
 figure.cônsi-jne img {
     width: 600px;
 }
@@ -7882,7 +8071,7 @@ td, th {
 
 th {
     background-color: hsla(0, 0%, 0%, 0.04);
-}</code></pre>
+}</code ></pre >
 
                         <pre ><code class = "language-html line-numbers" >&lt;!-- Ex2019_19_equipes_Gaz‑mên_Arifi.html --&gt;
 &lt;input type = "button"
@@ -8232,6 +8421,9 @@ function listeDétaillé_ex2019_19() {
 &lt;/script &gt;</code ></pre >
 
                         <div class = "ui segment" >
+
+                            <h5 id="titleH5Exercice19DeGaz"><a href="?#title-h2-table-of-contents">Exercice 19 de Gaz :</a></h5>
+
                             <!-- Ex2019_19_equipes_Gaz‑mên_Arifi.html -->
                             <input type = "button"
                                    id = "inputReset_ex2019_19"
@@ -8281,7 +8473,7 @@ function listeDétaillé_ex2019_19() {
                             <div id = "divAffichageDesParticipantsActif_ex2019_19"
                                  style = "display:  none;" >
 
-                                <table class="ex2019-19-perso" style = "width: auto;" >
+                                <table class = "ex2019-19-perso" style = "width: auto;" >
                                     <thead >
                                     <tr >
                                         <th >Nom</th >
@@ -8332,7 +8524,7 @@ function listeDétaillé_ex2019_19() {
                             //----------------------------------------------------------------------------------------
 
                             // Variable’s global…
-                            let $participants_actif_ex2019_19 = "";
+                            let $listePersonneParPays_ex2019_19 = null;
 
                             //----------------------------------------------------------------------------------------
                             // Gestion de l'affichage des pays.
@@ -8439,9 +8631,9 @@ function listeDétaillé_ex2019_19() {
 
                                 // console.log($listePaysCoché_ex2019_19); // Fonctionne.
 
-                                for (let $pays_ex2019_19 of $listePaysCoché_ex2019_19) {
+                                for (let $paysFilter_ex2019_19 of $listePaysCoché_ex2019_19) {
 
-                                    fetch("./php/2019-11-19_-_ex2019_19_liste_personne_un_pays.php?pays=" + $pays_ex2019_19.value)
+                                    fetch("./php/2019-11-19_-_ex2019_19_liste_personne_un_pays.php?pays=" + $paysFilter_ex2019_19.value)
                                         .then($reponse_ex2019_19 => $reponse_ex2019_19.json())
                                         .then($listePersonneParPays_ex2019_19 => {
 
@@ -8457,7 +8649,7 @@ function listeDétaillé_ex2019_19() {
 											$selectionParticipants_ex2019_19.setAttribute("multiple", "");
 											$selectionParticipants_ex2019_19.setAttribute("style", "height:50em;");
 											*/
-
+                                            
                                             for (const PERSONNAGE_PAR_PAYS_EX2019_19 of $listePersonneParPays_ex2019_19) {
 
                                                 // console.log("Personnage :", PERSONNAGE_PAR_PAYS_EX2019_19);
@@ -9317,16 +9509,15 @@ function majSpanNom() {
                                 }
                             });</script >
                     </div >
-                </div >
 
-                <pre ><code class = "language-javascript line-numbers" >&lt;span&gt;{{ nom == "Dominique" ? "Maitre" : nom.toUpperCase () }}&lt;/span&gt;</code ></pre >
-                </div>
+                    <pre ><code class = "language-javascript line-numbers" >&lt;span&gt;{{ nom == "Dominique" ? "Maitre" : nom.toUpperCase () }}&lt;/span&gt;</code ></pre >
+                </div >
 
                 <div class = "ui segment" >
 
-                    <h4 id = "titleH3VueJS02" >
+                    <h3 id = "titleH3VueJS02" >
                         <a href = "?#title-h2-table-of-contents" ><a href = "?#title-h2-table-of-contents" >Vue‑J.S._02</a ></a >
-                    </h4 >
+                    </h3 >
 
                     <pre ><code class = "language-html line-numbers" >&lt;!-- // vue02.html --&gt;
 &lt;div id = "vue02JSApp"&gt;
@@ -9444,7 +9635,7 @@ let $vue02JSApp = new Vue({
 
                 <div class = "ui segment" >
 
-                    <h4 id = "titleH3VueJS03" ><a href = "?#title-h2-table-of-contents" >Vue‑J.S._03</a ></h4 >
+                    <h3 id = "titleH3VueJS03" ><a href = "?#title-h2-table-of-contents" >Vue‑J.S._03</a ></h3 >
 
                     <pre ><code class = "language-html line-numbers" >&lt;!-- vue03.html --&gt;
 &lt;div id = "vue03JSApp"&gt;
@@ -9585,8 +9776,8 @@ function tps2str(tps_ms) {
 
                 <div class = "ui segment" >
 
-                    <h4 id = "titleH3VueJS04" ><a href = "?#title-h2-table-of-contents" >Vue‑J.S._04</a >
-                    </h4 >
+                    <h3 id = "titleH3VueJS04" ><a href = "?#title-h2-table-of-contents" >Vue‑J.S._04</a >
+                    </h3 >
 
                     <pre ><code class = "language-html line-numbers" >&lt;!-- vue04.html --&gt;
 &lt;div id = "vue04JSApp"&gt;
@@ -9981,7 +10172,7 @@ let $vue05App = new Vue({
             this.listePays = [];
 
             // requête : liste des pays
-            fetch("./php/2019‑12‑02_-_vue2019_05_listePays.php")
+            fetch("./php/2019-12-02_-_vue2019_05_listePays.php")
                 .then($reponse =&gt; $reponse.json())
                 .then($liste =&gt; {
 
@@ -10219,7 +10410,7 @@ let $vue05App = new Vue({
                                     this.listePays = [];
 
                                     // requête : liste des pays
-                                    fetch("./php/2019‑12‑02_-_vue2019_05_listePays.php")
+                                    fetch("./php/2019-12-02_-_vue2019_05_listePays.php")
                                         .then($reponse => $reponse.json())
                                         .then($liste => {
 
@@ -10364,7 +10555,8 @@ let $vue05App = new Vue({
 
                 <div class = "ui segment" >
 
-                    <h3 id = "titleH3TestHorloge" ><a href = "?#title-h2-table-of-contents" >TestHorloge.html :</a >
+                    <h3 id = "titleH3TestHorloge" >
+                        <a href = "?#title-h2-table-of-contents" >Vue‑J.S._06a_testHorloge.html :</a >
                     </h3 >
 
                     <pre ><code class = "language-html line-numbers" >&lt;!-- testHorloge.html --&gt;
@@ -10413,7 +10605,7 @@ Vue.component("monHorloge", {
             }
         }
     },
-    template: `<span @click="startStop">{{ time }}</span>`
+    template: `<span @click = "startStop" >{{ time }}</span >`
 });
 
 let $testHorlogeApp = new Vue({
@@ -10428,110 +10620,988 @@ let $testHorlogeApp = new Vue({
     }
 });</code ></pre >
 
-                    <div class="ui segment">
+                    <div class = "ui segment" >
 
                         <!-- testHorloge.html -->
-                        <div id="testHorlogeApp">
+                        <div id = "testHorlogeApp" >
 
-                            <h4 id="titleH4LesHorloges"><a href="?#title-h2-table-of-contents">Les horloges&nbsp;:</a></h4>
+                            <h4 id = "titleH4LesHorloges" >
+                                <a href = "?#title-h2-table-of-contents" >Les horloges&nbsp;:</a ></h4 >
 
-                            <p>il est <mon-horloge></mon-horloge>.</p>
-                            <p>voici une autre horloge : <mon-horloge></mon-horloge> !</p>
+                            <p >il est
+                                <mon-horloge ></mon-horloge >
+                                .
+                            </p >
+                            <p >voici une autre horloge :
+                                <mon-horloge ></mon-horloge >
+                                !
+                            </p >
 
-                            <button @click="ajout">Ajouter une horloge</button>
-                            <ul>
-                                <li v-for="horloge in horloges" :key="horloge">
-                                    {{ horloge }} <mon-horloge></mon-horloge>
-                                </li>
-                            </ul>
-                        </div>
+                            <button @click = "ajout" >Ajouter une horloge</button >
+                            <ul >
+                                <li v-for = "horloge in horloges" :key = "horloge" >
+                                    {{ horloge }}
+                                    <mon-horloge ></mon-horloge >
+                                </li >
+                            </ul >
+                        </div >
 
+                        <script src = "assets/js/vue-js/vue.js" ></script >
+                        <!--<script src="testHorloge.js"></script>-->
 
-                    <script src="assets/js/vue-js/vue.js"></script>
-                    <!--<script src="testHorloge.js"></script>-->
+                        <script >
+                            /* testHorloge.js */
+                            Vue.component("monHorloge", {
+                                data: function () {
+                                    return {
+                                        time: 0,
+                                        timer: null,
+                                        enFonction: false
+                                    };
+                                },
+                                mounted() {
+                                    this.startStop_testHorloge();
+                                    //this.timer = setInterval(this.majHeure, 1);
+                                },
+                                methods: {
 
-                    <script >
-                        /* testHorloge.js */
-                        Vue.component("monHorloge", {
-                            data: function() {
+                                    miseÀJourHeure_testHorloge() {
+
+                                        this.time = Date.now();
+                                    },
+                                    startStop_testHorloge() {
+
+                                        if (this.enFonction) {
+
+                                            clearInterval(this.timer);
+
+                                            this.enFonction = false;
+
+                                        } else {
+
+                                            this.timer = setInterval(this.miseÀJourHeure_testHorloge, 1);
+
+                                            this.enFonction = true;
+                                        }
+                                    }
+                                },
+                                template: `<span @click="startStop_testHorloge">{{ time }}</span>`
+                            });
+
+                            let $testHorlogeApp = new Vue({
+                                el: "#testHorlogeApp",
+                                data: {
+                                    horloges: []
+                                },
+                                methods: {
+                                    ajout() {
+                                        this.horloges.push(Date.now());
+                                    }
+                                }
+                            });
+                        </script >
+
+                    </div >
+
+                    <div class = "ui segment" >
+                        <ul >
+                            <li >
+                                <code class = "language-javascript" >data:</code > : function qui contient un objet de élémênt.
+                            </li >
+                            <li >
+                                <code class = "language-javascript" >mounted</code > : c'est ce qui est chargé en premier en mémoire.
+                            </li >
+                            <li ><code class = "language-javascript" >template</code > : remplace la balise.</li >
+                        </ul >
+
+                    </div >
+
+                    <div class = "ui segment info message" >2019‑12‑03 ‒ 14H26</div >
+
+                    <p >Le professeur souhaite non montrer un méthode ou le code
+                        <abbr title = "Hyper‑txt Mark‑up Language" >H.‑T.M.L.</abbr > ne intègre pash de affichage vue v-…,<br > mais de’s composant’s de ou le
+                        <code class = "language-html" >&lt;mon-horloge&gt;&lt;/mon-horloge&gt;</code > lié à
+                        <code class = "language-javascript" >`&lt;span @click="startStop_testHorloge"&gt;{{ time }}&lt;/span&gt;`</code >.
+                    </p >
+                </div >
+
+                <div class = "ui segment" >
+                    <h3 id = "titleH3TestCpt" >
+                        <a href = "?#title-h2-table-of-contents" >Vue‑J.S._06b_testCpt ‒ Clients. File d'attente&nbsp;:</a >
+                    </h3 >
+
+                    <div class = "ui segment info message" >2019‑12‑03 ‒ 15H00</div >
+
+                    <pre ><code class = "language-html line-numbers" >&lt;!-- testCPT_Martin.html --&gt;
+&lt;div id="appTestCompteur_ex2019_16b"&gt;
+
+    &lt;p&gt;
+        &lt;input type="text" v-model="client_ex2019_16b"&gt;
+        &lt;button @click="ajout_ex2019_16b"&gt;Ajouter&lt;/button&gt;
+    &lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li v-for="client_ex2019_16b in clients_ex2019_16b" :key="client_ex2019_16b"&gt;{{ client_ex2019_16b }} &lt;bouton-compteur-seconde&gt;&lt;/bouton-compteur-seconde&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"&gt;&lt;/script&gt;
+&lt;script src="testCpt.js"&gt;&lt;/script&gt;</code ></pre >
+
+                    <pre ><code class = "language-javascript line-numbers" >/* testCPT_Martin.js */
+Vue.component("boutonCompteurSeconde", {
+    data: function() {
+        return {
+            heureDepart: 0, // Heure de départ
+            time: 0,
+            timer: null
+        };
+    },
+    mounted() {
+        this.heureDepart = Date.now();
+
+        this.timer = setInterval(this.miseÀJourHeure, 500);
+        // toute le’s 500 m.s.
+    },
+    methods: {
+        miseÀJourHeure() {
+            this.time = this.tempsEnSeconde();
+        }
+    },
+    computed: {
+        tempsEnSeconde() {
+            return Math.floor((Date.now() - this.heureDepart) / 1000);
+        }
+    },
+    template: `<button >{{ time }}</button >`
+});
+
+// enfct en fonctionnement. ??? Ou est‑il ?
+
+let $appTestCompteur_ex2019_16b = new Vue({
+    el: "#appTestCompteur_ex2019_16b",
+    data: {
+        client_ex2019_16b: "",
+        clients_ex2019_16b: []
+    },
+    methods: {
+        ajout_ex2019_16b() {
+            this.clients_ex2019_16b.push(this.client_ex2019_16b);
+            this.client_ex2019_16b = "";
+        }
+    }
+});</code ></pre >
+
+                    <h4 id = "titleH4FileDAttente" ><a href = "?#title-h2-table-of-contents" >File d'attente :</a >
+                    </h4 >
+
+                    <!-- testCPT_Martin.html -->
+                    <div id = "appTestCompteur_ex2019_16b" >
+
+                        <p >
+                            <input type = "text" v-model = "client_ex2019_16b" >
+                            <button @click = "ajout_ex2019_16b" >Ajouter</button >
+                        </p >
+                        <ul >
+                            <li v-for = "client_ex2019_16b in clients_ex2019_16b" :key = "client_ex2019_16b" >{{ client_ex2019_16b }}
+                                <bouton-compteur-seconde ></bouton-compteur-seconde >
+                            </li >
+                        </ul >
+                    </div >
+
+                    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+                    <!-- <script src="testCpt.js"></script> -->
+
+                    <script >/* testCPT_Martin.js */
+                        Vue.component("boutonCompteurSeconde", {
+                            data: function () {
                                 return {
+                                    heureDepart: 0, // Heure de départ
                                     time: 0,
-                                    timer: null,
-                                    enFonction: false
+                                    timer: null
                                 };
                             },
                             mounted() {
-                                this.startStop_testHorloge();
-                                //this.timer = setInterval(this.majHeure, 1);
+                                this.heureDepart = Date.now();
+
+                                this.timer = setInterval(this.miseÀJourHeure, 500);
+                                // toute le’s 500 m.s.
+                            },
+                            methods: {
+                                miseÀJourHeure() {
+                                    this.time = this.tempsEnSeconde();
+                                }
+                            },
+                            computed: {
+                                tempsEnSeconde() {
+                                    return Math.floor((Date.now() - this.heureDepart) / 1000);
+                                }
+                            },
+                            template: `<button>{{ time }}</button>`
+                        });
+
+                        // enfct en fonctionnement. ??? Ou est‑il ?
+
+                        let $appTestCompteur_ex2019_16b = new Vue({
+                            el: "#appTestCompteur_ex2019_16b",
+                            data: {
+                                client_ex2019_16b: "",
+                                clients_ex2019_16b: []
+                            },
+                            methods: {
+                                ajout_ex2019_16b() {
+                                    this.clients_ex2019_16b.push(this.client_ex2019_16b);
+                                    this.client_ex2019_16b = "";
+                                }
+                            }
+                        });</script >
+
+                </div >
+
+                <div class = "ui segment" >
+
+                    <h3 id = "titleH3VueJSRappel" ><a href = "?#title-h2-table-of-contents" >Rappel vue‑J.S.&nbsp;:</a >
+                    </h3 >
+
+                    <div class = "ui segment" >
+
+                        <h4 ><a href = "?#title-h2-table-of-contents" >v-model</a ></h4 >
+
+                        <pre ><code class = "language-javascript line-numbers" >let $appVueJS_06b = new Vue()
+    el : "#$appVueJS_06b" // indique le div dans lequel tout est appliqué.
+    data: {                 // le système reconstruit le D.O.M. sur base du data.
+        maVariable: "",     // v-model
+        select: "",         // type:select
+        // ou
+        selects: [ …, …, …], // Si select multiple.
+        varBind: …,
+        a: 21,
+        b: 5,
+        (personnes),           // v-for
+        persChoise: "",        // v-for
+        personnes: [           // v-for
+            {id:"14", nom:"Dubois", age:25},
+            {id:"17", nom:"Abdullah", age:14},
+            {id:"12", nom:"Ħaʃan", age:21},
+            // Il voudrait afficher ceux qui ont moins de 26 ans.
+            // On penserait de fair un v-if mais il faut éviter dans un v-for.
+            // Il faut créé une propriété jeune dans computed, tableau mais filtrer.
+        ],
+        points: [17, 11, 20],   // v-for
+    }
+    methods:{
+        compter() {
+            …
+        },
+        /*
+        // Déplacé dans "computed",
+        // pour ne pash chaque fois recalculer à chaque modification de un des éléments de la Vue(),
+        // mais uniquement quand il y a un changement dans la fonction result().
+        result() {              // v-on
+            …
+        },
+        */
+        (personnes),            // v-for
+    }
+    computed:{
+        result() {              // v-on
+            return this.a + this.b;
+                // On pourrait être tenter de écrire :
+                // <s >result: () => this.a + this.b;</s >
+                // qui revient à :
+                // result: function() {return this.a + this.b;}
+                // Le’s « this » ne sont pourtant pash le’s même’s et ne ont pash la même portée.
+        },
+        jeunes() {
+            return personnes.filter(p => p.age &lt; 26);
+        }
+    }
+}</code ></pre >
+
+                        <p >Dans
+                            <code class = "language-javascript" >v-model</code >, on peut aussi ajouté de’s modificateurs :
+                        <ul >
+                            <li >
+                                <code class = "language-javascript" >.lazy = "…"</code > (<a href = "https://vuejs.org/v2/guide/forms.html#lazy" target = "_blank" >web‑arti‑cule.</a >)
+                            </li >
+                            <li ><code class = "language-javascript" >.number = "…"</code ></li >
+                            <li ><code class = "language-javascript" >.trim</code ></li >
+                        </ul >
+
+                        <pre ><code class = "language-html line-numbers" >&lt;input type="text" v-model="maVariable"&gt;
+&lt;!-- v-model est lié à :value, pour le’s type’s « type ». --&gt;
+
+&lt;input type="text" v-model="maVariable"&gt;
+
+{{ maVariable }}</code ></pre >
+
+                    </div >
+
+                    <div class = "ui segment" >
+
+                        <h4 id = "titleH4RappelCheckBox" ><a href = "?#title-h2-table-of-contents" >checkbox&nbsp;:</a >
+                        </h4 >
+
+                        <p >Si on a un <code class = "language-html" >checkbox</code >.</p >
+
+                        <pre ><code class = "language-html line-numbers" >&lt;input type="checkbox" v-model="maVariable"&gt;
+&lt;!-- true ou false. de Base, --&gt;
+&lt;!-- mais si vous ajouté value="…", alors c'est la value. --&gt;
+&lt;!-- Si plusieurs input checkbox, alors c'est value, et la variable devient un array. --&gt;</code ></pre >
+                    </div >
+
+                    <div class = "ui segment" >
+
+                        <h4 id = "titleH4RappelRadio" ><a href = "?#title-h2-table-of-contents" >radio</a ></h4 >
+
+                        <p >Si on a un
+                            <code class = "language-html" >radio</code ><br > Il met la value de l'element choisie.</p >
+
+                    </div >
+
+                    <div class = "ui segment" >
+
+                        <h4 id = "titleH4RappelSelect" ><a href = "?#title-h2-table-of-contents" >select</a ></h4 >
+
+                        <p >Si on a un <code class = "language-html" >select</code ></p >
+
+                        <pre ><code class = "language-html line-numbers" >&lt;select" v-model = "select" /&gt;</code ></pre >
+
+                        <pre ><code class = "language-javascript line-numbers" >let $appVueJS_06b = new Vue()
+    el : "#$appVueJS_06b" // indique le div dans lequel tout est appliqué.
+    data: {
+        select: "", // Si select multiple.</code ></pre >
+
+                        <p >Que ce passe t'il si on a plusieurs select ?<br > cela devient de’s tableaux.</p >
+
+                        <pre ><code class = "language-html line-numbers" >&lt;select v-model = "selects" multiple /&gt;</code ></pre >
+
+                        <pre ><code class = "language-javascript line-numbers" >let $appVueJS_06b = new Vue()
+    el : "#$appVueJS_06b", // indique le div dans lequel tout est appliqué.
+    data: {
+        select: [ …, …, …], // Si select multiple.</code ></pre >
+
+                    </div >
+
+                    <div class = "ui segment" >
+
+                        <h3 id = "titleH3RappelVBind" ><a href = "?#title-h2-table-of-contents" >v-bind</a ></h3 >
+
+                        <p >
+                            <code class = "language-javascript" >v-bind</code > on doit lui dire à quoi on lit ça. Si on souhaite modifier.
+                        </p >
+
+                        <pre ><code class = "language-javascript line-numbers" >v-bind:disabled = "varBind"
+v-bind:class = "{class: …, class: …}"</code ></pre >
+
+                    </div >
+
+                    <div class = "ui segment" >
+
+                        <h3 id = "titleH3RappelVOn" ><a href = "?#title-h2-table-of-contents" >v-on :</a ></h3 >
+
+                        <pre ><code class = "language-javascript line-numbers" >v-on:click = "compter" :
+// Avec v-on, il appelle un méthode mais il faut que êllë existe.
+Alias @click = "compter"</code ></pre >
+                        <p >On peut aussi ajouté de’s modificateurs :</p >
+
+                        <ul >
+                            <li ><code class = "language-javascript" >@click.stop = "…"</code ></li >
+                            <li ><code class = "language-javascript" >@click.prevent = "…"</code ></li >
+                            <li ><code class = "language-javascript" >@click.capture = "…"</code ></li >
+                            <li ><code class = "language-javascript" >@click.self = "…"</code ></li >
+                            <li ><code class = "language-javascript" >@click.{keyCode | keyAlias} = "…"</code ></li >
+                            <li ><code class = "language-javascript" >@click.native = "…"</code ></li >
+                            <li ><code class = "language-javascript" >@click.once = "…"</code ></li >
+                            <li ><code class = "language-javascript" >@click.left = "…"</code ></li >
+                            <li >
+                                <code class = "language-javascript" >@click.right = "…"</code > (<a href = "https://vuejs.org/v2/api/#v-on" target = "_blank" >web article</a >)
+                            </li >
+                            <li ><code class = "language-javascript" >@click.middle = "…"</code ></li >
+                            <li ><code class = "language-javascript" >@click.passive = "…"</code ></li >
+                        </ul >
+
+                        <pre ><code class = "language-html line-numbers" >{{ result() }}
+// Chaque fois que vous exécuter,
+// il reconstruit le D.O.M. donc cette fonction sa risqué de être lourd,
+// quommênthë éviter cela ?
+// Nous avons de’s méthode’s et de’s objets calculé : "computed".
+// Êllë va nous renvoyé un résultat.
+// Avantage êllë est lancé unique‑mênt quand ce’s fonction’s sont modifié êllë même,
+// mais pash tout le’s autre’s code’s.</code ></pre >
+
+                        <pre ><code class = "language-javascript line-numbers" >let $appVueJS_06b = new Vue()
+    el : "#$appVueJS_06b" // indique le div dans lequel tout est appliqué.
+    data: {                 // le système reconstruit le D.O.M. sur base du data.
+        a: 21,
+        b: 5,
+        ],
+    }
+    methods:{
+        /*
+        // Déplacé dans "computed",
+        // pour ne pash chaque fois recalculer à chaque modification de un des éléments de la Vue(),
+        // mais uniquement quand il y a un changement dans la fonction result().
+        result() {              // v-on
+            …
+        },
+        */
+        (personnes),            // v-for
+    }
+    computed:{
+        result() {              // v-on
+            return this.a + this.b;
+                // On pourrait être tenter de écrire :
+                // result: () => this.a + this.b;
+                // qui revient à :
+                // result: function() {return this.a + this.b;}
+                // Le’s « this » ne sont pourtant pash le’s même’s et ne ont pash la même portée.
+        },
+    }
+}</code ></pre >
+
+                        <pre ><code class = "language-html line-numbers" >{{ result }}</code ></pre >
+
+                        <h4 id="titleH4VueJSVForRappel" ><a href="?#title-h2-table-of-contents">v-for :</a></h4 >
+
+                        fonctionne comme un foreach javascript qui utilise un ON alors que le’s autre’s language c'est IN, en vueJS c'est IN. tableau de personne. v-for = "p in personnes"
+                        <p v-for = "pers in personnes" > // soit il existe une variable (tableau) ou computed. {{ pers.nom }}
+                        </p >
+
+                        <select v-model = "persChoisie" >
+
+                            <option v-for = "pers in <s>personnnes</s> jeunes"
+                                    value = "persoId" >
+
+                                {{ pers.prenom}} {{ pers.nom }}
+
+                            </option >
+
+                        </select >
+
+                        v-for = "(pers, index) in personnes" // On peut donc utiliser deux variable’s. "14", "Dubois", 25}, 0 "17", "Abdullah", 14}, 1 "12", "Hasan", 21}, 2
+
+                        Imaginons des points : v-for = "(pers, index) in personnes" {{ pers.nom }} {{ point[index] }}
+
+                        <h4 ><a href = "?#title-h2-table-of-contents" >Array</a ></h4 >
+
+                        let $personnes = []; // peu contenir de’s string’s, de’s floats, de’s objet’s… let $tab = [1, 5, 2, 4];
+
+                        let $resultat = $tab.filter(el => el != 5); // [5] // True ou False
+
+                        let $autreTableau = $tab.map(el => el * 2); // [4, 10, 4, 8]
+
+                        let $somme = $tab.reduce( // par defaut, renvoi que une seul valeur. (accumulateur, element) => accumulateur = accumulateur + element); // 12 (accumulateur, element) => accumulateur = accumulateur * element); // 40 let totAges = personnes.reduce((acc, el) => acc = acc + el.age); let totAges = personnes.reduce((acc, el) => acc = acc + el.age, 0); // 60
+
+                        push
+
+                        $tab.sort((a, b) => b > a) // Il faut dire l'ordre dans lequel on assorti. // et il trie tout pash juste le’s deux premier.
+
+                        <script >
+                            "use strict";
+
+                            let $liste = Set([1, 5, 2, 3, 3, 3]);
+                            $liste.add(9);
+                            $liste.add(5);
+
+                            // !!! Affiche un objet et pas un tableau
+                            console.log("set :", $liste);
+                            // Les trois points de suspension signifie qu'on déstructure (permet de convertir un objet en tableau)
+                            console.log("array :", [...$liste]);
+
+                            let $tab = [9, 7, 8, 7, 3, 6, 7, 8, 2];
+                            console.log("tab :", $tab);
+                            // On peut supprimer les doublons d'un tableau
+                            let $tab2 = [...new Set($tab)];
+                            console.log("tab2 :", $tab2);
+
+                            let $pers = [
+                                {nom: "Dubois", loc: "Namur"},
+                                {nom: "Dupont", loc: "Jambes"},
+                                {nom: "Dubuis", loc: "Liège"},
+                                {nom: "Dupuis", loc: "Namur"},
+                                {nom: "Ducon", loc: "Jambes"},
+                                {nom: "Durand", loc: "Namur"},
+                                {nom: "Debilk", loc: "Liège"},
+                            ];
+
+                            console.log("pers :", $pers);
+
+                            // On supprime les doublons du tableau et on trie les localités par ordre alphabétique
+                            let $communes = [...new Set($pers.map(p => p.loc))].sort();
+                            console.log("communes :", $communes);
+                        </script >
+
+                        tableau for (let i in tab) { c'est de’s index. console.log(tab[i]);
+
+                        for (let el of tab) { console.log(el)
+
+                        objet let $pers = { nom: Ħaʃan", prenom: "Low", age: 15 };
+
+                        for(let $attr in $pers) { console.log($pers.attr); console.log($pers.[attr]);
+
+                        console.log(attr, pers[attr]); }
+
+                        <comment >
+
+                        </comment >
+
+                        <div class = "ui segment info message" >2019‑12‑10 ‒ 13H12</div >
+
+                        <pre ><code class = "language-javascript line-numbers" >fetch("truc.php")
+	.then(rep => rep.json()) // comme return rep.json.
+	.then(liste => {
+		this.truc = [];
+		for (let el of lst) { // tableau donc OF.
+			el.qte = 0;
+			this.trucs(el);
+		}
+	});</code ></pre >
+
+                        <pre ><code class = "language-javascript line-numbers" >el: "#app",
+	data: {
+		…
+		…
+	trucs: [],
+		…
+}</code ></pre >
+
+                        <h4 id="titleH4RetourVueJSComposant" ><a href="?#title-h2-table-of-contents">Retour à vue‑J.S. composant :</a></h4 >
+
+                        <pre ><code class = "language-javascript line-numbers" >new Component("nomDuComposant", {
+
+	data: function () {
+		return {
+			…,
+			xyz: "…",
+			…
+		}
+	},
+	template: `<div > {{ xyz }} … </div >`
+})</code ></pre >
+
+                        <nom-du-composant ></nom-du-composant >
+
+                        <pre ><code class = "language-javascript line-numbers" >// VueJS ce moque que l'on soit en camelCase, HyperCamelCase / PascalCase & KebapCase.
+// Il adapthe lui même.
+
+// camelCase
+// PascalCase
+// snake_case
+// kebab-case</code ></pre >
+                    </div >
+                </div >
+
+                <div class = "ui segment" >
+
+                    <h3 id = "titleH3TestChrono" >
+                        <a href = "?#title-h2-table-of-contents" >Vue‑J.S._07_testChrono :</a ></h3 >
+
+                    <pre ><code class = "language-javascript line-numbers" >// read → running → stopped
+// ⬑ ← ← ← ← ← ← ← ← ← ← ← ↵ // UniCode n'a pas de flèche vers gauche puis haut ?</code ></pre >
+
+                    <pre ><code class = "language-html line-numbers" >&lt;!-- testChrono_vue_07.html --&gt;
+&lt;div id = "appVue07" &gt;
+
+    &lt;p v-for = "pers in personnes" &gt;
+        &lt;mon-chrono-vue-07 &gt;&lt;/mon-chrono-vue-07 &gt; {{ pers }}
+    &lt;/p &gt;
+
+&lt;/div &gt;</code ></pre >
+
+                    <pre ><code class = "language-javascript line-numbers" >/* vue07_testChrono.js */
+let $chrono_vue07 = Vue.component("monChronoVue07", {
+
+    // props: // proprietie’s au dessus de "data:".
+    data: function () {
+
+        return {
+            temps: tempsVersHeureMinuteSeconde(0, 1),
+            tempsDepart: 0,
+            etat: "ready",
+            timer: null
+        };
+    },
+    methods: {
+
+        startStop() {
+
+            switch (this.etat) {
+
+                case "ready":
+                    this.tempsDepart = Date.now();
+                    this.timer = setInterval(this.miseÀJourTemps, 1);
+                    this.etat = "running";
+                    break;
+
+                case "running":
+                    clearInterval(this.timer);
+                    this.etat = "stopped";
+                    break;
+
+                case "stopped":
+                    this.temps = tempsVersHeureMinuteSeconde(0, 1);
+                    this.etat = "ready";
+                    break;
+            }
+        },
+        miseÀJourTemps() {
+
+            this.temps = tempsVersHeureMinuteSeconde(Date.now() - this.tempsDepart, 1);
+        }
+    },
+    template: `&lt;button @click="startStop()"&gt;{{ temps }}&lt;/button&gt;`
+});
+
+let $appVue07 = new Vue({
+    el: "#appVue07",
+    data: {
+        personnes: ["Ħaʃanə", "Mə‑ħɛmedə", "Juʃfə", "Jʃuoə"]
+    }
+});
+
+function tempsVersHeureMinuteSeconde(time_ms, precision = 3) {
+
+    time_ms =
+        Math.round(time_ms / Math.pow(10, 3 - precision)) *
+        Math.pow(10, 3 - precision);
+
+    let $temps = new Date(time_ms);
+
+    let $hh = $temps
+        .getUTCHours()
+        .toString()
+        .padStart(2, "0");
+
+    let $mm = $temps
+        .getMinutes()
+        .toString()
+        .padStart(2, "0");
+
+    let $ss = $temps
+        .getSeconds()
+        .toString()
+        .padStart(2, "0");
+
+    let $ms = $temps
+        .getMilliseconds()
+        .toString()
+        .padStart(precision, "0")
+        .slice(0, precision);
+
+    return `${$hh}:${$mm}:${$ss}${precision &gt; 0 ? `.${$ms}` : ""}`;
+}</code ></pre >
+
+                    <div class = "ui segment" >
+
+                        <!-- testChrono_vue_07.html -->
+                        <div id = "appVue07" >
+
+                            <p v-for = "pers in personnes" >
+                                <mon-chrono-vue-07 ></mon-chrono-vue-07 >
+                                {{ pers }}
+                            </p >
+
+                        </div >
+
+                    </div >
+
+                    <script src = "assets/js/vue-js/vue.js" ></script >
+                    <!-- <script src="TestChrono_vue_07.js"></script> -->
+
+                    <script >/* testChrono_vue_07.js */
+                        let $chrono_vue07 = Vue.component("monChronoVue07", {
+
+                            data: function () {
+
+                                return {
+                                    temps: tempsVersHeureMinuteSeconde(0, 1),
+                                    tempsDepart: 0,
+                                    etat: "ready",
+                                    timer: null
+                                };
                             },
                             methods: {
 
-                                miseÀJourHeure_testHorloge() {
+                                startStop() {
 
-                                    this.time = Date.now();
+                                    switch (this.etat) {
+
+                                        case "ready":
+                                            this.tempsDepart = Date.now();
+                                            this.timer = setInterval(this.miseÀJourTemps, 1);
+                                            this.etat = "running";
+                                            break;
+
+                                        case "running":
+                                            clearInterval(this.timer);
+                                            this.etat = "stopped";
+                                            break;
+
+                                        case "stopped":
+                                            this.temps = tempsVersHeureMinuteSeconde(0, 1);
+                                            this.etat = "ready";
+                                            break;
+                                    }
                                 },
-                                startStop_testHorloge() {
+                                miseÀJourTemps() {
 
-                                    if (this.enFonction) {
+                                    this.temps = tempsVersHeureMinuteSeconde(Date.now() - this.tempsDepart, 1);
+                                }
+                            },
+                            template: `<button @click="startStop()">{{ temps }}</button>`
+                        });
 
-                                        clearInterval(this.timer);
+                        let $appVue07 = new Vue({
+                            el: "#appVue07",
+                            data: {
+                                personnes: ["Ħaʃanə", "Mə‑ħɛmedə", "Juʃfə", "Jʃuoə"]
+                            }
+                        });
 
-                                        this.enFonction = false;
+                        function tempsVersHeureMinuteSeconde(time_ms, precision = 3) {
+
+                            time_ms =
+                                Math.round(time_ms / Math.pow(10, 3 - precision)) *
+                                Math.pow(10, 3 - precision);
+
+                            let $temps = new Date(time_ms);
+
+                            let $hh = $temps
+                                .getUTCHours()
+                                .toString()
+                                .padStart(2, "0");
+
+                            let $mm = $temps
+                                .getMinutes()
+                                .toString()
+                                .padStart(2, "0");
+
+                            let $ss = $temps
+                                .getSeconds()
+                                .toString()
+                                .padStart(2, "0");
+
+                            let $ms = $temps
+                                .getMilliseconds()
+                                .toString()
+                                .padStart(precision, "0")
+                                .slice(0, precision);
+
+                            return `${$hh}:${$mm}:${$ss}${precision > 0 ? `.${$ms}` : ""}`;
+                        }</script >
+                </div >
+
+                <div class = "ui segment" >
+
+                    <h3 id = "titleH3VueJS08Loisirs" >
+                        <a href = "?#title-h2-table-of-contents" >Vue‑J.S._08_Loisirs :</a ></h3 >
+
+                    <p >Liste de loisirs,<br>
+                        on place un âge,<br>
+                        il affiche le’s loisirs autorisé,<br>
+                        on selection puis on envoit.</p >
+
+                    <pre><code class="language-html line-numbers">&lt;!-- vueJS_08_test_loisirs.html --&gt;
+&lt;div id= "appVueJS08" &gt;
+
+    &lt;p&gt;
+        âge:
+        &lt;input type="number" min="0" max="99" v-model="age" /&gt;
+    &lt;/p&gt;
+
+    &lt;p v-for="loisir in loisirsAccessibles"&gt;
+
+        &lt;!-- alias de v-bind : :value --&gt;
+        &lt;input type="checkbox" :value="loisir.nom" v-model="loisirsChoisis" /&gt;
+        {{ loisir.nom }} ({{ loisir.ageMin }} ans min)
+    &lt;/p&gt;
+
+    &lt;p&gt;nb : {{ nombreLoisirsChoisis }}&lt;/p&gt;
+
+    &lt;button @click="envoyer" :disabled="!nombreLoisirsOK"&gt;Envoyer&lt;/button&gt;
+
+&lt;/div&gt;
+
+&lt;script src="assets/js/vue-js/vue.js"&gt;&lt;/script&gt;
+&lt;script src="testLoisirs.js"&gt;&lt;/script&gt;</code></pre>
+
+                    <pre><code class="language-php line-numbers">/* 2019-12-10_-_vue2019_08_test_loisirs_-_csv_to_json.php */
+$file = $_GET["csv_file"];
+
+// chaine de caractères avec toutes les données
+$csv = file_get_contents($file);
+
+// toutes les lignes à traiter
+$data = array_map("str_getcsv", explode("\n", $csv));
+
+// nbre de lignes
+$nbLg = count($data);
+
+// 1ère ligne reprend les noms des champs
+$champs = $data[0];
+
+// résultats en json
+$json = [];
+
+for ($li = 1; $li < $nbLg; $li++) {
+
+	// chaque ligne est un tableau
+	$json[$li - 1] = [];
+
+    foreach ($champs as $id => $col) {
+        $json[$li - 1][$col] = $data[$li][$id];
+    }
+}
+
+echo json_encode($json);
+</code></pre>
+
+                    <pre><code class="language-csv line-numbers">{# 2019-12-10_-_vue2019_08_test_loisirs_-_csv_to_json.php #}
+nom,ageMin
+"pêche",12
+"tir à l'arc",16
+"marché de Noël",21
+"course",10
+"ski",14
+"sieste",18
+"repas",24</code></pre>
+
+                    <pre><code class="language-javascript line-numbers">/* vueJS_08_test_loisirs.js */
+let $appVueJS08 = new Vue({
+    el: "#appVueJS08",
+    data: {
+        age: 0,
+        loisirs: [],
+        loisirsChoisis: []
+    },
+    methods: {
+        envoyer() {
+
+            if (this.nombreLoisirsOK) {
+                console.log("ok");
+
+            } else {
+                console.log("pas ok");
+            }
+        }
+    },
+    computed: {
+
+        loisirsAccessibles() {
+
+            this.loisirsChoisis = [];
+
+            // ageMin est un « champ » dans le C.S.V.
+            return this.loisirs.filter(element =&gt; Number(element.ageMin) &lt; Number(this.age));
+        },
+        nombreLoisirsChoisis() {
+
+            return this.loisirsChoisis.length;
+        },
+        nombreLoisirsOK() {
+
+            return this.nombreLoisirsChoisis &gt; 0 && this.nombreLoisirsChoisis &lt;= 2;
+        }
+    },
+    mounted() {
+
+        fetch("./php/2019-12-10_-_vue2019_08_test_loisirs_-_csv_to_json.php?csv_file=../csv/2019-12-10_-_vue2019_08_loisirs_-_loisirs.csv")
+
+            .then($reponse =&gt; $reponse.json())
+            .then($liste =&gt; (this.loisirs = $liste));
+    }
+});</code></pre>
+
+                    <!-- vueJS_08_test_loisirs.html -->
+                    <div id= "appVueJS08" >
+
+                        <p>
+                            âge:
+                            <input type="number" min="0" max="99" v-model="age" />
+                        </p>
+
+                        <p v-for="loisir in loisirsAccessibles">
+
+                            <!-- alias de v-bind : :value -->
+                            <input type="checkbox" :value="loisir.nom" v-model="loisirsChoisis" />
+                            {{ loisir.nom }} ({{ loisir.ageMin }} ans min)
+                        </p>
+
+                        <p>nb : {{ nombreLoisirsChoisis }}</p>
+
+                        <button @click="envoyer" :disabled="!nombreLoisirsOK">Envoyer</button>
+
+                    </div>
+
+                    <script src="assets/js/vue-js/vue.js"></script>
+                    <!--<script src="testLoisirs.js"></script>-->
+
+                    <script >/* vueJS_08_test_loisirs.js */
+                        let $appVueJS08 = new Vue({
+                            el: "#appVueJS08",
+                            data: {
+                                age: 0,
+                                loisirs: [],
+                                loisirsChoisis: []
+                            },
+                            methods: {
+                                envoyer() {
+
+                                    if (this.nombreLoisirsOK) {
+                                        console.log("ok");
 
                                     } else {
-
-                                        this.timer = setInterval(this.miseÀJourHeure_testHorloge, 1);
-
-                                        this.enFonction = true;
+                                        console.log("pas ok");
                                     }
                                 }
                             },
-                            template: `<span @click="startStop_testHorloge">{{ time }}</span>`
-                        });
+                            computed: {
 
-                        let $testHorlogeApp = new Vue({
-                            el: "#testHorlogeApp",
-                            data: {
-                                horloges: []
-                            },
-                            methods: {
-                                ajout() {
-                                    this.horloges.push(Date.now());
+                                loisirsAccessibles() {
+
+                                    this.loisirsChoisis = [];
+
+                                    // ageMin est un « champ » dans le C.S.V.
+                                    return this.loisirs.filter(element => Number(element.ageMin) < Number(this.age));
+                                },
+                                nombreLoisirsChoisis() {
+
+                                    return this.loisirsChoisis.length;
+                                },
+                                nombreLoisirsOK() {
+
+                                    return this.nombreLoisirsChoisis > 0 && this.nombreLoisirsChoisis <= 2;
                                 }
+                            },
+                            mounted() {
+
+                                fetch("./php/2019-12-10_-_vue2019_08_test_loisirs_-_csv_to_json.php?csv_file=../csv/2019-12-10_-_vue2019_08_loisirs_-_loisirs.csv")
+
+                                    .then($reponse => $reponse.json())
+                                    .then($liste => (this.loisirs = $liste));
                             }
                         });
                     </script >
 
-                    </div>
+            </fieldset >
 
-                    <div class="ui segment">
-                        <ul>
-                            <li><code class = "language-javascript" >data:</code > : function qui contient un objet de élémênt.</li>
-                            <li><code class = "language-javascript" >mounted</code > : c'est ce qui est chargé en premier en mémoire.</li>
-                            <li><code class="language-javascript">template</code> : remplace la balise.</li>
-                        </ul>
+            <fieldset >
+                <legend ><h2 id = "titleH2ExamenTerminal" >
+                        <a href = "?#title-h2-table-of-contents" >Examen terminal :</a ></h2 ></legend >
 
+                <p >Base 60%, complement 80%, tout 100%.</p >
 
-                    </div>
+                <h4 id="titleH4ExaminationPhase01"><a href="?#title-h2-table-of-contents">09H00 à 13H00</a></h4 >
 
-                    <div class = "ui segment info message" >2019‑12‑03 ‒ 14H26</div >
+                <ul >
+                    <li >Requête <abbr title = "A‑syn‑chronous Java‑Script And X.M.L." ></abbr >A.J.A.X.</li >
+                    <li >Timer.</li >
+                </ul >
 
-                    <p >Le professeur souhaite non montrer un méthode ou le code <abbr title = "Hyper‑txt Mark‑up Language" >H.‑T.M.L.</abbr > ne intègre pash de affichage vue v-…,<br>
-                        mais de’s composant’s de ou le <code class="language-html">&lt;mon-horloge&gt;&lt;/mon-horloge&gt;</code>
-                        lié à <code class="language-javascript">`&lt;span @click="startStop_testHorloge"&gt;{{ time }}&lt;/span&gt;`</code>.</p>
-                </div>
+                <h4 id="titleH4ExaminationPhase01" ><a href="?#title-h2-table-of-contents">13H00</a></h4 >
 
-                <div class = "ui segment" >
-                    <h3 id="titleH3TestCpt"><a href="?#title-h2-table-of-contents">TestCpt ‒ Clients. File d'attente&nbsp;:</a></h3 >
-
-                    <div class = "ui segment info message" >2019‑12‑03 ‒ 15H00</div >
-
-                    <code class="language-javascript">hdep = heureDepart tps : temps ⇒ time
-// enfct en fonctionnement.
-// cl = client.
-
-majHeure, 500); // toute le’s 500 m.s.</code>
-                </div >
+                <ul >
+                    <i >Justifier et expliquer.</li></ul >
 
             </fieldset >
 

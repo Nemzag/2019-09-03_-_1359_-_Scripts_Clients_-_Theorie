@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Exemple 2 en vue</title>
+	</head>
+	<body>
+		<div id="app">
+			<p>{{ temps }}</p>
+			<button @click="startChrono" :disabled="etat != 'P'">Start</button>
+			<button @click="stopChrono" :disabled="etat != 'F'">Stop</button>
+			<button @click="addLapTime" :disabled="etat != 'F'">LapTime</button>
+			<button @click="resetChrono" :disabled="etat != 'A'">Reset</button>
+			<ul>
+				<li v-for="lap in laps">{{ lap }}</li>
+			</ul>
+		</div>
+
+		<script src="vue.js"></script>
+		<script src="vue04.js"></script>
+	</body>
+</html>
